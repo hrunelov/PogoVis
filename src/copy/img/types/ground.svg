@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<filter  id="shadow">
+	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
+	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
+	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+</filter>
+<g id="Layer_1_1_">
+	<g id="Layer_2">
+		<circle fill="#AB724B" cx="165" cy="165" r="165"/>
+	</g>
+</g>
+<g filter="url(#shadow)">
+	<polygon fill="#FFFFFF" points="56.06,219.264 109.127,219.264 112.299,211.607 136.911,152.189 83.842,152.189 	"/>
+	<polygon fill="#FFFFFF" points="273.94,219.262 228.989,110.736 175.73,110.736 130.776,219.262 	"/>
+</g>
+</svg>

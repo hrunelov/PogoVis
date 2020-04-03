@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PogoVis</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/main.min.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="main-menu"></div>
+
+      <!-- Pokémon Search Bar/Filter -->
+      <div id="pokemon-list-filter-wrapper">
+        <input id="pokemon-list-filter" type="text"></input>
+      </div>
+
+      <!-- Main Body -->
+      <div id="main-body-border">
+
+        <!-- Pokémon List -->
+        <div id="pokemon-list-wrapper" class="hidden">
+          <ul id="pokemon-list"></ul>
+        </div>
+
+        <!---->
+        <div id="main-body-container">
+
+          <!-- Pokémon Info -->
+          <div id="pokemon-info" class="main-body">
+
+            <!-- Caption -->
+            <div id="pokemon-caption">
+              <div id="pokemon-caption-image-background">
+                <img id="pokemon-caption-image"></img>
+              </div>
+              <div id="pokemon-caption-name-wrapper">
+                <div id="pokemon-caption-name"></div>
+                <div id="pokemon-caption-category"></div>
+              </div>
+              <div id="pokemon-caption-rarity" class="center-aligned pokemon-caption-rarity-hidden"></div>
+            </div>
+
+            <!-- Form Selector -->
+            <div id="form-selection-bar"></div>
+
+            <!-- Form General Info -->
+            <div id="form-general-container">
+              <div id="form-general-body">
+
+                <!-- Description -->
+                <div id="form-description-frame" class="frame">
+                  <div id="form-description-body" class="frame-body">
+                  </div>
+                </div>
+
+                <!-- Top Bar -->
+                <div id="form-general-top-wrapper">
+
+                  <!-- Gender Ratio -->
+                  <div id="form-female-percent" class="form-top-label right-aligned form-gender-percent"></div>
+                  <img id="form-female-icon" src="img/female.svg"></img>
+                  <div id="form-gender-bar" class="horizontal-bar">
+                    <div id="form-female-bar" class="horizontal-bar-value form-gender-element hidden"></div>
+                    <div id="form-male-bar" class="horizontal-bar-value right form-gender-element hidden"></div>
+                    <div id="form-genderless-label" class="caps center-aligned hidden">Genderless</div>
+                  </div>
+                  <img id="form-male-icon" src="img/male.svg"></img>
+                  <div id="form-male-percent" class="form-top-label form-gender-percent"></div>
+                </div>
+
+                <!-- Type and Base Stats -->
+                <div id="form-type-stats-wrapper">
+
+                  <!-- Type -->
+                  <div id="form-type-frame" class="frame pad-right">
+                    <span class="frame-caption">Type</span>
+                    <div id="form-type-body" class="frame-body">
+                      <div id="form-types"></div>
+                      <div class="vertical-spacer"></div>
+                      <div id="form-type-effectiveness-wrapper">
+                        <div id="form-resistances-wrapper" class="flex-grow">
+                          <div class="sub-caption center-aligned">Resists</div>
+                          <div id="form-resistances"></div>
+                        </div>
+                        <div "form-weaknesses-wrapper" class="flex-grow">
+                          <div class="sub-caption center-aligned">Weak to</div>
+                          <div id="form-weaknesses"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Base Stats-->
+                  <div id="form-stats-frame" class="frame pad-left">
+                    <span class="frame-caption">Base Stats</span>
+                    <div id="form-stats-body" class="frame-body"></div>
+                  </div>
+                </div>
+
+                <!-- Evolution -->
+                <div id="form-evolution-frame" class="frame">
+                  <span class="frame-caption">Evolution</span>
+                  <div id="form-evolution-body" class="frame-body">
+                    <div id="form-evolution-root" class="form-evolution-row"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="loading">
+      <div>
+        Loading
+      </div>
+      <div id="progress-bar" class="horizontal-bar">
+        <div id="progress" class="horizontal-bar-value"></div>
+      </div>
+    </div>
+    <!-- <div id="tooltip">Tooltip</div> -->
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/transitions.js"></script>
+    <script src="js/widgets.js"></script>
+    <script src="js/spiderchart.js"></script>
+    <script src="js/pokedex.js"></script>
+    <script src="js/statcalc.js"></script>
+    <script src="js/pokemon_list.js"></script>
+    <script src="js/details.js"></script>
+    <script src="js/pokemon_info.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

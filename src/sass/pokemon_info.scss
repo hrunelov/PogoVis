@@ -1,0 +1,416 @@
+@import "common.scss";
+
+/* Caption */
+
+#pokemon-caption {
+  height: 120px;
+  max-height: 120px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
+  z-index: 1;
+}
+
+#pokemon-caption-image-background {
+  width: 160px;
+  height: 500px;
+  transform: rotate(-22.5deg) translate(-60px);
+}
+
+#pokemon-caption-image {
+  width: 112px;
+  height: 112px;
+  margin: $padding;
+  transform: rotate(22.5deg) translate(128px, 148px);
+}
+
+#pokemon-caption-name-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+#pokemon-caption-name {
+  @include extra-bold;
+  @include text-shadow-subtle;
+  margin-left: -25px;
+  color: $text-color;
+  font-size: 24pt;
+  margin-bottom: 4px;
+}
+
+#pokemon-caption-category {
+  margin-left: -15px;
+  font-weight: regular;
+  text-transform: uppercase;
+  color: $white-transp-50;
+  margin-top: -2px;
+}
+
+#pokemon-caption-rarity {
+  margin-right: -62px;
+  width: 200px;
+  text-transform: uppercase;
+  color: $white-transp-75;
+  // border-top: 2px solid $white-transp-25;
+  // border-bottom: 2px solid $white-transp-25;
+  box-shadow: 2px 2px 0 $black-transp-50;
+  transform: rotate(-45deg);
+
+  &.legendary {
+    background: #222266;
+  }
+
+  &.mythical {
+    background: #440044;
+  }
+}
+
+/* Form Selector */
+#form-selection-bar {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
+  z-index: 1;
+  transition: min-height $transition-duration-medium, height $transition-duration-medium;
+
+  &.collapsed {
+    height: 0;
+    min-height: 0;
+  }
+
+  &.expanded {
+    height: 50px;
+    min-height: 50px;
+  }
+
+  &.expanded-double {
+    flex-wrap: wrap;
+    height: 100px;
+    min-height: 100px;
+  }
+}
+
+.form-selection-button {
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & > * {
+    flex-grow: 1;
+    margin: $padding;
+    line-height: 16pt;
+  }
+
+  &.selected {
+    @include text-shadow-subtle;
+    font-weight: bolder;
+    color: $text-color;
+  }
+
+  &.unselected {
+    color: $white-transp-50;
+    cursor: pointer;
+
+    &:hover {
+      color: $white-transp-75;
+    }
+  }
+}
+
+/* General Info */
+
+#form-general-container {
+  @include scrollbars($dark, $light, $highlight);
+  height: 100%;
+  margin-top: $padding;
+  overflow-y: scroll;
+  border-radius: 0 0 $corner-radius $corner-radius;
+}
+
+#form-general-body {
+  margin-right: $padding;
+  background: $dark;
+  padding: $padding;
+}
+
+/* Description */
+
+#form-description-frame {
+  margin-top: $padding;
+  margin-bottom: 24px;
+  text-align: justify;
+
+  & u {
+    opacity: 0;
+  }
+}
+
+/* Top Bar */
+
+#form-general-top-wrapper {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-general-top-label {
+  margin: $padding;
+  margin-bottom: $padding + 1px;
+}
+
+/* Gender Ratio */
+
+.form-gender-percent {
+  letter-spacing: 0;
+  margin: $padding*2;
+  width: 50px;
+}
+
+#form-gender-bar {
+  width: 134px;
+}
+
+#form-female-bar {
+  background: #bd4d8d;
+  border-right: 1.25px solid $dark;
+}
+
+#form-male-bar {
+  background: #3d6dbd;
+  border-left: 1.25px solid $dark;
+}
+
+#form-genderless-label {
+  text-transform: uppercase;
+  width: 100%;
+  position: absolute;
+}
+
+/* Type and Base Stats */
+
+#form-type-stats-wrapper {
+  @include equal-width(2);
+}
+
+/* Type */
+
+#form-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form-type-effectiveness-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form-resistances-wrapper {
+  padding-right: $padding*3;
+}
+
+#form-weaknesses-wrapper {
+  padding-left: $padding*3;
+}
+
+.type-label {
+  margin: $padding*2;
+  border-radius: $widget-height-large;
+  display: flex;
+  align-items: center;
+
+  &.centered {
+    flex-direction: column;
+    width: 33%;
+  }
+
+  &.left {
+    flex-direction: row-reverse;
+  }
+
+  &.right {
+    flex-direction: row;
+  }
+}
+
+.type-icon {
+  width: $widget-height-large;
+  height: $widget-height-large;
+}
+
+.type-name {
+  text-transform: uppercase;
+  margin: $padding*2;
+}
+
+.type-effectiveness-text {
+  letter-spacing: 0;
+  color: $white-transp-75;
+}
+
+/* Evolutions */
+
+$form-evolution-full-width: 100px;
+$form-evolution-short-width: 20px;
+$form-evolution-path-corner-radius: $corner-radius*2;
+$form-evolution-path-width: 1.5px;
+
+#form-evolution-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: -25px 0 25px 0;
+  color: $light;
+  text-transform: uppercase;
+}
+
+.form-evolution-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.form-evolution-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-evolution-reqs-wrapper {
+  position: absolute;
+  width: $form-evolution-full-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-evolution-reqs-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $padding;
+  background: $dark;
+  border: $form-evolution-path-width solid $light;
+  border-radius: $form-evolution-path-corner-radius;
+
+  & > * {
+    margin: $padding;
+  }
+}
+
+.form-evolution-req-icons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-evolution-req-icon {
+  margin: 0 $padding;
+}
+
+.form-evolution-req-label {
+  color: $text-color-dark;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-evolution-req-number {
+  letter-spacing: 0;
+  margin-left: $padding;
+}
+
+.form-evolution-req-text {
+  text-transform: uppercase;
+  font-size: 12pt;
+}
+
+.form-evolution-descendant-image-wrapper {
+  height: 130px;
+}
+
+.form-evolution-descendant-line {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  width: 100%;
+  height: $form-evolution-path-width;
+  margin-top: -$form-evolution-path-width/2;
+  background: $light;
+  z-index: -1;
+}
+
+.form-evolution-path {
+  height: 50%;
+
+  &.full {
+    width: $form-evolution-full-width;
+  }
+
+  &.short {
+    width: $form-evolution-short-width;
+  }
+
+  &.upper {
+    border-bottom: $form-evolution-path-width solid $light;
+    margin-bottom: -$form-evolution-path-width/2;
+
+    &.top {
+      border: unset;
+    }
+
+    &.bottom {
+      margin-bottom: $form-evolution-path-width;
+    }
+
+    &.split {
+      height: 50%;
+      border-left: $form-evolution-path-width solid $light;
+
+      &.top {
+        border: unset;
+      }
+
+      &.bottom {
+        border-radius: 0 0 0 $form-evolution-path-corner-radius;
+      }
+    }
+  }
+
+  &.lower {
+    border-top: $form-evolution-path-width solid $light;
+    margin-top: -$form-evolution-path-width/2;
+
+    &.top {
+      margin-top: $form-evolution-path-width;
+    }
+
+    &.bottom {
+      border: unset;
+    }
+
+    &.split {
+      border-left: $form-evolution-path-width solid $light;
+
+      &.top {
+        border-radius: $form-evolution-path-corner-radius 0 0 0;
+      }
+
+      &.bottom {
+        border: unset;
+      }
+    }
+  }
+}

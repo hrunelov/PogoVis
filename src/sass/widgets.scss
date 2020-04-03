@@ -1,0 +1,93 @@
+@import "common.scss";
+
+/* Bars/Meters */
+
+.horizontal-bar {
+  height: $widget-height-small;
+  margin: $padding;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  border-radius: $corner-radius - 2px;
+  overflow: hidden;
+  background: $medium;
+}
+
+.horizontal-bar-segment {
+  flex-grow: 1;
+  border-left: 0.5px solid $dark;
+  border-right: 0.5px solid $dark;
+
+  &.start {
+    border-left: 0;
+  }
+
+  &.end {
+    border-right: 0;
+  }
+
+  z-index: 1;
+}
+
+.horizontal-bar-value {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: $text-color-dark;
+
+  &.right {
+    right: 0;
+  }
+}
+
+/* Pokémon Icons */
+
+.pokemon-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pokemon-image-frame {
+  width: 100px;
+  height: 100px;
+  margin: $padding 0;
+  border: 2px solid $light;
+  border-radius: 1000px;
+  position: relative;
+  overflow: hidden;
+
+  &.selected {
+    border: 2px solid $text-color-dark;
+  }
+}
+
+.pokemon-image {
+  width: 66%;
+  height: 66%;
+  position: absolute;
+  top: 17%;
+  left: 17%;
+}
+
+.pokemon-image-name {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12pt;
+  color: $light;
+
+  &.selected {
+    color: $text-color-dark;
+  }
+}
+
+.pokemon-image-hot-area {
+  position: absolute;
+  bottom: 0;
+  border-radius: 1000px 1000px 0 0;
+  cursor: pointer;
+}

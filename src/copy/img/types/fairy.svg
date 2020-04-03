@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<filter  id="shadow">
+	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
+	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
+	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+</filter>
+<g id="Layer_1_1_">
+	<g id="Layer_2">
+		<circle fill="#CC8BC0" cx="165" cy="165" r="165"/>
+	</g>
+</g>
+<g filter="url(#shadow)">
+	<path fill="#FFFFFF" d="M205.262,68.155"/>
+	<path fill="#FFFFFF" d="M100.74,57.331"/>
+	<g>
+		<polygon fill="none" points="164.999,134.923 161.442,143.513 156.19,156.192 143.51,161.444 134.921,165.001 143.512,168.56
+			156.191,173.812 161.443,186.491 165,195.078 168.558,186.489 173.811,173.81 186.489,168.558 195.076,165.001 186.489,161.444
+			173.809,156.191 168.558,143.512 	"/>
+		<path fill="#FFFFFF" d="M211.25,135.837l12.081-29.167l-29.167,12.081l-29.165-70.411l-29.163,70.409l-29.166-12.081l12.081,29.168
+			l-70.412,29.164l70.411,29.164l-12.081,29.165l29.167-12.081L165,281.659l29.164-70.409l29.166,12.081l-12.08-29.167l70.411-29.163
+			L211.25,135.837z M186.489,161.444l8.587,3.557l-8.587,3.557l-12.679,5.252l-5.253,12.68L165,195.078l-3.557-8.587l-5.252-12.68
+			l-12.679-5.252l-8.591-3.559l8.589-3.557l12.68-5.252l5.252-12.679l3.557-8.59l3.559,8.589l5.251,12.679L186.489,161.444z"/>
+	</g>
+</g>
+</svg>

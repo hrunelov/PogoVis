@@ -1,0 +1,169 @@
+$default-font-size: 14pt;
+$wide-spacing: 0.1em;
+$back-color: #111;
+$text-color: #fff;
+$text-color-dark: #ccc;
+$white-transp-75: #ffffffc0;
+$white-transp-50: #ffffff80;
+$white-transp-25: #ffffff40;
+$black-transp-75: #000000c0;
+$black-transp-50: #00000080;
+$dark: #222;
+$medium: #444;
+$light: #666;
+$highlight: #888;
+$transition-duration-fast: 0.25s;
+$transition-duration-medium: 0.5s;
+$transition-duration-slow: 1s;
+$main-width: 647px;
+$corner-radius: 5px;
+$padding: 4px;
+$widget-height-small: 24px;
+$widget-height-medium: 32px;
+$widget-height-large: 48px;
+
+@mixin extra-bold {
+  font-weight: 900;
+  letter-spacing: 0.025em;
+}
+
+@mixin text-shadow-subtle {
+  text-shadow: 0 0 2px #000;
+}
+
+@mixin equal-width($n) {
+  display: flex;
+  flex-direction: row;
+
+  & > * {
+    width: 100%/$n;
+  }
+}
+
+/* Scrollbars */
+@mixin scrollbars($track-color, $thumb-color, $thumb-hover-color) {
+  scrollbar-width: $corner-radius * 2;
+  scrollbar-height: $corner-radius * 2;
+  scrollbar-color: $thumb-color $track-color;
+
+  &::-webkit-scrollbar {
+    width:  $corner-radius * 2;
+    height: $corner-radius * 2;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $corner-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $corner-radius;
+
+    &:hover {
+      background: $thumb-hover-color;
+    }
+  }
+}
+
+/* Text */
+
+.left-aligned {
+  text-align: left;
+}
+
+.center-aligned {
+  text-align: center;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Flex */
+
+.flex-reverse {
+  flex-direction: row-reverse;
+}
+
+/* Frames */
+
+.frame {
+  margin-top: 32px;
+  padding: $padding;
+  border: 1px solid $light;
+  border-radius: $corner-radius - 2px;
+  color: $text-color-dark;
+}
+
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 $padding;
+  background: $dark;
+}
+
+.frame-body {
+  margin: $padding;
+  overflow: hidden;
+}
+
+.vertical-spacer {
+  height: $padding*4;
+}
+
+.sub-caption {
+  font-weight: bold;
+  margin: $padding*4 $padding;
+}
+
+/* Padding/Margins */
+.pad-top {
+  margin-top: $padding;
+}
+
+.pad-top-half {
+  margin-top: $padding/2;
+}
+
+.pad-bottom {
+  margin-bottom: $padding;
+}
+
+.pad-bottom-half {
+  margin-bottom: $padding/2;
+}
+
+.pad-left {
+  margin-left: $padding;
+}
+
+.pad-left-half {
+  margin-left: $padding/2;
+}
+
+.pad-right {
+  margin-right: $padding;
+}
+
+.pad-right-half {
+  margin-right: $padding/2;
+}
+
+.border-top {
+  border-top: $padding solid $back_color;
+}
+
+.border-bottom {
+  border-bottom: $padding solid $back_color;
+}
+
+.hidden {
+  display: none;
+}

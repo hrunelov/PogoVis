@@ -1,0 +1,99 @@
+@import "common.scss";
+@import "widgets.scss";
+@import "spiderchart.scss";
+@import "pokemon_info.scss";
+@import "pokemon_list.scss";
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: $default-font-size;
+  letter-spacing: 0.05em;
+  color: $text-color;
+  background: $back-color;
+  overflow: hidden;
+  cursor: default;
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9;
+  font-size: 32pt;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#progress-bar {
+  width: $main-width / 2;
+}
+
+#progress {
+  width: 0;
+  transition: width $transition-duration-fast;
+}
+
+.tooltip {
+  background: $back-color;
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  z-index: 42;
+}
+
+#main {
+  width: $main-width;
+  position: absolute;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  margin-left: -$main-width/2;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-menu {
+
+}
+
+#main-caption {
+  text-align: center;
+  font-size: 24pt;
+  padding-top: 20px;
+}
+
+#main-body-border {
+  border: 1px solid $light;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 20px;
+  overflow-x: hidden;
+  display: flex;
+  border-radius: $corner-radius + 3px;
+}
+
+#main-body-container {
+  @include scrollbars($dark, $light, $highlight);
+  margin: $padding;
+  border-radius: $corner-radius;
+  display: flex;
+  flex-direction: row;
+}
+
+.main-body {
+  margin-right: $padding;
+  border-radius: $corner-radius;
+  width: $main-width - 8px;
+  min-width: $main-width - 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: $text-color-dark;
+}

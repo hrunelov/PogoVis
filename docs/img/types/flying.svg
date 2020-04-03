@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<filter  id="shadow">
+	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
+	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
+	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+</filter>
+<g id="Layer_1_1_">
+	<g id="Layer_2">
+		<circle fill="#7C8FB4" cx="165" cy="165" r="165"/>
+	</g>
+</g>
+<path filter="url(#shadow)" fill="#FFFFFF" d="M116.723,197.813c39.297,0,73.578-13.203,91.941-32.813h-77.861 M130.803,165
+	c48.29,0,90.415-13.203,112.98-32.813h-98.813c52.798-0.011,99.662-13.211,133.932-32.813h-162.18l0,0
+	C80.479,99.376,51.098,128.757,51.098,165c0,36.244,29.381,65.625,65.625,65.625c24.287,0,45.475-13.203,56.822-32.813h-56.822l0,0"
+	/>
+</svg>

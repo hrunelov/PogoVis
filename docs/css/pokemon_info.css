@@ -1,0 +1,753 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
+/* Scrollbars */
+/* Text */
+/* line 71, src/sass/common.scss */
+.left-aligned {
+  text-align: left;
+}
+
+/* line 75, src/sass/common.scss */
+.center-aligned {
+  text-align: center;
+}
+
+/* line 79, src/sass/common.scss */
+.right-aligned {
+  text-align: right;
+}
+
+/* line 83, src/sass/common.scss */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Flex */
+/* line 89, src/sass/common.scss */
+.flex-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Frames */
+/* line 95, src/sass/common.scss */
+.frame {
+  margin-top: 32px;
+  padding: 4px;
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #ccc;
+}
+
+/* line 103, src/sass/common.scss */
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 4px;
+  background: #222;
+}
+
+/* line 112, src/sass/common.scss */
+.frame-body {
+  margin: 4px;
+  overflow: hidden;
+}
+
+/* line 117, src/sass/common.scss */
+.vertical-spacer {
+  height: 16px;
+}
+
+/* line 121, src/sass/common.scss */
+.sub-caption {
+  font-weight: bold;
+  margin: 16px 4px;
+}
+
+/* Padding/Margins */
+/* line 127, src/sass/common.scss */
+.pad-top {
+  margin-top: 4px;
+}
+
+/* line 131, src/sass/common.scss */
+.pad-top-half {
+  margin-top: 2px;
+}
+
+/* line 135, src/sass/common.scss */
+.pad-bottom {
+  margin-bottom: 4px;
+}
+
+/* line 139, src/sass/common.scss */
+.pad-bottom-half {
+  margin-bottom: 2px;
+}
+
+/* line 143, src/sass/common.scss */
+.pad-left {
+  margin-left: 4px;
+}
+
+/* line 147, src/sass/common.scss */
+.pad-left-half {
+  margin-left: 2px;
+}
+
+/* line 151, src/sass/common.scss */
+.pad-right {
+  margin-right: 4px;
+}
+
+/* line 155, src/sass/common.scss */
+.pad-right-half {
+  margin-right: 2px;
+}
+
+/* line 159, src/sass/common.scss */
+.border-top {
+  border-top: 4px solid #111;
+}
+
+/* line 163, src/sass/common.scss */
+.border-bottom {
+  border-bottom: 4px solid #111;
+}
+
+/* line 167, src/sass/common.scss */
+.hidden {
+  display: none;
+}
+
+/* Caption */
+/* line 5, src/sass/pokemon_info.scss */
+#pokemon-caption {
+  height: 120px;
+  max-height: 120px;
+  min-height: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  -webkit-box-shadow: -12.5px 10px 10px #00000088;
+          box-shadow: -12.5px 10px 10px #00000088;
+  z-index: 1;
+}
+
+/* line 17, src/sass/pokemon_info.scss */
+#pokemon-caption-image-background {
+  width: 160px;
+  height: 500px;
+  -webkit-transform: rotate(-22.5deg) translate(-60px);
+          transform: rotate(-22.5deg) translate(-60px);
+}
+
+/* line 23, src/sass/pokemon_info.scss */
+#pokemon-caption-image {
+  width: 112px;
+  height: 112px;
+  margin: 4px;
+  -webkit-transform: rotate(22.5deg) translate(128px, 148px);
+          transform: rotate(22.5deg) translate(128px, 148px);
+}
+
+/* line 30, src/sass/pokemon_info.scss */
+#pokemon-caption-name-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+/* line 37, src/sass/pokemon_info.scss */
+#pokemon-caption-name {
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 2px #000;
+  margin-left: -25px;
+  color: #fff;
+  font-size: 24pt;
+  margin-bottom: 4px;
+}
+
+/* line 46, src/sass/pokemon_info.scss */
+#pokemon-caption-category {
+  margin-left: -15px;
+  font-weight: regular;
+  text-transform: uppercase;
+  color: #ffffff80;
+  margin-top: -2px;
+}
+
+/* line 54, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity {
+  margin-right: -62px;
+  width: 200px;
+  text-transform: uppercase;
+  color: #ffffffc0;
+  -webkit-box-shadow: 2px 2px 0 #00000080;
+          box-shadow: 2px 2px 0 #00000080;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+/* line 64, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity.legendary {
+  background: #222266;
+}
+
+/* line 68, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity.mythical {
+  background: #440044;
+}
+
+/* Form Selector */
+/* line 74, src/sass/pokemon_info.scss */
+#form-selection-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: hidden;
+  -webkit-box-shadow: -12.5px 10px 10px #00000088;
+          box-shadow: -12.5px 10px 10px #00000088;
+  z-index: 1;
+  -webkit-transition: min-height 0.5s, height 0.5s;
+  transition: min-height 0.5s, height 0.5s;
+}
+
+/* line 82, src/sass/pokemon_info.scss */
+#form-selection-bar.collapsed {
+  height: 0;
+  min-height: 0;
+}
+
+/* line 87, src/sass/pokemon_info.scss */
+#form-selection-bar.expanded {
+  height: 50px;
+  min-height: 50px;
+}
+
+/* line 92, src/sass/pokemon_info.scss */
+#form-selection-bar.expanded-double {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 100px;
+  min-height: 100px;
+}
+
+/* line 99, src/sass/pokemon_info.scss */
+.form-selection-button {
+  text-transform: uppercase;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 106, src/sass/pokemon_info.scss */
+.form-selection-button > * {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 4px;
+  line-height: 16pt;
+}
+
+/* line 112, src/sass/pokemon_info.scss */
+.form-selection-button.selected {
+  text-shadow: 0 0 2px #000;
+  font-weight: bolder;
+  color: #fff;
+}
+
+/* line 118, src/sass/pokemon_info.scss */
+.form-selection-button.unselected {
+  color: #ffffff80;
+  cursor: pointer;
+}
+
+/* line 122, src/sass/pokemon_info.scss */
+.form-selection-button.unselected:hover {
+  color: #ffffffc0;
+}
+
+/* General Info */
+/* line 130, src/sass/pokemon_info.scss */
+#form-general-container {
+  scrollbar-width: 10px;
+  scrollbar-height: 10px;
+  scrollbar-color: #666 #222;
+  height: 100%;
+  margin-top: 4px;
+  overflow-y: scroll;
+  border-radius: 0 0 5px 5px;
+}
+
+/* line 49, src/sass/common.scss */
+#form-general-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* line 54, src/sass/common.scss */
+#form-general-container::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 5px;
+}
+
+/* line 59, src/sass/common.scss */
+#form-general-container::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+
+/* line 63, src/sass/common.scss */
+#form-general-container::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* line 138, src/sass/pokemon_info.scss */
+#form-general-body {
+  margin-right: 4px;
+  background: #222;
+  padding: 4px;
+}
+
+/* Description */
+/* line 146, src/sass/pokemon_info.scss */
+#form-description-frame {
+  margin-top: 4px;
+  margin-bottom: 24px;
+  text-align: justify;
+}
+
+/* line 151, src/sass/pokemon_info.scss */
+#form-description-frame u {
+  opacity: 0;
+}
+
+/* Top Bar */
+/* line 158, src/sass/pokemon_info.scss */
+#form-general-top-wrapper {
+  margin: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 166, src/sass/pokemon_info.scss */
+.form-general-top-label {
+  margin: 4px;
+  margin-bottom: 5px;
+}
+
+/* Gender Ratio */
+/* line 173, src/sass/pokemon_info.scss */
+.form-gender-percent {
+  letter-spacing: 0;
+  margin: 8px;
+  width: 50px;
+}
+
+/* line 179, src/sass/pokemon_info.scss */
+#form-gender-bar {
+  width: 134px;
+}
+
+/* line 183, src/sass/pokemon_info.scss */
+#form-female-bar {
+  background: #bd4d8d;
+  border-right: 1.25px solid #222;
+}
+
+/* line 188, src/sass/pokemon_info.scss */
+#form-male-bar {
+  background: #3d6dbd;
+  border-left: 1.25px solid #222;
+}
+
+/* line 193, src/sass/pokemon_info.scss */
+#form-genderless-label {
+  text-transform: uppercase;
+  width: 100%;
+  position: absolute;
+}
+
+/* Type and Base Stats */
+/* line 201, src/sass/pokemon_info.scss */
+#form-type-stats-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* line 38, src/sass/common.scss */
+#form-type-stats-wrapper > * {
+  width: 50%;
+}
+
+/* Type */
+/* line 207, src/sass/pokemon_info.scss */
+#form-types {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* line 213, src/sass/pokemon_info.scss */
+#form-type-effectiveness-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* line 219, src/sass/pokemon_info.scss */
+#form-resistances-wrapper {
+  padding-right: 12px;
+}
+
+/* line 223, src/sass/pokemon_info.scss */
+#form-weaknesses-wrapper {
+  padding-left: 12px;
+}
+
+/* line 227, src/sass/pokemon_info.scss */
+.type-label {
+  margin: 8px;
+  border-radius: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 233, src/sass/pokemon_info.scss */
+.type-label.centered {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 33%;
+}
+
+/* line 238, src/sass/pokemon_info.scss */
+.type-label.left {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* line 242, src/sass/pokemon_info.scss */
+.type-label.right {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* line 247, src/sass/pokemon_info.scss */
+.type-icon {
+  width: 48px;
+  height: 48px;
+}
+
+/* line 252, src/sass/pokemon_info.scss */
+.type-name {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 257, src/sass/pokemon_info.scss */
+.type-effectiveness-text {
+  letter-spacing: 0;
+  color: #ffffffc0;
+}
+
+/* Evolutions */
+/* line 269, src/sass/pokemon_info.scss */
+#form-evolution-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: -25px 0 25px 0;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* line 279, src/sass/pokemon_info.scss */
+.form-evolution-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+/* line 285, src/sass/pokemon_info.scss */
+.form-evolution-column {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* line 292, src/sass/pokemon_info.scss */
+.form-evolution-reqs-wrapper {
+  position: absolute;
+  width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* line 300, src/sass/pokemon_info.scss */
+.form-evolution-reqs-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px;
+  background: #222;
+  border: 1.5px solid #666;
+  border-radius: 10px;
+}
+
+/* line 309, src/sass/pokemon_info.scss */
+.form-evolution-reqs-body > * {
+  margin: 4px;
+}
+
+/* line 314, src/sass/pokemon_info.scss */
+.form-evolution-req-icons-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 320, src/sass/pokemon_info.scss */
+.form-evolution-req-icon {
+  margin: 0 4px;
+}
+
+/* line 324, src/sass/pokemon_info.scss */
+.form-evolution-req-label {
+  color: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* line 330, src/sass/pokemon_info.scss */
+.form-evolution-req-number {
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+
+/* line 335, src/sass/pokemon_info.scss */
+.form-evolution-req-text {
+  text-transform: uppercase;
+  font-size: 12pt;
+}
+
+/* line 340, src/sass/pokemon_info.scss */
+.form-evolution-descendant-image-wrapper {
+  height: 130px;
+}
+
+/* line 344, src/sass/pokemon_info.scss */
+.form-evolution-descendant-line {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  width: 100%;
+  height: 1.5px;
+  margin-top: -0.75px;
+  background: #666;
+  z-index: -1;
+}
+
+/* line 355, src/sass/pokemon_info.scss */
+.form-evolution-path {
+  height: 50%;
+}
+
+/* line 358, src/sass/pokemon_info.scss */
+.form-evolution-path.full {
+  width: 100px;
+}
+
+/* line 362, src/sass/pokemon_info.scss */
+.form-evolution-path.short {
+  width: 20px;
+}
+
+/* line 366, src/sass/pokemon_info.scss */
+.form-evolution-path.upper {
+  border-bottom: 1.5px solid #666;
+  margin-bottom: -0.75px;
+}
+
+/* line 370, src/sass/pokemon_info.scss */
+.form-evolution-path.upper.top {
+  border: unset;
+}
+
+/* line 374, src/sass/pokemon_info.scss */
+.form-evolution-path.upper.bottom {
+  margin-bottom: 1.5px;
+}
+
+/* line 378, src/sass/pokemon_info.scss */
+.form-evolution-path.upper.split {
+  height: 50%;
+  border-left: 1.5px solid #666;
+}
+
+/* line 382, src/sass/pokemon_info.scss */
+.form-evolution-path.upper.split.top {
+  border: unset;
+}
+
+/* line 386, src/sass/pokemon_info.scss */
+.form-evolution-path.upper.split.bottom {
+  border-radius: 0 0 0 10px;
+}
+
+/* line 392, src/sass/pokemon_info.scss */
+.form-evolution-path.lower {
+  border-top: 1.5px solid #666;
+  margin-top: -0.75px;
+}
+
+/* line 396, src/sass/pokemon_info.scss */
+.form-evolution-path.lower.top {
+  margin-top: 1.5px;
+}
+
+/* line 400, src/sass/pokemon_info.scss */
+.form-evolution-path.lower.bottom {
+  border: unset;
+}
+
+/* line 404, src/sass/pokemon_info.scss */
+.form-evolution-path.lower.split {
+  border-left: 1.5px solid #666;
+}
+
+/* line 407, src/sass/pokemon_info.scss */
+.form-evolution-path.lower.split.top {
+  border-radius: 10px 0 0 0;
+}
+
+/* line 411, src/sass/pokemon_info.scss */
+.form-evolution-path.lower.split.bottom {
+  border: unset;
+}
