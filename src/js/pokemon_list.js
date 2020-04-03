@@ -98,6 +98,8 @@ d3.select("#pokemon-list-filter")
   .on("focus", function() {
     showPokemonList();
     animateHeight("#pokemon-list-wrapper", TRANSITION_DURATION_FAST, true);
+    d3.select("#pokemon-list-filter-icon")
+      .style("display", "none");
   })
   .on("input", function() {
     generatePokemonList(d3.select(this).node().value);
@@ -106,5 +108,7 @@ d3.select("#pokemon-list-filter")
   .on("blur", function() {
     setTimeout(function() {
       hidePokemonList();
+      d3.select("#pokemon-list-filter-icon")
+        .style("display", "block");
     }, 1);
   });

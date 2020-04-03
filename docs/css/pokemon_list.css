@@ -157,6 +157,7 @@
 
 /* line 25, src/sass/pokemon_list.scss */
 #pokemon-list-filter-wrapper {
+  position: relative;
   margin: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -167,7 +168,14 @@
           flex-direction: column;
 }
 
-/* line 31, src/sass/pokemon_list.scss */
+/* line 32, src/sass/pokemon_list.scss */
+#pokemon-list-filter-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 16px;
+}
+
+/* line 38, src/sass/pokemon_list.scss */
 #pokemon-list-filter {
   font-weight: 900;
   letter-spacing: 0.025em;
@@ -180,14 +188,15 @@
   background: none;
   border: none;
   border-bottom: 1px solid #666;
+  z-index: 1;
 }
 
-/* line 43, src/sass/pokemon_list.scss */
+/* line 51, src/sass/pokemon_list.scss */
 #pokemon-list-filter:hover {
   border-bottom: 1px solid #888;
 }
 
-/* line 48, src/sass/pokemon_list.scss */
+/* line 56, src/sass/pokemon_list.scss */
 #pokemon-list {
   scrollbar-width: 10px;
   scrollbar-height: 10px;
@@ -223,7 +232,7 @@
   background: #888;
 }
 
-/* line 58, src/sass/pokemon_list.scss */
+/* line 66, src/sass/pokemon_list.scss */
 .pokemon-list-row {
   cursor: pointer;
   margin-right: 4px;
@@ -241,7 +250,7 @@
   overflow: hidden;
 }
 
-/* line 68, src/sass/pokemon_list.scss */
+/* line 76, src/sass/pokemon_list.scss */
 #pokemon-list-message {
   font-size: 20px;
   margin-right: 4px;
@@ -249,7 +258,7 @@
   background: #222;
 }
 
-/* line 75, src/sass/pokemon_list.scss */
+/* line 83, src/sass/pokemon_list.scss */
 .pokemon-list-image-background {
   width: 80px;
   height: 250px;
@@ -257,7 +266,7 @@
           transform: rotate(-22.5deg) translate(-30px);
 }
 
-/* line 81, src/sass/pokemon_list.scss */
+/* line 89, src/sass/pokemon_list.scss */
 .pokemon-list-image {
   width: 52px;
   height: 52px;
@@ -266,7 +275,7 @@
           transform: rotate(22.5deg) translate(64px, 74px);
 }
 
-/* line 103, src/sass/pokemon_list.scss */
+/* line 111, src/sass/pokemon_list.scss */
 .pokemon-list-name {
   font-weight: 900;
   letter-spacing: 0.025em;

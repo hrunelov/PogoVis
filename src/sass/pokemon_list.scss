@@ -23,9 +23,16 @@
 }
 
 #pokemon-list-filter-wrapper {
+  position: relative;
   margin: 2px;
   display: flex;
   flex-direction: column;
+}
+
+#pokemon-list-filter-icon {
+  position: absolute;
+  right: $padding*3;
+  bottom: 16px;
 }
 
 #pokemon-list-filter {
@@ -39,6 +46,7 @@
   background: none;
   border: none;
   border-bottom: 1px solid #666;
+  z-index: 1;
 
   &:hover {
     border-bottom: 1px solid #888;
