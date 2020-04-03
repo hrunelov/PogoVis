@@ -32,9 +32,9 @@ function init() {
   setSelectedPokemon(pokedex.pokemon[Math.floor(Math.random() * pokedex.pokemon.length)]);
 }
 
-d3.json("data/pokedex.min.json").then((function(data) {
-  pokedex = new Pokedex(data, updateProgress, init);
-}));
+d3.json("data/pokedex.min.json").then(
+  data => d3.json("img/pokemon/index.json").then(
+  index => pokedex = new Pokedex(data, index, updateProgress, init)));
 
 scaleToFit();
 window.addEventListener("resize", scaleToFit);

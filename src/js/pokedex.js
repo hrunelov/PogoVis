@@ -22,7 +22,7 @@ const TYPE_COLORS = {
 var pokedex;
 
 class Pokedex extends JSONAssignedObject {
-  constructor(json, progress, done) {
+  constructor(json, imgIndex, progress, done) {
     super(json);
 
     pokedex = this;
@@ -66,54 +66,21 @@ class Pokedex extends JSONAssignedObject {
     this.pokemon = newPokemon;
 
     // Replace keys with references to Pokémon forms in evolutions, and set images
-    let updateForms = function(pkmnIdx, formIdx) {
-      let p = this.pokemon[pkmnIdx];
-      let f = p.forms[formIdx];
-
-      for (let e of f.evolutions) {
-        const ec = e;
-        for (let pp of this.pokemon.filter(ppp => ppp.key === ec.pokemon))
-        for (let ff of pp.forms.filter(fff => fff.key === ec.form))
-        e.descendant = ff;
-        delete e.pokemon;
-        delete e.form;
-      }
-
-      let cont = function() {
-        if (++formIdx === p.forms.length) {
-          ++pkmnIdx;
-          formIdx = 0;
-          if (p.forms.length > 1)
-            progress(pkmnIdx / this.pokemon.length);
+    for (let p of this.pokemon) {
+      for (let f of p.forms) {
+        for (let e of f.evolutions) {
+          const ec = e;
+          for (let pp of this.pokemon.filter(ppp => ppp.key === ec.pokemon))
+          for (let ff of pp.forms.filter(fff => fff.key === ec.form))
+          e.descendant = ff;
+          delete e.pokemon;
+          delete e.form;
         }
-        if (pkmnIdx < this.pokemon.length)
-          updateForms(pkmnIdx, formIdx);
-        else {
-          // Freeze pokedex to prevent accidental changes
-          deepFreeze(this);
-          done();
-        }
-      }.bind(this);
-
-      if (p.forms.length === 1) {
-        f.image = f.key;
-        cont();
-        return;
+        f.image = (imgIndex.includes(f.key) ? f.key : p.forms[0].key);
       }
-
-      let img = new Image();
-      img.onload = function() {
-        f.image = f.key;
-        cont();
-      };
-      img.onerror = function() {
-        f.image = p.forms[0].key;
-        cont();
-      };
-      img.src = POKEMON_IMG_PATH + f.key + IMG_EXTENSION;
-    }.bind(this);
-
-    updateForms(0, 0);
+    }
+    progress(1);
+    done();
   }
 }
 
