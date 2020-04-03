@@ -2,3 +2,10 @@
 **/python
 **/PogoAssets
 **/old
+**/docs/css/**
+**/docs/data/**
+**/docs/js/**
+!**/docs/css
+!**/docs/data
+!**/docs/js
+!**/docs/**/*.min.*
