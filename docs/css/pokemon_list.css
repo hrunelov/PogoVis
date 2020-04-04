@@ -1,0 +1,285 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
+/* Scrollbars */
+/* Text */
+/* line 71, src/sass/common.scss */
+.left-aligned {
+  text-align: left;
+}
+
+/* line 75, src/sass/common.scss */
+.center-aligned {
+  text-align: center;
+}
+
+/* line 79, src/sass/common.scss */
+.right-aligned {
+  text-align: right;
+}
+
+/* line 83, src/sass/common.scss */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Flex */
+/* line 89, src/sass/common.scss */
+.flex-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Frames */
+/* line 95, src/sass/common.scss */
+.frame {
+  margin-top: 32px;
+  padding: 4px;
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #ccc;
+}
+
+/* line 103, src/sass/common.scss */
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 4px;
+  background: #222;
+}
+
+/* line 112, src/sass/common.scss */
+.frame-body {
+  margin: 4px;
+  overflow: hidden;
+}
+
+/* line 117, src/sass/common.scss */
+.vertical-spacer {
+  height: 16px;
+}
+
+/* line 121, src/sass/common.scss */
+.sub-caption {
+  font-weight: bold;
+  margin: 16px 4px 4px 4px;
+}
+
+/* Padding/Margins */
+/* line 127, src/sass/common.scss */
+.pad-top {
+  margin-top: 4px;
+}
+
+/* line 131, src/sass/common.scss */
+.pad-top-half {
+  margin-top: 2px;
+}
+
+/* line 135, src/sass/common.scss */
+.pad-bottom {
+  margin-bottom: 4px;
+}
+
+/* line 139, src/sass/common.scss */
+.pad-bottom-half {
+  margin-bottom: 2px;
+}
+
+/* line 143, src/sass/common.scss */
+.pad-left {
+  margin-left: 4px;
+}
+
+/* line 147, src/sass/common.scss */
+.pad-left-half {
+  margin-left: 2px;
+}
+
+/* line 151, src/sass/common.scss */
+.pad-right {
+  margin-right: 4px;
+}
+
+/* line 155, src/sass/common.scss */
+.pad-right-half {
+  margin-right: 2px;
+}
+
+/* line 159, src/sass/common.scss */
+.border-top {
+  border-top: 4px solid #111;
+}
+
+/* line 163, src/sass/common.scss */
+.border-bottom {
+  border-bottom: 4px solid #111;
+}
+
+/* line 167, src/sass/common.scss */
+.hidden {
+  display: none;
+}
+
+/* line 3, src/sass/pokemon_list.scss */
+#pokemon-list-wrapper {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #111;
+  overflow: hidden;
+  -webkit-box-shadow: 0 5px 10px #00000088;
+          box-shadow: 0 5px 10px #00000088;
+  -webkit-transition: top 0.25s;
+  transition: top 0.25s;
+  z-index: 42;
+}
+
+/* line 16, src/sass/pokemon_list.scss */
+#pokemon-list-wrapper.shown {
+  top: 0;
+}
+
+/* line 20, src/sass/pokemon_list.scss */
+#pokemon-list-wrapper.hidden {
+  top: -110%;
+}
+
+/* line 25, src/sass/pokemon_list.scss */
+#pokemon-list-filter-wrapper {
+  position: relative;
+  margin: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* line 32, src/sass/pokemon_list.scss */
+#pokemon-list-filter-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 16px;
+}
+
+/* line 38, src/sass/pokemon_list.scss */
+#pokemon-list-filter {
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  font-family: "Lato", sans-serif;
+  font-size: 24pt;
+  color: #fff;
+  width: auto;
+  margin: 8px;
+  padding: 4px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #666;
+  z-index: 1;
+}
+
+/* line 51, src/sass/pokemon_list.scss */
+#pokemon-list-filter:hover {
+  border-bottom: 1px solid #888;
+}
+
+/* line 56, src/sass/pokemon_list.scss */
+#pokemon-list {
+  scrollbar-width: 10px;
+  scrollbar-height: 10px;
+  scrollbar-color: #666 #222;
+  margin: 4px;
+  padding: 0;
+  height: 100%;
+  list-style-type: none;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+
+/* line 49, src/sass/common.scss */
+#pokemon-list::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* line 54, src/sass/common.scss */
+#pokemon-list::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 5px;
+}
+
+/* line 59, src/sass/common.scss */
+#pokemon-list::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+
+/* line 63, src/sass/common.scss */
+#pokemon-list::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* line 66, src/sass/pokemon_list.scss */
+.pokemon-list-row {
+  cursor: pointer;
+  margin-right: 4px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+/* line 76, src/sass/pokemon_list.scss */
+#pokemon-list-message {
+  font-size: 20px;
+  margin-right: 4px;
+  padding: 16px;
+  background: #222;
+}
+
+/* line 83, src/sass/pokemon_list.scss */
+.pokemon-list-image-background {
+  width: 80px;
+  height: 250px;
+  -webkit-transform: rotate(-22.5deg) translate(-30px);
+          transform: rotate(-22.5deg) translate(-30px);
+}
+
+/* line 89, src/sass/pokemon_list.scss */
+.pokemon-list-image {
+  width: 52px;
+  height: 52px;
+  margin: 4px;
+  -webkit-transform: rotate(22.5deg) translate(64px, 74px);
+          transform: rotate(22.5deg) translate(64px, 74px);
+}
+
+/* line 111, src/sass/pokemon_list.scss */
+.pokemon-list-name {
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 2px #000;
+  margin-left: -10px;
+  font-size: 24px;
+}

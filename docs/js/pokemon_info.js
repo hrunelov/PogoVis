@@ -1,3 +1,4 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 var statChart;
 var lastPokemon;
 var selectedPokemon;
@@ -94,22 +95,22 @@ function updateFormSelectionBar() {
     .attr("title", d => selectedPokemon.forms.length < 10 ? "" : d.name)
     .style("width", 1/selectedPokemon.forms.length * 100 + "%")
     .style("background", d => getTypeSplitColor(d.types, 0.72, d.key === selectedForm.key ? 0.8 : 0.35))
-    .on("mouseover", function(d) {
+    .on("mouseover", (function(d) {
       if (d.key === selectedForm.key)
         return;
       d3.select(this)
         .style("background", getTypeSplitColor(d.types, 0.72, 0.5));
-    })
-    .on("mouseout", function(d) {
+    }))
+    .on("mouseout", (function(d) {
       if (d.key === selectedForm.key)
         return;
       d3.select(this)
         .style("background", getTypeSplitColor(d.types, 0.72, 0.35));
-    })
-    .on("mousedown", function(d,i) {
+    }))
+    .on("mousedown", (function(d,i) {
       if (d.key !== selectedForm.key)
         setSelectedForm(i);
-    })
+    }))
     .append("div")
     .classed("no-letter-spacing", d => selectedPokemon.forms.length >= 10)
     .text(d => selectedPokemon.forms.length < 10 ? d.name : d.name.substr(0,2));

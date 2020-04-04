@@ -1,0 +1,309 @@
+@import "common.scss";
+
+/* General Info */
+
+#form-general-container {
+  @include scrollbars($dark, $light, $highlight);
+  height: 100%;
+  margin-top: $padding;
+  overflow-y: scroll;
+  border-radius: 0 0 $corner-radius $corner-radius;
+}
+
+#form-general-body {
+  margin-right: $padding;
+  background: $dark;
+  padding: $padding;
+}
+
+/* Description */
+
+#form-description-frame {
+  margin-top: $padding;
+  margin-bottom: 24px;
+  text-align: justify;
+
+  & u {
+    opacity: 0;
+  }
+}
+
+/* Top Bar */
+
+#form-general-top-wrapper {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-general-top-label {
+  margin: $padding;
+  margin-bottom: $padding + 1px;
+}
+
+/* Gender Ratio */
+
+.form-gender-percent {
+  letter-spacing: 0;
+  margin: $padding*2;
+  width: 50px;
+}
+
+#form-gender-bar {
+  width: 134px;
+}
+
+#form-female-bar {
+  background: #bd4d8d;
+  border-right: 1.25px solid $dark;
+}
+
+#form-male-bar {
+  background: #3d6dbd;
+  border-left: 1.25px solid $dark;
+}
+
+#form-genderless-label {
+  text-transform: uppercase;
+  width: 100%;
+  position: absolute;
+}
+
+/* Type */
+
+#form-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form-type-effectiveness-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form-resistances-wrapper {
+  width: 50%;
+  margin-right: -0.5px;
+}
+
+#form-weaknesses-wrapper {
+  width: 50%;
+  margin-left: -0.5px;
+}
+
+#form-resistances {
+  padding: $padding*4 $padding*4 $padding*2 $padding*4;
+  border-top: 0.5px solid $light;
+  border-right: 0.5px solid $light;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#form-weaknesses {
+  padding: $padding*4 $padding*4 $padding*2 $padding*4;
+  border-top: 0.5px solid $light;
+  border-left: 0.5px solid $light;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.type-label {
+  margin: $padding;
+  border-radius: $widget-height-large;
+  display: flex;
+  align-items: center;
+
+  &.centered {
+    flex-direction: column;
+  }
+
+  &.left {
+    flex-direction: row-reverse;
+  }
+
+  &.right {
+    flex-direction: row;
+  }
+}
+
+.type-icon {
+  min-width: $widget-height-large;
+  width: $widget-height-large;
+  min-height: $widget-height-large;
+  height: $widget-height-large;
+}
+
+.type-name {
+  text-transform: uppercase;
+  margin: $padding*2;
+}
+
+.type-effectiveness-text {
+  letter-spacing: 0;
+  color: $text-color;
+  @include text-shadow-subtle;
+}
+
+/* Evolutions */
+
+$form-evolution-full-width: 100px;
+$form-evolution-short-width: 20px;
+$form-evolution-path-corner-radius: $corner-radius*2;
+$form-evolution-path-width: 1.5px;
+
+#form-evolution-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: -25px 0 25px 0;
+  color: $light;
+  text-transform: uppercase;
+}
+
+.form-evolution-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.form-evolution-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-evolution-reqs-wrapper {
+  position: absolute;
+  width: $form-evolution-full-width;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form-evolution-reqs-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $padding;
+  background: $dark;
+  border: $form-evolution-path-width solid $light;
+  border-radius: $form-evolution-path-corner-radius;
+
+  & > * {
+    margin: $padding;
+  }
+}
+
+.form-evolution-req-icons-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-evolution-req-icon {
+  margin: 0 $padding;
+}
+
+.form-evolution-req-label {
+  color: $text-color-dark;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-evolution-req-number {
+  letter-spacing: 0;
+  margin-left: $padding;
+}
+
+.form-evolution-req-text {
+  text-transform: uppercase;
+  font-size: 12pt;
+}
+
+.form-evolution-descendant-image-wrapper {
+  height: 130px;
+}
+
+.form-evolution-descendant-line {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  width: 100%;
+  height: $form-evolution-path-width;
+  margin-top: -$form-evolution-path-width/2;
+  background: $light;
+  z-index: -1;
+}
+
+.form-evolution-path {
+  height: 50%;
+
+  &.full {
+    width: $form-evolution-full-width;
+  }
+
+  &.short {
+    width: $form-evolution-short-width;
+  }
+
+  &.upper {
+    border-bottom: $form-evolution-path-width solid $light;
+    margin-bottom: -$form-evolution-path-width/2;
+
+    &.top {
+      border: unset;
+    }
+
+    &.bottom {
+      margin-bottom: $form-evolution-path-width;
+    }
+
+    &.split {
+      height: 50%;
+      border-left: $form-evolution-path-width solid $light;
+
+      &.top {
+        border: unset;
+      }
+
+      &.bottom {
+        border-radius: 0 0 0 $form-evolution-path-corner-radius;
+      }
+    }
+  }
+
+  &.lower {
+    border-top: $form-evolution-path-width solid $light;
+    margin-top: -$form-evolution-path-width/2;
+
+    &.top {
+      margin-top: $form-evolution-path-width;
+    }
+
+    &.bottom {
+      border: unset;
+    }
+
+    &.split {
+      border-left: $form-evolution-path-width solid $light;
+
+      &.top {
+        border-radius: $form-evolution-path-corner-radius 0 0 0;
+      }
+
+      &.bottom {
+        border: unset;
+      }
+    }
+  }
+}

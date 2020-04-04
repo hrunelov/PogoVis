@@ -1,0 +1,303 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
+/* Scrollbars */
+/* Text */
+/* line 71, src/sass/common.scss */
+.left-aligned {
+  text-align: left;
+}
+
+/* line 75, src/sass/common.scss */
+.center-aligned {
+  text-align: center;
+}
+
+/* line 79, src/sass/common.scss */
+.right-aligned {
+  text-align: right;
+}
+
+/* line 83, src/sass/common.scss */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Flex */
+/* line 89, src/sass/common.scss */
+.flex-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Frames */
+/* line 95, src/sass/common.scss */
+.frame {
+  margin-top: 32px;
+  padding: 4px;
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #ccc;
+}
+
+/* line 103, src/sass/common.scss */
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 4px;
+  background: #222;
+}
+
+/* line 112, src/sass/common.scss */
+.frame-body {
+  margin: 4px;
+  overflow: hidden;
+}
+
+/* line 117, src/sass/common.scss */
+.vertical-spacer {
+  height: 16px;
+}
+
+/* line 121, src/sass/common.scss */
+.sub-caption {
+  font-weight: bold;
+  margin: 16px 4px 4px 4px;
+}
+
+/* Padding/Margins */
+/* line 127, src/sass/common.scss */
+.pad-top {
+  margin-top: 4px;
+}
+
+/* line 131, src/sass/common.scss */
+.pad-top-half {
+  margin-top: 2px;
+}
+
+/* line 135, src/sass/common.scss */
+.pad-bottom {
+  margin-bottom: 4px;
+}
+
+/* line 139, src/sass/common.scss */
+.pad-bottom-half {
+  margin-bottom: 2px;
+}
+
+/* line 143, src/sass/common.scss */
+.pad-left {
+  margin-left: 4px;
+}
+
+/* line 147, src/sass/common.scss */
+.pad-left-half {
+  margin-left: 2px;
+}
+
+/* line 151, src/sass/common.scss */
+.pad-right {
+  margin-right: 4px;
+}
+
+/* line 155, src/sass/common.scss */
+.pad-right-half {
+  margin-right: 2px;
+}
+
+/* line 159, src/sass/common.scss */
+.border-top {
+  border-top: 4px solid #111;
+}
+
+/* line 163, src/sass/common.scss */
+.border-bottom {
+  border-bottom: 4px solid #111;
+}
+
+/* line 167, src/sass/common.scss */
+.hidden {
+  display: none;
+}
+
+/* Caption */
+/* line 5, src/sass/pokemon_info.scss */
+#pokemon-caption {
+  height: 120px;
+  max-height: 120px;
+  min-height: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  -webkit-box-shadow: -12.5px 10px 10px #00000088;
+          box-shadow: -12.5px 10px 10px #00000088;
+  z-index: 1;
+}
+
+/* line 17, src/sass/pokemon_info.scss */
+#pokemon-caption-image-background {
+  width: 160px;
+  height: 500px;
+  -webkit-transform: rotate(-22.5deg) translate(-60px);
+          transform: rotate(-22.5deg) translate(-60px);
+}
+
+/* line 23, src/sass/pokemon_info.scss */
+#pokemon-caption-image {
+  width: 112px;
+  height: 112px;
+  margin: 4px;
+  -webkit-transform: rotate(22.5deg) translate(128px, 148px);
+          transform: rotate(22.5deg) translate(128px, 148px);
+}
+
+/* line 30, src/sass/pokemon_info.scss */
+#pokemon-caption-name-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+/* line 37, src/sass/pokemon_info.scss */
+#pokemon-caption-name {
+  font-weight: 900;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 2px #000;
+  margin-left: -25px;
+  color: #fff;
+  font-size: 24pt;
+  margin-bottom: 4px;
+}
+
+/* line 46, src/sass/pokemon_info.scss */
+#pokemon-caption-category {
+  margin-left: -25px;
+  font-weight: regular;
+  text-transform: uppercase;
+  color: #ffffffc0;
+  margin-top: -2px;
+}
+
+/* line 54, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity {
+  margin-right: -62px;
+  width: 200px;
+  text-transform: uppercase;
+  color: #ffffffc0;
+  -webkit-box-shadow: 2px 2px 0 #00000080;
+          box-shadow: 2px 2px 0 #00000080;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+/* line 64, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity.legendary {
+  background: #222266;
+}
+
+/* line 68, src/sass/pokemon_info.scss */
+#pokemon-caption-rarity.mythical {
+  background: #440044;
+}
+
+/* Form Selector */
+/* line 75, src/sass/pokemon_info.scss */
+#form-selection-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: hidden;
+  -webkit-box-shadow: -12.5px 10px 10px #00000088;
+          box-shadow: -12.5px 10px 10px #00000088;
+  z-index: 1;
+  -webkit-transition: min-height 0.5s, height 0.5s;
+  transition: min-height 0.5s, height 0.5s;
+}
+
+/* line 83, src/sass/pokemon_info.scss */
+#form-selection-bar.collapsed {
+  height: 0;
+  min-height: 0;
+}
+
+/* line 88, src/sass/pokemon_info.scss */
+#form-selection-bar.expanded {
+  height: 50px;
+  min-height: 50px;
+}
+
+/* line 93, src/sass/pokemon_info.scss */
+#form-selection-bar.expanded-double {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 100px;
+  min-height: 100px;
+}
+
+/* line 100, src/sass/pokemon_info.scss */
+.form-selection-button {
+  text-transform: uppercase;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 107, src/sass/pokemon_info.scss */
+.form-selection-button > * {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 4px;
+  line-height: 16pt;
+}
+
+/* line 113, src/sass/pokemon_info.scss */
+.form-selection-button.selected {
+  text-shadow: 0 0 2px #000;
+  font-weight: bolder;
+  color: #fff;
+}
+
+/* line 119, src/sass/pokemon_info.scss */
+.form-selection-button.unselected {
+  color: #ffffff80;
+  cursor: pointer;
+}
+
+/* line 123, src/sass/pokemon_info.scss */
+.form-selection-button.unselected:hover {
+  color: #ffffffc0;
+}

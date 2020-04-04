@@ -11,6 +11,24 @@
   border-radius: $corner-radius - 2px;
   overflow: hidden;
   background: $medium;
+
+  &.round-left {
+    border-top-left-radius: 9001px;
+    border-bottom-left-radius: 9001px;
+  }
+
+  &.round-right {
+    border-top-right-radius: 9001px;
+    border-bottom-right-radius: 9001px;
+  }
+
+  &.large {
+    height: $widget-height-large;
+  }
+
+  &.transparent {
+    background: none;
+  }
 }
 
 .horizontal-bar-segment {
@@ -35,8 +53,18 @@
   height: 100%;
   background: $text-color-dark;
 
-  &.right {
+  &.reverse {
     right: 0;
+  }
+
+  &.round-left {
+    border-top-left-radius: 9001px;
+    border-bottom-left-radius: 9001px;
+  }
+
+  &.round-right {
+    border-top-right-radius: 9001px;
+    border-bottom-right-radius: 9001px;
   }
 }
 

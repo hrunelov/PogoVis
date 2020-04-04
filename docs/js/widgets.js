@@ -1,3 +1,4 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 function makeHorizontalBar(s, {
   width = 100,
   large = false,
@@ -114,14 +115,14 @@ function makePokemonImage(s, {
       .classed("pokemon-image-hot-area", true)
       .style("width", (width + 4) + "px")
       .style("height", (width + 32) + "px")
-      .on("mouseover", function() {
+      .on("mouseover", (function() {
         f.classed("selected", true);
         n.classed("selected", true);
-      })
-      .on("mouseout", function() {
+      }))
+      .on("mouseout", (function() {
         f.classed("selected", false);
         n.classed("selected", false);
-      })
+      }))
       .on("click", onclick);
   }
 

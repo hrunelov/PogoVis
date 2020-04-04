@@ -1,3 +1,4 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 const TYPE_COLORS = {
   bug:      "#7A9C26",
   dark:     "#51525E",
