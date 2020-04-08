@@ -6,7 +6,7 @@
 <filter  id="shadow">
 	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
 	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+	<feBlend  mode="normal" in="SourceGraphic" in2="blurOut"></feBlend>
 </filter>
 <g id="Layer_1_1_">
 	<g id="Layer_2">
@@ -14,9 +14,9 @@
 	</g>
 </g>
 <g filter="url(#shadow)">
-	<polygon fill="#FFFFFF" points="126.709,226.498 156.813,242.595 200.567,211.658 185.081,185.222 	"/>
-	<polygon fill="#FFFFFF" points="174.521,167.193 180.25,163.837 211.813,87.637 146.291,88.005 77.377,136.211 76.881,199.854
-		106.984,215.95 174.936,167.902 	"/>
-	<polygon fill="#FFFFFF" points="253.119,87.405 233.511,87.515 199.344,170.002 216.957,200.07 251.657,175.535 	"/>
+	<polygon fill="#FFFFFF" points="126.709,232.498 156.813,248.596 200.566,217.658 185.081,191.223 	"/>
+	<polygon fill="#FFFFFF" points="174.521,173.193 180.25,169.837 211.813,93.637 146.291,94.005 77.377,142.211 76.881,205.854 
+		106.984,221.95 174.936,173.902 	"/>
+	<polygon fill="#FFFFFF" points="253.119,93.405 233.512,93.515 199.344,176.002 216.957,206.07 251.657,181.535 	"/>
 </g>
 </svg>

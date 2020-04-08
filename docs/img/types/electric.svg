@@ -6,13 +6,15 @@
 <filter  id="shadow">
 	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
 	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+	<feBlend  mode="normal" in="SourceGraphic" in2="blurOut"></feBlend>
 </filter>
 <g id="Layer_1_1_">
 	<g id="Layer_2">
 		<circle fill="#C6AE4A" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<polygon filter="url(#shadow)" fill="#FFFFFF" points="246.805,165.002 205.551,65.4 115.635,65.4 136.263,115.199 83.196,115.199 234.994,264.6 
-	193.738,165.002 "/>
+<g filter="url(#shadow)">
+	<polygon fill="#FFFFFF" points="241.805,170.002 200.551,70.4 110.635,70.4 131.263,120.199 78.196,120.199 229.994,269.6 
+		188.738,170.002 	"/>
+</g>
 </svg>

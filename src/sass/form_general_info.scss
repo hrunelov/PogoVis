@@ -1,21 +1,5 @@
 @import "common.scss";
 
-/* General Info */
-
-#form-general-container {
-  @include scrollbars($dark, $light, $highlight);
-  height: 100%;
-  margin-top: $padding;
-  overflow-y: scroll;
-  border-radius: 0 0 $corner-radius $corner-radius;
-}
-
-#form-general-body {
-  margin-right: $padding;
-  background: $dark;
-  padding: $padding;
-}
-
 /* Description */
 
 #form-description-frame {
@@ -79,66 +63,25 @@
   justify-content: center;
 }
 
-#form-type-effectiveness-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#form-resistances-wrapper {
-  width: 50%;
-  margin-right: -0.5px;
-}
-
-#form-weaknesses-wrapper {
-  width: 50%;
-  margin-left: -0.5px;
-}
-
 #form-resistances {
-  padding: $padding*4 $padding*4 $padding*2 $padding*4;
-  border-top: 0.5px solid $light;
-  border-right: 0.5px solid $light;
-  height: 100%;
+  padding-bottom: $padding*2;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 #form-weaknesses {
-  padding: $padding*4 $padding*4 $padding*2 $padding*4;
-  border-top: 0.5px solid $light;
-  border-left: 0.5px solid $light;
-  height: 100%;
+  padding-bottom: $padding*2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .type-label {
-  margin: $padding;
-  border-radius: $widget-height-large;
+  margin: $padding 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
-
-  &.centered {
-    flex-direction: column;
-  }
-
-  &.left {
-    flex-direction: row-reverse;
-  }
-
-  &.right {
-    flex-direction: row;
-  }
-}
-
-.type-icon {
-  min-width: $widget-height-large;
-  width: $widget-height-large;
-  min-height: $widget-height-large;
-  height: $widget-height-large;
 }
 
 .type-name {
@@ -146,7 +89,24 @@
   margin: $padding*2;
 }
 
-.type-effectiveness-text {
+.form-type-effectiveness-label {
+  height: $widget-height-large;
+  margin: $padding;
+  border-radius: $widget-height-large;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  overflow: hidden;
+
+  &.reverse {
+    flex-direction: row-reverse;
+    justify-content: end;
+  }
+}
+
+.form-type-effectiveness-percent {
+  margin: $padding;
   letter-spacing: 0;
   color: $text-color;
   @include text-shadow-subtle;

@@ -3,6 +3,7 @@
 /* Caption */
 
 #pokemon-caption {
+  position: relative;
   height: 120px;
   max-height: 120px;
   min-height: 120px;
@@ -12,6 +13,14 @@
   overflow: hidden;
   box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
   z-index: 1;
+}
+
+#pokemon-caption-type1-color {
+  height: 80%;
+}
+
+#pokemon-caption-type2-color {
+  height: 20%;
 }
 
 #pokemon-caption-image-background {
@@ -28,27 +37,36 @@
 }
 
 #pokemon-caption-name-wrapper {
+  margin-left: -25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-grow: 1;
+  z-index: 1;
 }
 
 #pokemon-caption-name {
   @include extra-bold;
   @include text-shadow-subtle;
-  margin-left: -25px;
   color: $text-color;
   font-size: 24pt;
   margin-bottom: 4px;
 }
 
 #pokemon-caption-category {
-  margin-left: -25px;
   font-weight: regular;
   text-transform: uppercase;
   color: $white-transp-75;
   margin-top: -2px;
+}
+
+#pokemon-caption-id {
+  position: absolute;
+  right: 80px;
+  font-weight: 100;
+  letter-spacing: -0.05em;
+  font-size: 50pt;
+  color: $white-transp-50;
 }
 
 #pokemon-caption-rarity {
@@ -73,9 +91,6 @@
 /* Form Selector */
 
 #form-selection-bar {
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
   box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
   z-index: 1;
   transition: min-height $transition-duration-medium, height $transition-duration-medium;
@@ -84,44 +99,15 @@
     height: 0;
     min-height: 0;
   }
-
-  &.expanded {
-    height: 50px;
-    min-height: 50px;
-  }
-
-  &.expanded-double {
-    flex-wrap: wrap;
-    height: 100px;
-    min-height: 100px;
-  }
 }
 
-.form-selection-button {
-  text-transform: uppercase;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.form-selection-button.selected {
+  @include text-shadow-subtle;
+}
 
-  & > * {
-    flex-grow: 1;
-    margin: $padding;
-    line-height: 16pt;
-  }
+/* Navbar */
 
-  &.selected {
-    @include text-shadow-subtle;
-    font-weight: bolder;
-    color: $text-color;
-  }
-
-  &.unselected {
-    color: $white-transp-50;
-    cursor: pointer;
-
-    &:hover {
-      color: $white-transp-75;
-    }
-  }
+.pokemon-navbar-tab {
+  width: 33%;
+  background: $light;
 }

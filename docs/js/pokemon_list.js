@@ -15,96 +15,107 @@ function hidePokemonList() {
 
   d3.select("#pokemon-list-filter")
     .node().value = "";
+
+  generatePokemonList("");
 }
 
 function generatePokemonList(filter) {
   filter = filter.trim();
-  let subset = (filter !== "" ? pokedex.pokemon.filter(d => d.name.toLowerCase().includes(filter.toLowerCase())) : []);
-  subset.sort((function(a,b) {
-    let i = 0;
-    if (a.name.toLowerCase().startsWith(filter.toLowerCase())) --i;
-    if (b.name.toLowerCase().startsWith(filter.toLowerCase())) ++i;
-    if (i != 0) return i;
-    if (a.name < b.name) return -1;
-    if (b.name < a.name) return 1;
-    return 0;
-  }));
+  let subset = (filter !== "" ? pokedex.pokemon.filter(d => d.name.toLowerCase().startsWith(filter.toLowerCase())) : []);
+  subset.sort((a,b) => d3.ascending(a.name ,b.name));
 
   if (subset.length == 0) {
-    d3.select("#pokemon-list")
-      .selectAll("li")
-      .remove();
+    listData({
+      container: d3.select("#pokemon-list"),
+      tag: "li"
+    });
 
-    d3.select("#pokemon-list")
-      .append("li")
-      .attr("id", "pokemon-list-message")
-      .html(filter === "" ? "Type to search for a Pokémon" : "No Pokémon found with \"<b>" + filter + "</b>\" in its name");
+    d3.select("#pokemon-list-message")
+      .html(filter === "" ? "Type to search for a Pokémon" : "No Pokémon found beginning with \"<b>" + filter + "</b>\"");
+
+    d3.select("#pokemon-list-message-wrapper")
+      .interrupt()
+      .transition()
+      .duration(TRANSITION_DURATION_FAST)
+      .style("height", "60px");
   }
   else {
-    d3.select("#pokemon-list-message")
-      .remove();
+    d3.select("#pokemon-list-message-wrapper")
+      .interrupt()
+      .transition()
+      .duration(TRANSITION_DURATION_FAST)
+      .style("height", "0px");
 
-    let p = d3.select("#pokemon-list")
-      .selectAll("li")
-      .data(subset, d => d);
+    listData({
+      data:      subset,
+      key:       d => d.key,
+      container: d3.select("#pokemon-list"),
+      tag:       "li",
+      onenter:   function(s) {
+        let r = s.classed("pokemon-list-row-wrapper", true)
+          .append("div")
+          .classed("pokemon-list-row", true)
+          .attr("id", d => "row-" + d.key)
+          .on("mouseover", (function(d) {
+            d3.select(this)
+              .select(".pokemon-list-type1-color")
+              .style("background", d => d.forms[0].types[0].color);
+            d3.select(this)
+              .select(".pokemon-list-type2-color")
+              .style("background", d => d.forms[0].types[d.forms[0].types.length > 1 ? 1 : 0].color);
+            d3.select(this)
+              .select(".pokemon-list-image-background")
+              .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.35));
+          }))
+          .on("mouseout", (function(d) {
+            d3.select(this)
+              .select(".pokemon-list-type1-color")
+              .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.75));
+            d3.select(this)
+              .select(".pokemon-list-type2-color")
+              .style("background", d => mixColors("#000", d.forms[0].types[d.forms[0].types.length > 1 ? 1 : 0].color, 0.75));
+            d3.select(this)
+              .select(".pokemon-list-image-background")
+              .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.2));
+          }))
+          .on("mousedown", (function(d) {
+            hidePokemonList();
+            setSelectedPokemon(d);
+          }));
 
-    generatePokemonRows(p);
+        r.append("div")
+          .classed("split-top", true)
+          .classed("pokemon-list-type1-color", true)
+          .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.75));
 
-    p.exit()
-      .remove();
+        r.append("div")
+          .classed("split-bottom", true)
+          .classed("pokemon-list-type2-color", true)
+          .style("background", d => mixColors("#000", d.forms[0].types[d.forms[0].types.length > 1 ? 1 : 0].color, 0.75));
+
+        r.append("div")
+          .classed("pokemon-list-image-background", true)
+          .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.2))
+          .append("img")
+          .classed("pokemon-list-image", true)
+          .attr("src", d => POKEMON_IMG_PATH + d.forms[0].key + IMG_EXTENSION);
+
+        r.append("div")
+          .classed("pokemon-list-name", true)
+          .text(d => d.name);
+      }
+    });
   }
-}
-
-function generatePokemonRows(p) {
-  let r = p.enter()
-    .append("li")
-    .merge(p)
-    .classed("pokemon-list-row", true)
-    .classed("pad-top", (d, i) => i > 0)
-    .attr("id", d => "row-" + d.key)
-    .style("background", d => getTypeSplitColor(d.forms[0].types, 0.75, 0.75))
-    .on("mouseover", (function(d) {
-      d3.select(this)
-        .style("background", d => getTypeSplitColor(d.forms[0].types, 0.75, 1))
-        .select(".pokemon-list-image-background")
-        .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.35));
-    }))
-    .on("mouseout", (function(d) {
-      d3.select(this)
-        .style("background", d => getTypeSplitColor(d.forms[0].types, 0.75, 0.75))
-        .select(".pokemon-list-image-background")
-        .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.2));
-    }))
-    .on("mousedown", (function(d) {
-      hidePokemonList();
-      setSelectedPokemon(d);
-    }));
-
-    r.selectAll("div")
-      .remove();
-
-    r.append("div")
-      .classed("pokemon-list-image-background", true)
-      .style("background", d => mixColors("#000", d.forms[0].types[0].color, 0.2))
-      .append("img")
-      .classed("pokemon-list-image", true)
-      .attr("src", d => POKEMON_IMG_PATH + d.forms[0].key + IMG_EXTENSION);
-
-    r.append("div")
-      .classed("pokemon-list-name", true)
-      .text(d => d.name);
 }
 
 d3.select("#pokemon-list-filter")
   .on("focus", (function() {
     showPokemonList();
-    animateHeight("#pokemon-list-wrapper", TRANSITION_DURATION_FAST, true);
     d3.select("#pokemon-list-filter-icon")
       .style("display", "none");
   }))
   .on("input", (function() {
     generatePokemonList(d3.select(this).node().value);
-    animateHeight("#pokemon-list-wrapper", TRANSITION_DURATION_FAST, true);
   }))
   .on("blur", (function() {
     setTimeout((function() {

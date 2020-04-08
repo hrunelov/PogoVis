@@ -1,5 +1,52 @@
 @import "common.scss";
 
+/* Tabs */
+
+.tab-bar {
+  height: 50px;
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.tab {
+  text-transform: uppercase;
+  text-align: center;
+  color: $text-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: opacity $transition-duration-instant;
+  opacity: 0.5;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    opacity: 0.75;
+  }
+
+  & > * {
+    flex-grow: 1;
+    margin: $padding;
+    line-height: 16pt;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &.selected {
+    font-weight: bolder;
+    opacity: 1;
+    cursor: default;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 /* Bars/Meters */
 
 .horizontal-bar {
@@ -68,6 +115,17 @@
   }
 }
 
+/* Type Icon */
+
+.type-icon {
+  min-width: $widget-height-large;
+  width: $widget-height-large;
+  min-height: $widget-height-large;
+  height: $widget-height-large;
+  box-shadow: 0 0 2px $dark;
+  border-radius: $widget-height-large;
+}
+
 /* Pokémon Icons */
 
 .pokemon-image-wrapper {
@@ -84,6 +142,7 @@
   border-radius: 1000px;
   position: relative;
   overflow: hidden;
+  transition: border-color $transition-duration-instant;
 
   &.selected {
     border: 2px solid $text-color-dark;
@@ -107,6 +166,7 @@
   text-transform: uppercase;
   font-size: 12pt;
   color: $light;
+  transition: color $transition-duration-instant;
 
   &.selected {
     color: $text-color-dark;

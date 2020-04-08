@@ -17,7 +17,8 @@ const TYPE_COLORS = {
   psychic:  "#CA6B6A",
   rock:     "#A29772",
   steel:    "#437882",
-  water:    "#4B88B0"
+  water:    "#4B88B0",
+  unknown:  "#807A78"
 };
 
 var pokedex;
@@ -127,7 +128,10 @@ class Type extends JSONAssignedObject {
 class FastMove extends JSONAssignedObject {
   constructor(json) {
     super(json);
-    this.type = pokedex.types.find(t => t.key === this.type);
+    if (this.type)
+      this.type = pokedex.types.find(t => t.key === this.type);
+    else
+      this.type = new Type();
   }
 }
 

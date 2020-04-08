@@ -47,9 +47,14 @@
   border: none;
   border-bottom: 1px solid #666;
   z-index: 1;
+  transition: border-color $transition-duration-instant;
 
   &:hover {
     border-bottom: 1px solid #888;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -63,27 +68,51 @@
   border-radius: $corner-radius;
 }
 
-.pokemon-list-row {
-  cursor: pointer;
-  margin-right: $padding;
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+#pokemon-list-message-wrapper {
   overflow: hidden;
 }
 
 #pokemon-list-message {
   font-size: 20px;
-  margin-right: $padding;
+  margin: 0 $padding;
   padding: $padding*4;
   background: $dark;
+}
+
+.pokemon-list-row-wrapper {
+  overflow: hidden;
+  margin-right: $padding;
+  margin-top: $padding;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.pokemon-list-row {
+  cursor: pointer;
+  position: relative;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pokemon-list-type1-color {
+  height: 75%;
+  transition: background $transition-duration-instant;
+}
+
+.pokemon-list-type2-color {
+  height: 25%;
+  transition: background $transition-duration-instant;
 }
 
 .pokemon-list-image-background {
   width: 80px;
   height: 250px;
   transform: rotate(-22.5deg) translate(-30px);
+  transition: background $transition-duration-instant;
 }
 
 .pokemon-list-image {
@@ -93,24 +122,10 @@
   transform: rotate(22.5deg) translate(64px, 74px);
 }
 
-// .pokemon-list-image-wrapper {
-//   width: 50px;
-//   height: 50px;
-//   border: 1.5px solid $text-color-dark;
-//   border-radius: 50px;
-//   background: $back-color;
-//   overflow: hidden;
-// }
-//
-// .pokemon-list-image {
-//   text-align: center;
-//   width: 50px;
-//   height: 50px;
-// }
-
 .pokemon-list-name {
   @include extra-bold;
   @include text-shadow-subtle;
   margin-left: -10px;
   font-size: 24px;
+  z-index: 1;
 }

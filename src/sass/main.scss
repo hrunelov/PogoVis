@@ -15,6 +15,19 @@ body {
   cursor: default;
 }
 
+button {
+  border: none;
+  padding: none;
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  min-width: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 #loading {
   position: absolute;
   top: 0;
@@ -97,6 +110,20 @@ body {
   flex-direction: column;
   overflow: hidden;
   color: $text-color-dark;
+}
+
+.page {
+  @include scrollbars($dark, $light, $highlight);
+  height: 100%;
+  margin-top: $padding;
+  overflow-y: scroll;
+  border-radius: 0 0 $corner-radius $corner-radius;
+}
+
+.page-body {
+  margin-right: $padding;
+  background: $dark;
+  padding: $padding;
 }
 
 #footer {

@@ -39,33 +39,6 @@ function makeHorizontalBar(s, {
   return v;
 }
 
-function makeTypeLabel(s, {
-  reverse = false,
-  text = null,
-  fadeDelay = 0
-} = {}) {
-  reverse = functionize(reverse);
-  text = functionize(text);
-
-  let l = s.append("div")
-    .classed("type-label", true)
-    .classed("left", (d,i) => reverse(d,i) !== null && reverse(d,i))
-    .classed("right", (d,i) => reverse(d,i) !== null && !reverse(d,i))
-    .classed("centered", (d,i) => reverse(d,i) === null);
-
-  fadeInIcon(l.append("img")
-    .classed("type-icon", true)
-    .attr("src", d => "img/types/" + d.key + ".svg"),
-    (d,i) => i * TRANSITION_DELAY + fadeDelay);
-
-  fadeInText(l.append("div")
-    .classed("type-name", true)
-    .text((d,i) => text(d,i) ? text(d,i) : d.name),
-    (d,i) => i * TRANSITION_DELAY + fadeDelay);
-
-  return l;
-}
-
 function makePokemonImage(s, {
   form = selectedForm,
   width = 75,
@@ -111,7 +84,8 @@ function makePokemonImage(s, {
     .style("transform", fadeFrame ? "scaleY(0)" : "");
 
   if (!selected) {
-    w.append("div")
+    w.append("button")
+      .attr("type", "button")
       .classed("pokemon-image-hot-area", true)
       .style("width", (width + 4) + "px")
       .style("height", (width + 32) + "px")

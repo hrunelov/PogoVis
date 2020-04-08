@@ -1,9 +1,43 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
+const PAGE_GENERAL = "form-general-info-page";
+const PAGE_MOVES = "form-move-info-page";
+const PAGE_STATS = "form-stat-info-page";
+
 var statChart;
+
+var selectedPage = PAGE_GENERAL;
 var lastPokemon;
 var selectedPokemon;
 var lastForm;
 var selectedForm;
+
+function setSelectedPage(key) {
+  if (key) {
+    selectedPage = key;
+    d3.selectAll(".page")
+      .classed("hidden", true);
+  }
+
+  switch (selectedPage) {
+    case PAGE_GENERAL:
+      d3.select("#form-general-info-page")
+        .classed("hidden", false);
+      updateGeneralInfo();
+      break;
+    case PAGE_MOVES:
+      d3.select("#form-move-info-page")
+        .classed("hidden", false);
+      updateMoveInfo();
+      break;
+    default:
+  }
+
+  d3.select("#" + selectedPage)
+    .node().scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+}
 
 function setSelectedPokemon(pokemon, formIdx) {
   lastPokemon = selectedPokemon;
@@ -17,25 +51,24 @@ function setSelectedForm(idx) {
   lastForm = selectedForm;
   selectedForm = selectedPokemon.forms[idx];
 
-  d3.select("#form-general-container")
-    .node().scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
   updateCaptionForm();
   updateFormSelectionBar();
-  updateGeneralInfo();
+
+  setSelectedPage();
+  //updateMoveInfo();
   //statChart.update(Object.values(selectedForm.baseStats));
 }
 
-// Caption (Pokémon Name)
+// Caption (Pokémon Name, category, id)
 function updateCaptionPokemon() {
   d3.select("#pokemon-caption-name")
     .text(selectedPokemon.name);
 
   d3.select("#pokemon-caption-category")
     .text(selectedPokemon.category);
+
+  d3.select("#pokemon-caption-id")
+    .text(selectedPokemon.id);
 
   if (selectedPokemon.rarity) {
     d3.select("#pokemon-caption-rarity")
@@ -56,11 +89,20 @@ function updateCaptionPokemon() {
 
 // Caption (Form)
 function updateCaptionForm() {
-  d3.select("#pokemon-caption")
-  .style("background", getTypeSplitColor(selectedForm.types, 0.8, 0.75));
+  d3.select("#pokemon-caption-type1-color")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("background", mixColors("#000", selectedForm.types[0].color, 0.75));
+
+  d3.select("#pokemon-caption-type2-color")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("background", mixColors("#000", selectedForm.types[selectedForm.types.length > 1 ? 1 : 0].color, 0.75));
 
   d3.select("#pokemon-caption-image-background")
-  .style("background", mixColors("#000", selectedForm.types[0].color, 0.2));
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("background", mixColors("#000", selectedForm.types[0].color, 0.2));
 
   let imgPath = POKEMON_IMG_PATH + selectedForm.image + IMG_EXTENSION;
   if (imgPath !== d3.select("#pokemon-caption-image").attr("src")) {
@@ -74,40 +116,28 @@ function updateCaptionForm() {
 function updateFormSelectionBar() {
   d3.select("#form-selection-bar")
     .classed("collapsed", selectedPokemon.forms.length == 1)
-    .classed("expanded", selectedPokemon.forms.length > 1)
-    .selectAll("div")
+    .selectAll("button")
     .remove();
 
   if (selectedPokemon.forms.length == 1)
     return;
 
-  d3.select("#form-selection-bar")
-    .selectAll("div")
+  let b = d3.select("#form-selection-bar")
+    .selectAll("button")
     .data(selectedPokemon.forms)
     .enter()
-    .append("div")
-    .classed("form-selection-button", true)
+    .append("button")
+    .attr("type", "button")
+    .attr("disabled", d => d.key === selectedForm.key ? true : null)
+    .classed("tab form-selection-button", true)
     .classed("selected", d => d.key === selectedForm.key)
-    .classed("unselected", d => d.key !== selectedForm.key)
     .classed("pad-top", true)
     .classed("pad-left-half", (d, i) => i > 0)
     .classed("pad-right-half", (d, i) => i < selectedPokemon.forms.length - 1)
     .attr("title", d => selectedPokemon.forms.length < 10 ? "" : d.name)
     .style("width", 1/selectedPokemon.forms.length * 100 + "%")
-    .style("background", d => getTypeSplitColor(d.types, 0.72, d.key === selectedForm.key ? 0.8 : 0.35))
-    .on("mouseover", (function(d) {
-      if (d.key === selectedForm.key)
-        return;
-      d3.select(this)
-        .style("background", getTypeSplitColor(d.types, 0.72, 0.5));
-    }))
-    .on("mouseout", (function(d) {
-      if (d.key === selectedForm.key)
-        return;
-      d3.select(this)
-        .style("background", getTypeSplitColor(d.types, 0.72, 0.35));
-    }))
-    .on("mousedown", (function(d,i) {
+    .style("background", d => getTypeSplitColor(d.types, 0.72, 0.8))
+    .on("click", (function(d,i) {
       if (d.key !== selectedForm.key)
         setSelectedForm(i);
     }))
@@ -115,6 +145,19 @@ function updateFormSelectionBar() {
     .classed("no-letter-spacing", d => selectedPokemon.forms.length >= 10)
     .text(d => selectedPokemon.forms.length < 10 ? d.name : d.name.substr(0,2));
 }
+
+d3.selectAll(".pokemon-navbar-tab")
+  .on("click", (function() {
+    d3.selectAll(".pokemon-navbar-tab")
+      .attr("disabled", null)
+      .classed("selected", false);
+
+    d3.select(this)
+      .attr("disabled", true)
+      .classed("selected", true);
+
+  setSelectedPage(d3.select(this).attr("value"));
+}));
 
 // statChart = new SpiderChart(d3.select("#form-stats-body"),
 //                             "form-stats-shape",

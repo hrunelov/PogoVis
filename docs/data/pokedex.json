@@ -17910,8 +17910,714 @@
             "defense": 83
           },
           "movePool": {
-            "fast": [],
-            "charged": []
+            "fast": [
+              {
+                "move": "tackle_fast",
+                "exclusive": false
+              },
+              {
+                "move": "fury_cutter_fast",
+                "exclusive": false
+              },
+              {
+                "move": "bug_bite_fast",
+                "exclusive": false
+              },
+              {
+                "move": "bite_fast",
+                "exclusive": false
+              },
+              {
+                "move": "sucker_punch_fast",
+                "exclusive": false
+              },
+              {
+                "move": "dragon_breath_fast",
+                "exclusive": false
+              },
+              {
+                "move": "thunder_shock_fast",
+                "exclusive": false
+              },
+              {
+                "move": "spark_fast",
+                "exclusive": false
+              },
+              {
+                "move": "low_kick_fast",
+                "exclusive": false
+              },
+              {
+                "move": "karate_chop_fast",
+                "exclusive": false
+              },
+              {
+                "move": "ember_fast",
+                "exclusive": false
+              },
+              {
+                "move": "wing_attack_fast",
+                "exclusive": false
+              },
+              {
+                "move": "peck_fast",
+                "exclusive": false
+              },
+              {
+                "move": "lick_fast",
+                "exclusive": false
+              },
+              {
+                "move": "shadow_claw_fast",
+                "exclusive": false
+              },
+              {
+                "move": "vine_whip_fast",
+                "exclusive": false
+              },
+              {
+                "move": "razor_leaf_fast",
+                "exclusive": false
+              },
+              {
+                "move": "mud_shot_fast",
+                "exclusive": false
+              },
+              {
+                "move": "ice_shard_fast",
+                "exclusive": false
+              },
+              {
+                "move": "frost_breath_fast",
+                "exclusive": false
+              },
+              {
+                "move": "quick_attack_fast",
+                "exclusive": false
+              },
+              {
+                "move": "scratch_fast",
+                "exclusive": false
+              },
+              {
+                "move": "pound_fast",
+                "exclusive": false
+              },
+              {
+                "move": "cut_fast",
+                "exclusive": false
+              },
+              {
+                "move": "poison_jab_fast",
+                "exclusive": false
+              },
+              {
+                "move": "acid_fast",
+                "exclusive": false
+              },
+              {
+                "move": "psycho_cut_fast",
+                "exclusive": false
+              },
+              {
+                "move": "rock_throw_fast",
+                "exclusive": false
+              },
+              {
+                "move": "metal_claw_fast",
+                "exclusive": false
+              },
+              {
+                "move": "bullet_punch_fast",
+                "exclusive": false
+              },
+              {
+                "move": "water_gun_fast",
+                "exclusive": false
+              },
+              {
+                "move": "splash_fast",
+                "exclusive": false
+              },
+              {
+                "move": "mud_slap_fast",
+                "exclusive": false
+              },
+              {
+                "move": "zen_headbutt_fast",
+                "exclusive": false
+              },
+              {
+                "move": "confusion_fast",
+                "exclusive": false
+              },
+              {
+                "move": "poison_sting_fast",
+                "exclusive": false
+              },
+              {
+                "move": "bubble_fast",
+                "exclusive": false
+              },
+              {
+                "move": "feint_attack_fast",
+                "exclusive": false
+              },
+              {
+                "move": "steel_wing_fast",
+                "exclusive": false
+              },
+              {
+                "move": "fire_fang_fast",
+                "exclusive": false
+              },
+              {
+                "move": "rock_smash_fast",
+                "exclusive": false
+              },
+              {
+                "move": "counter_fast",
+                "exclusive": false
+              },
+              {
+                "move": "powder_snow_fast",
+                "exclusive": false
+              },
+              {
+                "move": "charge_beam_fast",
+                "exclusive": false
+              },
+              {
+                "move": "volt_switch_fast",
+                "exclusive": false
+              },
+              {
+                "move": "dragon_tail_fast",
+                "exclusive": false
+              },
+              {
+                "move": "air_slash_fast",
+                "exclusive": false
+              },
+              {
+                "move": "infestation_fast",
+                "exclusive": false
+              },
+              {
+                "move": "struggle_bug_fast",
+                "exclusive": false
+              },
+              {
+                "move": "astonish_fast",
+                "exclusive": false
+              },
+              {
+                "move": "hex_fast",
+                "exclusive": false
+              },
+              {
+                "move": "iron_tail_fast",
+                "exclusive": false
+              },
+              {
+                "move": "fire_spin_fast",
+                "exclusive": false
+              },
+              {
+                "move": "bullet_seed_fast",
+                "exclusive": false
+              },
+              {
+                "move": "extrasensory_fast",
+                "exclusive": false
+              },
+              {
+                "move": "snarl_fast",
+                "exclusive": false
+              },
+              {
+                "move": "hidden_power_fast",
+                "exclusive": false
+              },
+              {
+                "move": "take_down_fast",
+                "exclusive": false
+              },
+              {
+                "move": "waterfall_fast",
+                "exclusive": false
+              },
+              {
+                "move": "yawn_fast",
+                "exclusive": false
+              },
+              {
+                "move": "present_fast",
+                "exclusive": false
+              },
+              {
+                "move": "smack_down_fast",
+                "exclusive": false
+              }
+            ],
+            "charged": [
+              {
+                "move": "struggle",
+                "exclusive": false
+              },
+              {
+                "move": "wrap",
+                "exclusive": false
+              },
+              {
+                "move": "hyper_beam",
+                "exclusive": false
+              },
+              {
+                "move": "dark_pulse",
+                "exclusive": false
+              },
+              {
+                "move": "sludge",
+                "exclusive": false
+              },
+              {
+                "move": "vice_grip",
+                "exclusive": false
+              },
+              {
+                "move": "flame_wheel",
+                "exclusive": false
+              },
+              {
+                "move": "megahorn",
+                "exclusive": false
+              },
+              {
+                "move": "flamethrower",
+                "exclusive": false
+              },
+              {
+                "move": "dig",
+                "exclusive": false
+              },
+              {
+                "move": "cross_chop",
+                "exclusive": false
+              },
+              {
+                "move": "psybeam",
+                "exclusive": false
+              },
+              {
+                "move": "earthquake",
+                "exclusive": false
+              },
+              {
+                "move": "stone_edge",
+                "exclusive": false
+              },
+              {
+                "move": "ice_punch",
+                "exclusive": false
+              },
+              {
+                "move": "discharge",
+                "exclusive": false
+              },
+              {
+                "move": "flash_cannon",
+                "exclusive": false
+              },
+              {
+                "move": "drill_peck",
+                "exclusive": false
+              },
+              {
+                "move": "ice_beam",
+                "exclusive": false
+              },
+              {
+                "move": "blizzard",
+                "exclusive": false
+              },
+              {
+                "move": "heat_wave",
+                "exclusive": false
+              },
+              {
+                "move": "aerial_ace",
+                "exclusive": false
+              },
+              {
+                "move": "drill_run",
+                "exclusive": false
+              },
+              {
+                "move": "petal_blizzard",
+                "exclusive": false
+              },
+              {
+                "move": "bug_buzz",
+                "exclusive": false
+              },
+              {
+                "move": "poison_fang",
+                "exclusive": false
+              },
+              {
+                "move": "night_slash",
+                "exclusive": false
+              },
+              {
+                "move": "bubble_beam",
+                "exclusive": false
+              },
+              {
+                "move": "submission",
+                "exclusive": false
+              },
+              {
+                "move": "low_sweep",
+                "exclusive": false
+              },
+              {
+                "move": "aqua_jet",
+                "exclusive": false
+              },
+              {
+                "move": "aqua_tail",
+                "exclusive": false
+              },
+              {
+                "move": "seed_bomb",
+                "exclusive": false
+              },
+              {
+                "move": "psyshock",
+                "exclusive": false
+              },
+              {
+                "move": "ancient_power",
+                "exclusive": false
+              },
+              {
+                "move": "rock_tomb",
+                "exclusive": false
+              },
+              {
+                "move": "rock_slide",
+                "exclusive": false
+              },
+              {
+                "move": "power_gem",
+                "exclusive": false
+              },
+              {
+                "move": "shadow_sneak",
+                "exclusive": false
+              },
+              {
+                "move": "shadow_punch",
+                "exclusive": false
+              },
+              {
+                "move": "ominous_wind",
+                "exclusive": false
+              },
+              {
+                "move": "shadow_ball",
+                "exclusive": false
+              },
+              {
+                "move": "magnet_bomb",
+                "exclusive": false
+              },
+              {
+                "move": "iron_head",
+                "exclusive": false
+              },
+              {
+                "move": "thunder_punch",
+                "exclusive": false
+              },
+              {
+                "move": "thunder",
+                "exclusive": false
+              },
+              {
+                "move": "thunderbolt",
+                "exclusive": false
+              },
+              {
+                "move": "twister",
+                "exclusive": false
+              },
+              {
+                "move": "dragon_pulse",
+                "exclusive": false
+              },
+              {
+                "move": "dragon_claw",
+                "exclusive": false
+              },
+              {
+                "move": "disarming_voice",
+                "exclusive": false
+              },
+              {
+                "move": "draining_kiss",
+                "exclusive": false
+              },
+              {
+                "move": "dazzling_gleam",
+                "exclusive": false
+              },
+              {
+                "move": "moonblast",
+                "exclusive": false
+              },
+              {
+                "move": "play_rough",
+                "exclusive": false
+              },
+              {
+                "move": "cross_poison",
+                "exclusive": false
+              },
+              {
+                "move": "sludge_bomb",
+                "exclusive": false
+              },
+              {
+                "move": "sludge_wave",
+                "exclusive": false
+              },
+              {
+                "move": "gunk_shot",
+                "exclusive": false
+              },
+              {
+                "move": "bone_club",
+                "exclusive": false
+              },
+              {
+                "move": "bulldoze",
+                "exclusive": false
+              },
+              {
+                "move": "mud_bomb",
+                "exclusive": false
+              },
+              {
+                "move": "signal_beam",
+                "exclusive": false
+              },
+              {
+                "move": "x_scissor",
+                "exclusive": false
+              },
+              {
+                "move": "flame_charge",
+                "exclusive": false
+              },
+              {
+                "move": "flame_burst",
+                "exclusive": false
+              },
+              {
+                "move": "fire_blast",
+                "exclusive": false
+              },
+              {
+                "move": "water_pulse",
+                "exclusive": false
+              },
+              {
+                "move": "hydro_pump",
+                "exclusive": false
+              },
+              {
+                "move": "psychic",
+                "exclusive": false
+              },
+              {
+                "move": "icy_wind",
+                "exclusive": false
+              },
+              {
+                "move": "fire_punch",
+                "exclusive": false
+              },
+              {
+                "move": "solar_beam",
+                "exclusive": false
+              },
+              {
+                "move": "leaf_blade",
+                "exclusive": false
+              },
+              {
+                "move": "power_whip",
+                "exclusive": false
+              },
+              {
+                "move": "air_cutter",
+                "exclusive": false
+              },
+              {
+                "move": "hurricane",
+                "exclusive": false
+              },
+              {
+                "move": "brick_break",
+                "exclusive": false
+              },
+              {
+                "move": "swift",
+                "exclusive": false
+              },
+              {
+                "move": "horn_attack",
+                "exclusive": false
+              },
+              {
+                "move": "stomp",
+                "exclusive": false
+              },
+              {
+                "move": "hyper_fang",
+                "exclusive": false
+              },
+              {
+                "move": "body_slam",
+                "exclusive": false
+              },
+              {
+                "move": "close_combat",
+                "exclusive": false
+              },
+              {
+                "move": "dynamic_punch",
+                "exclusive": false
+              },
+              {
+                "move": "focus_blast",
+                "exclusive": false
+              },
+              {
+                "move": "aurora_beam",
+                "exclusive": false
+              },
+              {
+                "move": "wild_charge",
+                "exclusive": false
+              },
+              {
+                "move": "zap_cannon",
+                "exclusive": false
+              },
+              {
+                "move": "avalanche",
+                "exclusive": false
+              },
+              {
+                "move": "brave_bird",
+                "exclusive": false
+              },
+              {
+                "move": "sky_attack",
+                "exclusive": false
+              },
+              {
+                "move": "sand_tomb",
+                "exclusive": false
+              },
+              {
+                "move": "rock_blast",
+                "exclusive": false
+              },
+              {
+                "move": "silver_wind",
+                "exclusive": false
+              },
+              {
+                "move": "night_shade",
+                "exclusive": false
+              },
+              {
+                "move": "gyro_ball",
+                "exclusive": false
+              },
+              {
+                "move": "heavy_slam",
+                "exclusive": false
+              },
+              {
+                "move": "overheat",
+                "exclusive": false
+              },
+              {
+                "move": "grass_knot",
+                "exclusive": false
+              },
+              {
+                "move": "energy_ball",
+                "exclusive": false
+              },
+              {
+                "move": "futuresight",
+                "exclusive": false
+              },
+              {
+                "move": "mirror_coat",
+                "exclusive": false
+              },
+              {
+                "move": "outrage",
+                "exclusive": false
+              },
+              {
+                "move": "crunch",
+                "exclusive": false
+              },
+              {
+                "move": "foul_play",
+                "exclusive": false
+              },
+              {
+                "move": "surf",
+                "exclusive": false
+              },
+              {
+                "move": "draco_meteor",
+                "exclusive": false
+              },
+              {
+                "move": "psycho_boost",
+                "exclusive": false
+              },
+              {
+                "move": "frenzy_plant",
+                "exclusive": false
+              },
+              {
+                "move": "blast_burn",
+                "exclusive": false
+              },
+              {
+                "move": "hydro_cannon",
+                "exclusive": false
+              },
+              {
+                "move": "last_resort",
+                "exclusive": false
+              },
+              {
+                "move": "meteor_mash",
+                "exclusive": false
+              }
+            ]
           },
           "thirdMoveCosts": null,
           "evolutions": []
@@ -49635,7 +50341,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -49656,7 +50363,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 9,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49677,7 +50385,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 9,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49698,7 +50407,8 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 2,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -49719,7 +50429,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 11,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49740,7 +50451,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 3,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -49761,7 +50473,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -49782,7 +50495,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 11,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49803,7 +50517,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 11,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49824,7 +50539,8 @@
           "trainerBattles": {
             "power": 16,
             "energyGain": 6,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49845,7 +50561,8 @@
           "trainerBattles": {
             "power": 16,
             "energyGain": 12,
-            "duration": 3
+            "turns": 3,
+            "duration": 1.5
           }
         }
       },
@@ -49866,7 +50583,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -49887,7 +50605,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 2,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -49908,7 +50627,8 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 3,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -49929,7 +50649,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 10,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49950,7 +50671,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 6,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -49971,7 +50693,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 10,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -49992,7 +50715,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 6,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50013,7 +50737,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50034,7 +50759,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 10,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50055,7 +50781,8 @@
           "trainerBattles": {
             "power": 7,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50076,7 +50803,8 @@
           "trainerBattles": {
             "power": 2,
             "energyGain": 4,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50097,14 +50825,15 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 11,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
       {
         "key": "hidden_power_fast",
         "name": "Hidden Power",
-        "type": null,
+        "type": "unknown",
         "stats": {
           "gymsAndRaids": {
             "power": 15,
@@ -50118,7 +50847,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50139,7 +50869,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50160,7 +50891,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 10,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50181,7 +50913,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 11,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50202,7 +50935,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 6,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50223,7 +50957,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50244,7 +50979,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 3,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50265,7 +51001,8 @@
           "trainerBattles": {
             "power": 1,
             "energyGain": 5,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50286,7 +51023,8 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50307,7 +51045,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 6,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50328,7 +51067,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 9,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50349,7 +51089,8 @@
           "trainerBattles": {
             "power": 11,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50370,7 +51111,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50391,7 +51133,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50412,7 +51155,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 6,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50433,7 +51177,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 4,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50454,7 +51199,8 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 8,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50475,7 +51221,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 12,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50496,7 +51243,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 9,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50517,7 +51265,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50538,7 +51287,8 @@
           "trainerBattles": {
             "power": 11,
             "energyGain": 4,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50559,7 +51309,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 7,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50580,7 +51331,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50601,7 +51353,8 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 2,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50622,7 +51375,8 @@
           "trainerBattles": {
             "power": 6,
             "energyGain": 8,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50643,7 +51397,8 @@
           "trainerBattles": {
             "power": 12,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50664,7 +51419,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 13,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50685,7 +51441,30 @@
           "trainerBattles": {
             "power": 4,
             "energyGain": 8,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
+          }
+        }
+      },
+      {
+        "key": "splash_fast",
+        "name": "Splash",
+        "type": "water",
+        "stats": {
+          "gymsAndRaids": {
+            "power": 0,
+            "energyGain": 20,
+            "duration": 1730,
+            "damageWindow": {
+              "start": 1030,
+              "end": 1230
+            }
+          },
+          "trainerBattles": {
+            "power": 0,
+            "energyGain": 12,
+            "turns": 3,
+            "duration": 1.5
           }
         }
       },
@@ -50706,7 +51485,8 @@
           "trainerBattles": {
             "power": 7,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50727,7 +51507,8 @@
           "trainerBattles": {
             "power": 9,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50748,7 +51529,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50769,7 +51551,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 2,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50790,7 +51573,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50811,7 +51595,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 5,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50832,7 +51617,30 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 9,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
+          }
+        }
+      },
+      {
+        "key": "transform_fast",
+        "name": "Transform",
+        "type": "normal",
+        "stats": {
+          "gymsAndRaids": {
+            "power": 0,
+            "energyGain": 0,
+            "duration": 2230,
+            "damageWindow": {
+              "start": 300,
+              "end": 700
+            }
+          },
+          "trainerBattles": {
+            "power": 0,
+            "energyGain": 100,
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50853,7 +51661,8 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 8,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
           }
         }
       },
@@ -50874,7 +51683,8 @@
           "trainerBattles": {
             "power": 12,
             "energyGain": 16,
-            "duration": 3
+            "turns": 3,
+            "duration": 1.5
           }
         }
       },
@@ -50895,7 +51705,8 @@
           "trainerBattles": {
             "power": 3,
             "energyGain": 3,
-            "duration": 0
+            "turns": 0,
+            "duration": 0.0
           }
         }
       },
@@ -50916,7 +51727,8 @@
           "trainerBattles": {
             "power": 12,
             "energyGain": 8,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       },
@@ -50937,7 +51749,30 @@
           "trainerBattles": {
             "power": 5,
             "energyGain": 7,
-            "duration": 1
+            "turns": 1,
+            "duration": 0.5
+          }
+        }
+      },
+      {
+        "key": "yawn_fast",
+        "name": "Yawn",
+        "type": "normal",
+        "stats": {
+          "gymsAndRaids": {
+            "power": 0,
+            "energyGain": 15,
+            "duration": 1700,
+            "damageWindow": {
+              "start": 1400,
+              "end": 1600
+            }
+          },
+          "trainerBattles": {
+            "power": 0,
+            "energyGain": 12,
+            "turns": 3,
+            "duration": 1.5
           }
         }
       },
@@ -50958,7 +51793,8 @@
           "trainerBattles": {
             "power": 8,
             "energyGain": 6,
-            "duration": 2
+            "turns": 2,
+            "duration": 1.0
           }
         }
       }
@@ -51477,39 +52313,6 @@
           "trainerBattles": {
             "power": 40,
             "energyCost": 35,
-            "maxStoredCharges": 2,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "brine",
-        "name": "Brine",
-        "type": "water",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 60,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 2300,
-            "damageWindow": {
-              "start": 1500,
-              "end": 2100
-            }
-          },
-          "trainerBattles": {
-            "power": 60,
-            "energyCost": 50,
             "maxStoredCharges": 2,
             "statChanges": {
               "self": {
@@ -52714,39 +53517,6 @@
         }
       },
       {
-        "key": "frustration",
-        "name": "Frustration",
-        "type": "normal",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 10,
-            "energyBars": 3,
-            "energyCost": 33,
-            "duration": 2000,
-            "damageWindow": {
-              "start": 1000,
-              "end": 1800
-            }
-          },
-          "trainerBattles": {
-            "power": 10,
-            "energyCost": 70,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "futuresight",
         "name": "Future Sight",
         "type": "psychic",
@@ -52764,39 +53534,6 @@
           "trainerBattles": {
             "power": 120,
             "energyCost": 65,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "giga_drain",
-        "name": "Giga Drain",
-        "type": "grass",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 50,
-            "energyBars": 1,
-            "energyCost": 100,
-            "duration": 3900,
-            "damageWindow": {
-              "start": 1200,
-              "end": 2200
-            }
-          },
-          "trainerBattles": {
-            "power": 50,
-            "energyCost": 80,
             "maxStoredCharges": 1,
             "statChanges": {
               "self": {
@@ -52930,39 +53667,6 @@
             "power": 80,
             "energyCost": 60,
             "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "heart_stamp",
-        "name": "Heart Stamp",
-        "type": "psychic",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 40,
-            "energyBars": 3,
-            "energyCost": 33,
-            "duration": 1900,
-            "damageWindow": {
-              "start": 1100,
-              "end": 1600
-            }
-          },
-          "trainerBattles": {
-            "power": 40,
-            "energyCost": 40,
-            "maxStoredCharges": 2,
             "statChanges": {
               "self": {
                 "attack": 0,
@@ -53539,39 +54243,6 @@
         }
       },
       {
-        "key": "mega_drain",
-        "name": "Mega Drain",
-        "type": "grass",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 25,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 2600,
-            "damageWindow": {
-              "start": 950,
-              "end": 2000
-            }
-          },
-          "trainerBattles": {
-            "power": 25,
-            "energyCost": 55,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "megahorn",
         "name": "Megahorn",
         "type": "bug",
@@ -53935,39 +54606,6 @@
         }
       },
       {
-        "key": "origin_pulse",
-        "name": "Origin Pulse",
-        "type": "water",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 130,
-            "energyBars": 1,
-            "energyCost": 100,
-            "duration": 1700,
-            "damageWindow": {
-              "start": 1400,
-              "end": 1600
-            }
-          },
-          "trainerBattles": {
-            "power": 130,
-            "energyCost": 60,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "outrage",
         "name": "Outrage",
         "type": "dragon",
@@ -54029,39 +54667,6 @@
                 "defense": 0
               },
               "probability": 1
-            }
-          }
-        }
-      },
-      {
-        "key": "parabolic_charge",
-        "name": "Parabolic Charge",
-        "type": "electric",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 25,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 2800,
-            "damageWindow": {
-              "start": 1200,
-              "end": 2400
-            }
-          },
-          "trainerBattles": {
-            "power": 25,
-            "energyCost": 55,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
             }
           }
         }
@@ -54265,39 +54870,6 @@
         }
       },
       {
-        "key": "precipice_blades",
-        "name": "Precipice Blades",
-        "type": "ground",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 130,
-            "energyBars": 1,
-            "energyCost": 100,
-            "duration": 1700,
-            "damageWindow": {
-              "start": 1400,
-              "end": 1600
-            }
-          },
-          "trainerBattles": {
-            "power": 130,
-            "energyCost": 60,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "psybeam",
         "name": "Psybeam",
         "type": "psychic",
@@ -54430,105 +55002,6 @@
         }
       },
       {
-        "key": "psystrike",
-        "name": "Psystrike",
-        "type": "psychic",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 90,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 2300,
-            "damageWindow": {
-              "start": 1000,
-              "end": 2000
-            }
-          },
-          "trainerBattles": {
-            "power": 90,
-            "energyCost": 45,
-            "maxStoredCharges": 2,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "rest",
-        "name": "Rest",
-        "type": "normal",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 50,
-            "energyBars": 3,
-            "energyCost": 33,
-            "duration": 1900,
-            "damageWindow": {
-              "start": 1500,
-              "end": 1700
-            }
-          },
-          "trainerBattles": {
-            "power": 50,
-            "energyCost": 35,
-            "maxStoredCharges": 2,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "return",
-        "name": "Return",
-        "type": "normal",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 35,
-            "energyBars": 3,
-            "energyCost": 33,
-            "duration": 700,
-            "damageWindow": {
-              "start": 100,
-              "end": 350
-            }
-          },
-          "trainerBattles": {
-            "power": 130,
-            "energyCost": 70,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "rock_blast",
         "name": "Rock Blast",
         "type": "rock",
@@ -54628,72 +55101,6 @@
         }
       },
       {
-        "key": "rock_wrecker",
-        "name": "Rock Wrecker",
-        "type": "rock",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 110,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 3600,
-            "damageWindow": {
-              "start": 2000,
-              "end": 2700
-            }
-          },
-          "trainerBattles": {
-            "power": 110,
-            "energyCost": 50,
-            "maxStoredCharges": 2,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
-        "key": "sacred_sword",
-        "name": "Sacred Sword",
-        "type": "fighting",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 55,
-            "energyBars": 3,
-            "energyCost": 33,
-            "duration": 1200,
-            "damageWindow": {
-              "start": 500,
-              "end": 1000
-            }
-          },
-          "trainerBattles": {
-            "power": 60,
-            "energyCost": 35,
-            "maxStoredCharges": 2,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
-            }
-          }
-        }
-      },
-      {
         "key": "sand_tomb",
         "name": "Sand Tomb",
         "type": "ground",
@@ -54722,39 +55129,6 @@
                 "defense": -1
               },
               "probability": 1
-            }
-          }
-        }
-      },
-      {
-        "key": "scald",
-        "name": "Scald",
-        "type": "water",
-        "stats": {
-          "gymsAndRaids": {
-            "power": 80,
-            "energyBars": 2,
-            "energyCost": 50,
-            "duration": 3700,
-            "damageWindow": {
-              "start": 1300,
-              "end": 3400
-            }
-          },
-          "trainerBattles": {
-            "power": 80,
-            "energyCost": 60,
-            "maxStoredCharges": 1,
-            "statChanges": {
-              "self": {
-                "attack": 0,
-                "defense": 0
-              },
-              "opponent": {
-                "attack": 0,
-                "defense": 0
-              },
-              "probability": 0
             }
           }
         }
@@ -55206,6 +55580,39 @@
           "trainerBattles": {
             "power": 100,
             "energyCost": 55,
+            "maxStoredCharges": 1,
+            "statChanges": {
+              "self": {
+                "attack": 0,
+                "defense": 0
+              },
+              "opponent": {
+                "attack": 0,
+                "defense": 0
+              },
+              "probability": 0
+            }
+          }
+        }
+      },
+      {
+        "key": "struggle",
+        "name": "Struggle",
+        "type": "normal",
+        "stats": {
+          "gymsAndRaids": {
+            "power": 35,
+            "energyBars": 2,
+            "energyCost": 35,
+            "duration": 2200,
+            "damageWindow": {
+              "start": 1200,
+              "end": 2000
+            }
+          },
+          "trainerBattles": {
+            "power": 35,
+            "energyCost": 100,
             "maxStoredCharges": 1,
             "statChanges": {
               "self": {
@@ -55926,6 +56333,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56004,6 +56415,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 0.625
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56081,6 +56496,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -56160,6 +56579,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1.6
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56237,6 +56660,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -56316,6 +56743,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56394,6 +56825,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 0.625
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56471,6 +56906,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -56550,6 +56989,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1.6
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56627,6 +57070,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -56706,6 +57153,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56783,6 +57234,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -56862,6 +57317,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -56939,6 +57398,10 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]
@@ -57018,6 +57481,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -57096,6 +57563,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 0.390625
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -57174,6 +57645,10 @@
         {
           "defendingType": "fairy",
           "damageMultiplier": 0.625
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
         }
       ]
     },
@@ -57251,6 +57726,92 @@
         },
         {
           "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
+          "damageMultiplier": 1
+        }
+      ]
+    },
+    {
+      "key": "unknown",
+      "name": "Unknown",
+      "effectiveness": [
+        {
+          "defendingType": "normal",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "fighting",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "flying",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "poison",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "ground",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "rock",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "bug",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "ghost",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "steel",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "fire",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "water",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "grass",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "electric",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "psychic",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "ice",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "dragon",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "dark",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "fairy",
+          "damageMultiplier": 1
+        },
+        {
+          "defendingType": "unknown",
           "damageMultiplier": 1
         }
       ]

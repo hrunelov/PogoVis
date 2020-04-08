@@ -77,26 +77,57 @@ function updateTypeInfo() {
   if (lastForm && lastForm.sameTyping(selectedForm, true))
     return;
 
-  d3.select("#form-types")
-    .selectAll("div")
-    .remove();
+  // Typing
 
-  let l = makeTypeLabel(
-    d3.select("#form-types")
-      .selectAll("div")
-      .data(selectedForm.types)
-      .enter(),
-    {
-      reverse: null,
-      fadeDelay: TRANSITION_DELAY * 2
+  listData({
+    data:        selectedForm.types,
+    key:         d => d.key,
+    container:   d3.select("#form-types"),
+    classed:     "type-label",
+    horizontal:  true,
+    fade:        false,
+    waitForExit: true,
+    duration:    TRANSITION_DURATION_MEDIUM,
+    onenter:     function(s, delay) {
+      s.classed("type-label", true);
+      s.appendTypeIcon()
+        .zoomIn({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          ease:     d3.easeBackOut
+        });
+      s.append("div")
+        .classed("type-name", true)
+        .text(d => d.name)
+        .zoomInY({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          fade:     true
+        });
+
+      if (selectedForm.types.length > 1)
+        s.style("width", "17.5%");
+    },
+    onexit:     function(s, delay) {
+      s.select(".type-icon")
+        .interrupt()
+        .zoomOut({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          ease:     d3.easeBackIn
+        });
+
+      s.select(".type-name")
+        .interrupt()
+        .zoomOutY({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          fade:     true
+        });
     }
-  );
+  });
 
-  if (selectedForm.types.length > 1)
-    l.style("width", "17.5%");
-
-  if (lastForm && lastForm.sameTyping(selectedForm, false))
-    return;
+  // Effectiveness
 
   var resistances = selectedForm.counterEffectiveness
     .filter(e => e.damageMultiplier < 1)
@@ -105,68 +136,98 @@ function updateTypeInfo() {
     .filter(e => e.damageMultiplier > 1)
     .sort((e1, e2) => e2.damageMultiplier - e1.damageMultiplier);
 
-  d3.select("#form-resistances")
-    .selectAll("div")
-    .remove();
-
-  d3.select("#form-weaknesses")
-    .selectAll("div")
-    .remove();
-
-  listTypeEffectivenesses(
-    d3.select("#form-resistances")
-      .selectAll("div")
-      .data(resistances)
-      .enter(),
-    TRANSITION_DELAY * 3);
-  listTypeEffectivenesses(
-    d3.select("#form-weaknesses")
-      .selectAll("div")
-      .data(weaknesses)
-      .enter(),
-    TRANSITION_DELAY * 4);
-
-  animateHeight("#form-type-body");
+  listTypeEffectivenesses(resistances, "#form-resistances", true);
+  listTypeEffectivenesses(weaknesses, "#form-weaknesses", false);
 }
 
-function listTypeEffectivenesses(s, fadeDelay) {
-  let w = 220;
-  let m = 48;
+function listTypeEffectivenesses(data, container, reverse) {
+  const w = 220;
+  const m = 48;
 
-  // v.style("width", 0)
-  //   .style("background", effectiveness[0].damageMultiplier > 1 ? "#600" : "#040")
-  //   .transition()
-  //   .duration(TRANSITION_DURATION_MEDIUM)
-  //   .delay((d,i) => i * TRANSITION_DELAY + TRANSITION_DURATION_MEDIUM/8 + fadeDelay)
-  //   .style("width", (d,i) => widths[i]);
+  listData({
+    data:        data,
+    key:         d => d.attackingType.key,
+    container:   d3.select(container),
+    classed:     "form-type-effectiveness-label-wrapper",
+    fade:        false,
+    waitForExit: true,
+    duration:    TRANSITION_DURATION_MEDIUM,
+    onenter:     function(s, delay) {
+      s = s.append("div")
+        .classed("form-type-effectiveness-label", true)
+        .classed("reverse", reverse)
+        .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks")
+        .style("width", m + "px")
+        .style("background", "#222");
 
-  let label = s.append("div")
-    .classed("type-label", true)
-    .classed("left", d => d.damageMultiplier < 1)
-    .classed("right", d => d.damageMultiplier > 1)
-    .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks")
-    .style("background", "#222")
-    .style("width", m + "px");
+      s.appendTypeIcon(d => d.attackingType)
+        .zoomIn({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          ease:     d3.easeBackOut
+        });
 
-  fadeInIcon(label.append("img")
-    .classed("type-icon", true)
-    .attr("src", d => "img/types/" + d.attackingType.key + ".svg"),
-    (d,i) => i * TRANSITION_DELAY + fadeDelay);
+      s.append("div")
+        .classed("form-type-effectiveness-percent", true)
+        .text(d => oneDecimal(d.damageMultiplier * 100) + "%")
+        .zoomInY({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          fade:     true
+        });
 
-  fadeInText(label.append("div")
-    .classed("type-name", true)
-    .classed("type-effectiveness-text", true)
-    .classed("right-aligned", d => d < 1)
-    .text(d => oneDecimal(d.damageMultiplier * 100) + "%"),
-    (d,i) => i * TRANSITION_DELAY + fadeDelay);
+      s.transition()
+        .duration(TRANSITION_DURATION_MEDIUM)
+        .delay((d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3)
+        .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.maxDamageMultiplier :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.maxDamageMultiplier)) *
+                             (w-m) + m + "px");
 
-  label.transition()
-    .duration(TRANSITION_DURATION_MEDIUM)
-    .delay((d,i) => i * TRANSITION_DELAY + fadeDelay)
-    .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
-    .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.maxDamageMultiplier :
-                                                   (1 - d.damageMultiplier)/(1 - 1/pokedex.maxDamageMultiplier)) *
-                         (w-m) + m + "px");
+    },
+    onupdate: function(s, delay) {
+      let delayFunc = (d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3;
+      s = s.select(".form-type-effectiveness-label")
+        .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks");
+
+      s.select(".form-type-effectiveness-percent")
+        .delay(delayFunc)
+        .text(d => oneDecimal(d.damageMultiplier * 100) + "%");
+
+      s.interrupt()
+        .transition()
+        .duration(TRANSITION_DURATION_MEDIUM)
+        .delay(delayFunc)
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.maxDamageMultiplier :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.maxDamageMultiplier)) *
+                             (w-m) + m + "px");
+    },
+    onexit: function(s, delay) {
+      s = s.select(".form-type-effectiveness-label")
+
+      s.select(".type-icon")
+        .interrupt()
+        .zoomOut({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          ease:     d3.easeBackIn
+        });
+
+      s.select(".form-type-effectiveness-percent")
+        .interrupt()
+        .zoomOutY({
+          duration: TRANSITION_DURATION_MEDIUM,
+          delay:    delay,
+          fade:     true
+        });
+
+      s.transition()
+        .duration(TRANSITION_DURATION_MEDIUM)
+        .delay(delay)
+        .style("background", "#222")
+        .style("width", m + "px");
+    }
+  });
 }
 
 // Evolutions
