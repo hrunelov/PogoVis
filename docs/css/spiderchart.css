@@ -1,0 +1,217 @@
+/*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
+/* Scrollbars */
+/* Text */
+/* line 72, src/sass/common.scss */
+.left-aligned {
+  text-align: left;
+}
+
+/* line 76, src/sass/common.scss */
+.center-aligned {
+  text-align: center;
+}
+
+/* line 80, src/sass/common.scss */
+.right-aligned {
+  text-align: right;
+}
+
+/* line 84, src/sass/common.scss */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Flex */
+/* line 90, src/sass/common.scss */
+.flex-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Frames */
+/* line 96, src/sass/common.scss */
+.frame {
+  margin-top: 32px;
+  padding: 4px;
+  border: 1px solid #666;
+  border-radius: 3px;
+  color: #ccc;
+}
+
+/* line 104, src/sass/common.scss */
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 4px;
+  background: #222;
+}
+
+/* line 113, src/sass/common.scss */
+.frame-body {
+  margin: 4px;
+  overflow: hidden;
+}
+
+/* line 118, src/sass/common.scss */
+.two-columns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+/* line 125, src/sass/common.scss */
+.left-column-wrapper {
+  width: 50%;
+  margin-right: -0.5px;
+}
+
+/* line 130, src/sass/common.scss */
+.right-column-wrapper {
+  width: 50%;
+  margin-left: -0.5px;
+}
+
+/* line 135, src/sass/common.scss */
+.left-column-body {
+  padding: 16px;
+  border-top: 0.5px solid #666;
+  border-right: 0.5px solid #666;
+  height: 100%;
+}
+
+/* line 142, src/sass/common.scss */
+.right-column-body {
+  padding: 16px;
+  border-top: 0.5px solid #666;
+  border-left: 0.5px solid #666;
+  height: 100%;
+}
+
+/* line 149, src/sass/common.scss */
+.sub-caption {
+  font-weight: bold;
+  margin: 16px 4px 4px 4px;
+  text-align: center;
+}
+
+/* Padding/Margins */
+/* line 156, src/sass/common.scss */
+.pad-top {
+  margin-top: 4px;
+}
+
+/* line 160, src/sass/common.scss */
+.pad-top-half {
+  margin-top: 2px;
+}
+
+/* line 164, src/sass/common.scss */
+.pad-bottom {
+  margin-bottom: 4px;
+}
+
+/* line 168, src/sass/common.scss */
+.pad-bottom-half {
+  margin-bottom: 2px;
+}
+
+/* line 172, src/sass/common.scss */
+.pad-left {
+  margin-left: 4px;
+}
+
+/* line 176, src/sass/common.scss */
+.pad-left-half {
+  margin-left: 2px;
+}
+
+/* line 180, src/sass/common.scss */
+.pad-right {
+  margin-right: 4px;
+}
+
+/* line 184, src/sass/common.scss */
+.pad-right-half {
+  margin-right: 2px;
+}
+
+/* line 188, src/sass/common.scss */
+.border-top {
+  border-top: 4px solid #111;
+}
+
+/* line 192, src/sass/common.scss */
+.border-bottom {
+  border-bottom: 4px solid #111;
+}
+
+/* line 196, src/sass/common.scss */
+#pokemon-caption-type1-color {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+}
+
+/* line 203, src/sass/common.scss */
+.split-top {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+/* line 209, src/sass/common.scss */
+.split-bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 215, src/sass/common.scss */
+.hidden {
+  display: none;
+}
+
+/* line 3, src/sass/spiderchart.scss */
+.spider-axis {
+  fill: none;
+  stroke: #666;
+}
+
+/* line 8, src/sass/spiderchart.scss */
+.spider-tick {
+  fill: none;
+  stroke: #444;
+}
+
+/* line 13, src/sass/spiderchart.scss */
+.spider-tick-outer {
+  fill: none;
+  stroke: #666;
+}
+
+/* line 18, src/sass/spiderchart.scss */
+.spider-shape {
+  stroke: #ccc;
+  stroke-width: 2px;
+  fill: #ffffff40;
+}
+
+/* line 24, src/sass/spiderchart.scss */
+.spider-label {
+  font-size: 8pt;
+  text-transform: uppercase;
+  fill: #ccc;
+}

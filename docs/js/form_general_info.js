@@ -39,8 +39,8 @@ function updateTopBar() {
     .text(selectedForm.genderRatio !== null ? oneDecimal(selectedForm.genderRatio * 100) + "%" : "");
 
   let barRatio = selectedForm.genderRatio === 1 ? 1.01 : selectedForm.genderRatio;
-  let b = d3.select("#form-female-bar");
-    //.style("z-index", barRatio >= 1 ? 1 : 0);
+  let b = d3.select("#form-female-bar")
+    .style("z-index", barRatio >= 1 ? 1 : 0);
 
   let w = (barRatio * 100) + "%";
   if (!lastForm || lastForm.genderRatio === null)
