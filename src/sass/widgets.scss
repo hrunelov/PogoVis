@@ -56,7 +56,6 @@
   flex-direction: row;
   position: relative;
   border-radius: $corner-radius - 2px;
-  overflow: hidden;
   background: $medium;
 
   &.round-left {

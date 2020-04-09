@@ -39,8 +39,8 @@ function updateTopBar() {
     .text(selectedForm.genderRatio !== null ? oneDecimal(selectedForm.genderRatio * 100) + "%" : "");
 
   let barRatio = selectedForm.genderRatio === 1 ? 1.01 : selectedForm.genderRatio;
-  let b = d3.select("#form-female-bar")
-    .style("z-index", barRatio >= 1 ? 1 : 0);
+  let b = d3.select("#form-female-bar");
+    //.style("z-index", barRatio >= 1 ? 1 : 0);
 
   let w = (barRatio * 100) + "%";
   if (!lastForm || lastForm.genderRatio === null)
@@ -164,8 +164,7 @@ function listTypeEffectivenesses(data, container, reverse) {
       s.appendTypeIcon(d => d.attackingType)
         .zoomIn({
           duration: TRANSITION_DURATION_MEDIUM,
-          delay:    delay,
-          ease:     d3.easeBackOut
+          delay:    delay
         });
 
       s.append("div")
@@ -210,8 +209,7 @@ function listTypeEffectivenesses(data, container, reverse) {
         .interrupt()
         .zoomOut({
           duration: TRANSITION_DURATION_MEDIUM,
-          delay:    delay,
-          ease:     d3.easeBackIn
+          delay:    delay
         });
 
       s.select(".form-type-effectiveness-percent")
