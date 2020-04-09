@@ -271,13 +271,13 @@ function updateEvolution() {
     let c = s.append("div")
       .classed("form-evolution-column", true);
 
-    let img = makePokemonImage(c, {
-      form: ancestor,
-      selected: ancestor.key === selectedForm.key,
+    let img = c.appendPokemonImage({
+      form:      ancestor,
+      selected:  ancestor.key === selectedForm.key,
       fadeDelay: evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++),
       fadeFrame: doTransitions,
       fadeImage: doTransitions,
-      onclick: function() {
+      onclick:   function() {
         setSelectedPokemon(ancestor.pokemon, ancestor.pokemon.forms.indexOf(ancestor));
       }
     })
