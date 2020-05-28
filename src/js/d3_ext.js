@@ -2,23 +2,25 @@ var heights = {};
 
 // Convenience function for listing data with transitions
 function listData({
-  container   = d3.select("body"),
-  tag         = "div",
-  classed     = null,
-  data        = [],
-  key         = d => d,
-  onexit      = () => {},
-  onupdate    = () => {},
-  onenter     = () => {},
-  horizontal  = false,
-  fade        = true,
-  waitForExit = false,
-  duration    = TRANSITION_DURATION_FAST,
-  delay       = 0,
-  lag         = 0
-}) {
+  container    = d3.select("body"),
+  tag          = "div",
+  classed      = null,
+  data         = [],
+  key          = d => d,
+  horizontal   = false,
+  hideContent  = true,
+  fade         = true,
+  waitForExit  = false,
+  duration     = TRANSITION_DURATION_MEDIUM,
+  delay        = 0,
+  onexit       = () => {},
+  onupdate     = () => {},
+  onenter      = () => {}
+} = {}) {
   const notExiting = ":not(.exiting)";
   let selector = (classed ? "." + classed : tag);
+
+  let xs, us, es;
 
   // For smooth reordering
   let reorder = function(selections) {
@@ -47,30 +49,33 @@ function listData({
           .style("transform", "translate" + (horizontal ? "X" : "Y") + "(" + delta + "px)")
           .transition("reorder")
           .duration(duration)
+          //.delay(delay + (waitForExit && !xs.empty() ? duration : 0))
           .style("transform", "translate" + (horizontal ? "X" : "Y") + "(0px)");
       }
     }
   };
 
   // Update selection
-  let us = container.selectAll(selector + notExiting)
+  us = container.selectAll(selector + notExiting)
     .data(data, key);
 
   // Exit selection
-  let xs = us.exit()
+  xs = us.exit()
     .classed("exiting", true);
 
   reorder([us, xs]);
 
   // Enter selection
-  let es = us.enter()
+  es = us.enter()
     .append(tag)
+    .classed("list-item-wrapper", true)
+    .classed("hide-content", hideContent)
     .classed(classed, classed);
 
   // Delays
-  let xDelayFunc = (d,i) => delay + lag * i;
-  let uDelayFunc = (d,i) => delay + lag * i + (waitForExit && !xs.empty() && !es.empty() ? duration + lag * (xs.nodes().length-1) : 0);
-  let eDelayFunc = (d,i) => delay + lag * i + (waitForExit && !xs.empty() ? duration + lag * (xs.nodes().length-1) : 0);
+  let xDelayFunc = d => delay;
+  let uDelayFunc = d => delay + (waitForExit && !xs.empty() && !es.empty() ? duration : 0);
+  let eDelayFunc = d => delay + (waitForExit && !xs.empty() ? duration : 0);
   let attr = (horizontal ? "width" : "height");
 
   // Exit
@@ -116,7 +121,7 @@ d3.selection.prototype.zoomIn = function({
   delay    = 0,
   ease     = d3.easeQuad,
   fade     = false
-}) {
+} = {}) {
   let s = this.style("transform", "scale(0,0)");
   if (fade)
     s = s.style("opacity", 0);
@@ -136,7 +141,7 @@ d3.selection.prototype.zoomInY = function({
   delay    = 0,
   ease     = d3.easeQuad,
   fade     = false
-}) {
+} = {}) {
   let s = this.style("transform", "scaleY(0)");
   if (fade)
     s = s.style("opacity", 0);
@@ -156,7 +161,7 @@ d3.selection.prototype.zoomOut = function({
   delay    = 0,
   ease     = d3.easeQuad,
   fade     = false
-}) {
+} = {}) {
   let s = this.transition()
     .duration(duration)
     .delay(delay)
@@ -172,7 +177,7 @@ d3.selection.prototype.zoomOutY = function({
   delay    = 0,
   ease     = d3.easeQuad,
   fade     = false
-}) {
+} = {}) {
   let s = this.transition()
     .duration(duration)
     .delay(delay)
@@ -182,12 +187,131 @@ d3.selection.prototype.zoomOutY = function({
   return fade ? s.style("opacity", 0) : s;
 };
 
+// Bar Container
+d3.selection.prototype.appendBar = function({
+  vertical        = false,
+  width           = null,
+  height          = null,
+  roundStart      = false,
+  roundEnd        = false,
+  transparent     = false,
+  segments        = 1,
+  separatorColor  = null
+} = {}) {
+  if (vertical && !width)
+    width = 24;
+  if (!vertical && !height)
+    height = 24;
+
+  let b = this.append("div")
+    .classed("bar-" + (vertical ? "vertical" : "horizontal"), true)
+    .classed("round-start", roundStart)
+    .classed("round-end", roundEnd);
+
+  if (width)
+    b.style("width", width + "px");
+  if (height)
+    b.style("height", height + "px");
+
+  if (!transparent && segments > 0)
+    b.append("div")
+      .classed("bar-background", true);
+
+  let sw = b.append("div")
+    .classed("bar-content-wrapper", true);
+  for (let i = 0; i < segments; ++i) {
+    let s = sw.append("div")
+      .classed("bar-segment", true);
+
+    if (separatorColor)
+      s.style("border-color", separatorColor);
+  }
+  return b;
+};
+
+// Set Bar Value
+d3.selection.prototype.setBarValue = function({
+  value      = 0.5,
+  startValue = 0,
+  immediate  = false,
+  duration   = TRANSITION_DURATION_MEDIUM,
+  delay      = 0
+} = {}) {
+  value = functionize(value);
+  startValue = functionize(startValue);
+
+  let valueAttr = "";
+  let startValueAttr = "";
+  if (d3.select(this.node().parentNode).classed("bar-horizontal")) {
+    valueAttr = "width";
+    startValueAttr = (this.classed("reverse") ? "right" : "left");
+  }
+  if (d3.select(this.node().parentNode).classed("bar-vertical")) {
+    valueAttr = "height";
+    startValueAttr = (this.classed("reverse") ? "bottom" : "top");
+  }
+
+  if (immediate) {
+    this.style(startValueAttr, d => startValue(d) * 100 + "%");
+    this.style(valueAttr, d => (value(d) - startValue(d)) * 100 + "%");
+  }
+  else {
+    this.transition()
+      .duration(duration)
+      .delay(delay)
+      .style(startValueAttr, d => startValue(d) * 100 + "%")
+      .style(valueAttr, d => (value(d) - startValue(d)) * 100 + "%");
+  }
+};
+
+// Bar Value
+d3.selection.prototype.appendBarValue = function({
+  roundStart        = false,
+  roundEnd          = false,
+  reverse           = false,
+  color             = null,
+  initialValue      = 0.5,
+  initialStartValue = 0,
+  fadeFromZero      = false,
+  duration          = TRANSITION_DURATION_MEDIUM,
+  delay             = 0
+} = {}) {
+  let v = this.append("div")
+    .classed("bar-value", true)
+    .classed("round-start", roundStart)
+    .classed("round-end", roundEnd)
+    .classed("reverse", reverse);
+
+  if (color)
+    v.style("background", color);
+
+  v.setBarValue({
+    value: fadeFromZero ? 0 : initialValue,
+    startValue: fadeFromZero ? 0 : initialStartValue,
+    immediate: true,
+  });
+
+  if (fadeFromZero) {
+    v.setBarValue({
+      value: initialValue,
+      startValue: initialStartValue,
+      immediate: false,
+      duration: duration,
+      delay: delay
+    });
+  }
+
+  return v;
+};
+
+// Type Icon
 d3.selection.prototype.appendTypeIcon = function(typeFunc) {
   return this.append("img")
     .classed("type-icon", true)
     .attr("src", d => "img/types/" + (typeFunc ? typeFunc(d).key : d.key) + ".svg");
 };
 
+// Pokémon Image
 d3.selection.prototype.appendPokemonImage = function({
   form      = selectedForm,
   width     = 75,

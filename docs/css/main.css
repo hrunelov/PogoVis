@@ -1,29 +1,59 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 @charset "UTF-8";
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -32,16 +62,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -51,13 +86,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,35 +106,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -108,57 +144,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -166,49 +202,79 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
 
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -217,16 +283,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -236,13 +307,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -257,35 +327,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -293,57 +365,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -351,21 +423,21 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
@@ -442,90 +514,190 @@
 
 /* Bars/Meters */
 /* line 52, src/sass/widgets.scss */
-.horizontal-bar {
-  height: 24px;
-  margin: 4px;
+.bar-content-wrapper, .bar-background, .bar-value-base, .bar-horizontal > .bar-value, .bar-vertical > .bar-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+/* line 61, src/sass/widgets.scss */
+.bar-background {
+  background: #ffffff30;
+}
+
+/* line 66, src/sass/widgets.scss */
+.bar-value-base, .bar-horizontal > .bar-value, .bar-vertical > .bar-value {
+  width: 50%;
+  background: #ccc;
+}
+
+/* line 72, src/sass/widgets.scss */
+.bar-value-base.round-left, .bar-horizontal > .round-left.bar-value, .bar-vertical > .round-left.bar-value {
+  border-top-left-radius: 9001px;
+  border-bottom-left-radius: 9001px;
+}
+
+/* line 77, src/sass/widgets.scss */
+.bar-value-base.round-right, .bar-horizontal > .round-right.bar-value, .bar-vertical > .round-right.bar-value {
+  border-top-right-radius: 9001px;
+  border-bottom-right-radius: 9001px;
+}
+
+/* line 83, src/sass/widgets.scss */
+.bar-segment-base, .bar-horizontal > .bar-content-wrapper > .bar-segment, .bar-horizontal > .bar-background > .bar-segment, .bar-horizontal > .bar-value-base > .bar-segment, .bar-horizontal > .bar-value > .bar-segment, .bar-vertical > .bar-content-wrapper > .bar-segment, .bar-vertical > .bar-background > .bar-segment, .bar-vertical > .bar-value-base > .bar-segment, .bar-vertical > .bar-value > .bar-segment {
+  border-style: solid;
+  border-width: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  z-index: 1;
+}
+
+/* line 90, src/sass/widgets.scss */
+.bar, .bar-horizontal, .bar-vertical {
+  position: relative;
+  margin: 4px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* line 96, src/sass/widgets.scss */
+.bar.grow, .grow.bar-horizontal, .grow.bar-vertical {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+/* line 100, src/sass/widgets.scss */
+.bar.transparent, .transparent.bar-horizontal, .transparent.bar-vertical {
+  background: none;
+}
+
+/* line 104, src/sass/widgets.scss */
+.bar-horizontal {
+  height: 24px;
+}
+
+/* line 109, src/sass/widgets.scss */
+.bar-horizontal > .bar-content-wrapper, .bar-horizontal > .bar-background, .bar-horizontal > .bar-value-base, .bar-horizontal > .bar-value {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  position: relative;
-  border-radius: 3px;
-  background: #444;
 }
 
-/* line 61, src/sass/widgets.scss */
-.horizontal-bar.round-left {
+/* line 112, src/sass/widgets.scss */
+.bar-horizontal > .bar-content-wrapper > .bar-segment, .bar-horizontal > .bar-background > .bar-segment, .bar-horizontal > .bar-value-base > .bar-segment, .bar-horizontal > .bar-value > .bar-segment {
+  border-left-width: 0.5px;
+  border-right-width: 0.5px;
+}
+
+/* line 118, src/sass/widgets.scss */
+.bar-horizontal > .bar-content-wrapper > .bar-segment:first-child, .bar-horizontal > .bar-background > .bar-segment:first-child, .bar-horizontal > .bar-value-base > .bar-segment:first-child, .bar-horizontal > .bar-value > .bar-segment:first-child {
+  border-left: 0;
+}
+
+/* line 122, src/sass/widgets.scss */
+.bar-horizontal > .bar-content-wrapper > .bar-segment:last-child, .bar-horizontal > .bar-background > .bar-segment:last-child, .bar-horizontal > .bar-value-base > .bar-segment:last-child, .bar-horizontal > .bar-value > .bar-segment:last-child {
+  border-right: 0;
+}
+
+/* line 128, src/sass/widgets.scss */
+.bar-horizontal.round-start {
   border-top-left-radius: 9001px;
   border-bottom-left-radius: 9001px;
 }
 
-/* line 66, src/sass/widgets.scss */
-.horizontal-bar.round-right {
+/* line 133, src/sass/widgets.scss */
+.bar-horizontal.round-end {
   border-top-right-radius: 9001px;
   border-bottom-right-radius: 9001px;
 }
 
-/* line 71, src/sass/widgets.scss */
-.horizontal-bar.large {
-  height: 48px;
-}
-
-/* line 75, src/sass/widgets.scss */
-.horizontal-bar.transparent {
-  background: none;
-}
-
-/* line 80, src/sass/widgets.scss */
-.horizontal-bar-segment {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  border-left: 0.5px solid #222;
-  border-right: 0.5px solid #222;
-  z-index: 1;
-}
-
-/* line 85, src/sass/widgets.scss */
-.horizontal-bar-segment.start {
-  border-left: 0;
-}
-
-/* line 89, src/sass/widgets.scss */
-.horizontal-bar-segment.end {
-  border-right: 0;
-}
-
-/* line 96, src/sass/widgets.scss */
-.horizontal-bar-value {
-  position: absolute;
+/* line 138, src/sass/widgets.scss */
+.bar-horizontal > .bar-value {
   width: 50%;
   height: 100%;
-  background: #ccc;
 }
 
-/* line 102, src/sass/widgets.scss */
-.horizontal-bar-value.reverse {
-  right: 0;
-}
-
-/* line 106, src/sass/widgets.scss */
-.horizontal-bar-value.round-left {
+/* line 144, src/sass/widgets.scss */
+.bar-horizontal > .bar-value.round-start {
   border-top-left-radius: 9001px;
   border-bottom-left-radius: 9001px;
 }
 
-/* line 111, src/sass/widgets.scss */
-.horizontal-bar-value.round-right {
+/* line 149, src/sass/widgets.scss */
+.bar-horizontal > .bar-value.round-end {
   border-top-right-radius: 9001px;
+  border-bottom-right-radius: 9001px;
+}
+
+/* line 156, src/sass/widgets.scss */
+.bar-vertical {
+  width: 24px;
+}
+
+/* line 161, src/sass/widgets.scss */
+.bar-vertical > .bar-content-wrapper, .bar-vertical > .bar-background, .bar-vertical > .bar-value-base, .bar-vertical > .bar-value {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* line 164, src/sass/widgets.scss */
+.bar-vertical > .bar-content-wrapper > .bar-segment, .bar-vertical > .bar-background > .bar-segment, .bar-vertical > .bar-value-base > .bar-segment, .bar-vertical > .bar-value > .bar-segment {
+  border-top-width: 0.5px;
+  border-bottom-width: 0.5px;
+}
+
+/* line 170, src/sass/widgets.scss */
+.bar-vertical > .bar-content-wrapper > .bar-segment:first-child, .bar-vertical > .bar-background > .bar-segment:first-child, .bar-vertical > .bar-value-base > .bar-segment:first-child, .bar-vertical > .bar-value > .bar-segment:first-child {
+  border-top: 0;
+}
+
+/* line 174, src/sass/widgets.scss */
+.bar-vertical > .bar-content-wrapper > .bar-segment:last-child, .bar-vertical > .bar-background > .bar-segment:last-child, .bar-vertical > .bar-value-base > .bar-segment:last-child, .bar-vertical > .bar-value > .bar-segment:last-child {
+  border-bottom: 0;
+}
+
+/* line 180, src/sass/widgets.scss */
+.bar-vertical.round-start {
+  border-top-left-radius: 9001px;
+  border-top-right-radius: 9001px;
+}
+
+/* line 185, src/sass/widgets.scss */
+.bar-vertical.round-end {
+  border-bottom-left-radius: 9001px;
+  border-bottom-right-radius: 9001px;
+}
+
+/* line 190, src/sass/widgets.scss */
+.bar-vertical > .bar-value {
+  width: 100%;
+  height: 50%;
+}
+
+/* line 196, src/sass/widgets.scss */
+.bar-vertical > .bar-value.round-start {
+  border-top-left-radius: 9001px;
+  border-top-right-radius: 9001px;
+}
+
+/* line 201, src/sass/widgets.scss */
+.bar-vertical > .bar-value.round-end {
+  border-bottom-left-radius: 9001px;
   border-bottom-right-radius: 9001px;
 }
 
 /* Type Icon */
-/* line 119, src/sass/widgets.scss */
+/* line 211, src/sass/widgets.scss */
 .type-icon {
   min-width: 48px;
   width: 48px;
@@ -537,7 +709,7 @@
 }
 
 /* Pokémon Icons */
-/* line 130, src/sass/widgets.scss */
+/* line 222, src/sass/widgets.scss */
 .pokemon-image-wrapper {
   position: relative;
   display: -webkit-box;
@@ -548,7 +720,7 @@
           align-items: center;
 }
 
-/* line 136, src/sass/widgets.scss */
+/* line 228, src/sass/widgets.scss */
 .pokemon-image-frame {
   width: 100px;
   height: 100px;
@@ -561,12 +733,12 @@
   transition: border-color 0.075s;
 }
 
-/* line 146, src/sass/widgets.scss */
+/* line 238, src/sass/widgets.scss */
 .pokemon-image-frame.selected {
   border: 2px solid #ccc;
 }
 
-/* line 151, src/sass/widgets.scss */
+/* line 243, src/sass/widgets.scss */
 .pokemon-image {
   width: 66%;
   height: 66%;
@@ -575,7 +747,7 @@
   left: 17%;
 }
 
-/* line 159, src/sass/widgets.scss */
+/* line 251, src/sass/widgets.scss */
 .pokemon-image-name {
   position: absolute;
   bottom: 0;
@@ -589,12 +761,12 @@
   transition: color 0.075s;
 }
 
-/* line 170, src/sass/widgets.scss */
+/* line 262, src/sass/widgets.scss */
 .pokemon-image-name.selected {
   color: #ccc;
 }
 
-/* line 175, src/sass/widgets.scss */
+/* line 267, src/sass/widgets.scss */
 .pokemon-image-hot-area {
   position: absolute;
   bottom: 0;
@@ -603,29 +775,59 @@
 }
 
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -634,16 +836,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -653,13 +860,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -674,35 +880,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -710,57 +918,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -768,21 +976,21 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
@@ -820,29 +1028,59 @@
 }
 
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -851,16 +1089,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -870,13 +1113,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -891,35 +1133,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -927,57 +1171,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -985,21 +1229,21 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
@@ -1147,34 +1391,64 @@
 /* Navbar */
 /* line 110, src/sass/pokemon_info.scss */
 .pokemon-navbar-tab {
-  width: 33%;
+  width: 50%;
   background: #666;
 }
 
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -1183,16 +1457,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -1202,13 +1481,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1223,35 +1501,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -1259,57 +1539,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -1317,21 +1597,21 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
@@ -1368,38 +1648,34 @@
           align-items: center;
 }
 
-/* line 25, src/sass/form_general_info.scss */
-.form-general-top-label {
-  margin: 4px;
-  margin-bottom: 5px;
-}
-
 /* Gender Ratio */
-/* line 32, src/sass/form_general_info.scss */
+/* line 27, src/sass/form_general_info.scss */
 .form-gender-percent {
-  letter-spacing: 0;
-  margin: 8px;
   width: 50px;
 }
 
-/* line 38, src/sass/form_general_info.scss */
+/* line 31, src/sass/form_general_info.scss */
 #form-gender-bar {
   width: 134px;
 }
 
-/* line 42, src/sass/form_general_info.scss */
+/* line 35, src/sass/form_general_info.scss */
 #form-female-bar {
+  left: 0;
+  right: unset;
   background: #bd4d8d;
   border-right: 1.25px solid #222;
 }
 
-/* line 47, src/sass/form_general_info.scss */
+/* line 42, src/sass/form_general_info.scss */
 #form-male-bar {
+  right: 0;
+  left: unset;
   background: #3d6dbd;
   border-left: 1.25px solid #222;
 }
 
-/* line 52, src/sass/form_general_info.scss */
+/* line 49, src/sass/form_general_info.scss */
 #form-genderless-label {
   text-transform: uppercase;
   width: 100%;
@@ -1407,7 +1683,7 @@
 }
 
 /* Type */
-/* line 60, src/sass/form_general_info.scss */
+/* line 57, src/sass/form_general_info.scss */
 #form-types {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1421,7 +1697,7 @@
           justify-content: center;
 }
 
-/* line 66, src/sass/form_general_info.scss */
+/* line 63, src/sass/form_general_info.scss */
 #form-resistances {
   padding-bottom: 8px;
   display: -webkit-box;
@@ -1436,7 +1712,7 @@
           align-items: flex-end;
 }
 
-/* line 73, src/sass/form_general_info.scss */
+/* line 70, src/sass/form_general_info.scss */
 #form-weaknesses {
   padding-bottom: 8px;
   display: -webkit-box;
@@ -1451,7 +1727,7 @@
           align-items: flex-start;
 }
 
-/* line 80, src/sass/form_general_info.scss */
+/* line 77, src/sass/form_general_info.scss */
 .type-label {
   margin: 4px 0;
   display: -webkit-box;
@@ -1466,13 +1742,7 @@
           align-items: center;
 }
 
-/* line 87, src/sass/form_general_info.scss */
-.type-name {
-  text-transform: uppercase;
-  margin: 8px;
-}
-
-/* line 92, src/sass/form_general_info.scss */
+/* line 84, src/sass/form_general_info.scss */
 .form-type-effectiveness-label {
   height: 48px;
   margin: 4px;
@@ -1492,7 +1762,7 @@
           justify-content: start;
 }
 
-/* line 101, src/sass/form_general_info.scss */
+/* line 93, src/sass/form_general_info.scss */
 .form-type-effectiveness-label.reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -1503,16 +1773,15 @@
           justify-content: end;
 }
 
-/* line 107, src/sass/form_general_info.scss */
+/* line 99, src/sass/form_general_info.scss */
 .form-type-effectiveness-percent {
   margin: 4px;
-  letter-spacing: 0;
   color: #fff;
   text-shadow: 0 0 2px #000;
 }
 
 /* Evolutions */
-/* line 121, src/sass/form_general_info.scss */
+/* line 112, src/sass/form_general_info.scss */
 #form-evolution-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1532,7 +1801,7 @@
   text-transform: uppercase;
 }
 
-/* line 131, src/sass/form_general_info.scss */
+/* line 122, src/sass/form_general_info.scss */
 .form-evolution-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1546,7 +1815,7 @@
           align-items: stretch;
 }
 
-/* line 137, src/sass/form_general_info.scss */
+/* line 128, src/sass/form_general_info.scss */
 .form-evolution-column {
   position: relative;
   display: -webkit-box;
@@ -1561,7 +1830,7 @@
           justify-content: center;
 }
 
-/* line 144, src/sass/form_general_info.scss */
+/* line 135, src/sass/form_general_info.scss */
 .form-evolution-reqs-wrapper {
   position: absolute;
   width: 100px;
@@ -1577,7 +1846,7 @@
           justify-content: center;
 }
 
-/* line 152, src/sass/form_general_info.scss */
+/* line 143, src/sass/form_general_info.scss */
 .form-evolution-reqs-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1595,12 +1864,12 @@
   border-radius: 10px;
 }
 
-/* line 161, src/sass/form_general_info.scss */
+/* line 152, src/sass/form_general_info.scss */
 .form-evolution-reqs-body > * {
   margin: 4px;
 }
 
-/* line 166, src/sass/form_general_info.scss */
+/* line 157, src/sass/form_general_info.scss */
 .form-evolution-req-icons-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1614,12 +1883,12 @@
           align-items: center;
 }
 
-/* line 172, src/sass/form_general_info.scss */
+/* line 163, src/sass/form_general_info.scss */
 .form-evolution-req-icon {
   margin: 0 4px;
 }
 
-/* line 176, src/sass/form_general_info.scss */
+/* line 167, src/sass/form_general_info.scss */
 .form-evolution-req-label {
   color: #ccc;
   display: -webkit-box;
@@ -1631,24 +1900,24 @@
           flex-direction: row;
 }
 
-/* line 182, src/sass/form_general_info.scss */
+/* line 173, src/sass/form_general_info.scss */
 .form-evolution-req-number {
   letter-spacing: 0;
   margin-left: 4px;
 }
 
-/* line 187, src/sass/form_general_info.scss */
+/* line 178, src/sass/form_general_info.scss */
 .form-evolution-req-text {
   text-transform: uppercase;
   font-size: 12pt;
 }
 
-/* line 192, src/sass/form_general_info.scss */
+/* line 183, src/sass/form_general_info.scss */
 .form-evolution-descendant-image-wrapper {
   height: 130px;
 }
 
-/* line 196, src/sass/form_general_info.scss */
+/* line 187, src/sass/form_general_info.scss */
 .form-evolution-descendant-line {
   position: absolute;
   top: 50%;
@@ -1660,108 +1929,138 @@
   z-index: -1;
 }
 
-/* line 207, src/sass/form_general_info.scss */
+/* line 198, src/sass/form_general_info.scss */
 .form-evolution-path {
   height: 50%;
 }
 
-/* line 210, src/sass/form_general_info.scss */
+/* line 201, src/sass/form_general_info.scss */
 .form-evolution-path.full {
   width: 100px;
 }
 
-/* line 214, src/sass/form_general_info.scss */
+/* line 205, src/sass/form_general_info.scss */
 .form-evolution-path.short {
   width: 20px;
 }
 
-/* line 218, src/sass/form_general_info.scss */
+/* line 209, src/sass/form_general_info.scss */
 .form-evolution-path.upper {
   border-bottom: 1.5px solid #666;
   margin-bottom: -0.75px;
 }
 
-/* line 222, src/sass/form_general_info.scss */
+/* line 213, src/sass/form_general_info.scss */
 .form-evolution-path.upper.top {
   border: unset;
 }
 
-/* line 226, src/sass/form_general_info.scss */
+/* line 217, src/sass/form_general_info.scss */
 .form-evolution-path.upper.bottom {
   margin-bottom: 1.5px;
 }
 
-/* line 230, src/sass/form_general_info.scss */
+/* line 221, src/sass/form_general_info.scss */
 .form-evolution-path.upper.split {
   height: 50%;
   border-left: 1.5px solid #666;
 }
 
-/* line 234, src/sass/form_general_info.scss */
+/* line 225, src/sass/form_general_info.scss */
 .form-evolution-path.upper.split.top {
   border: unset;
 }
 
-/* line 238, src/sass/form_general_info.scss */
+/* line 229, src/sass/form_general_info.scss */
 .form-evolution-path.upper.split.bottom {
   border-radius: 0 0 0 10px;
 }
 
-/* line 244, src/sass/form_general_info.scss */
+/* line 235, src/sass/form_general_info.scss */
 .form-evolution-path.lower {
   border-top: 1.5px solid #666;
   margin-top: -0.75px;
 }
 
-/* line 248, src/sass/form_general_info.scss */
+/* line 239, src/sass/form_general_info.scss */
 .form-evolution-path.lower.top {
   margin-top: 1.5px;
 }
 
-/* line 252, src/sass/form_general_info.scss */
+/* line 243, src/sass/form_general_info.scss */
 .form-evolution-path.lower.bottom {
   border: unset;
 }
 
-/* line 256, src/sass/form_general_info.scss */
+/* line 247, src/sass/form_general_info.scss */
 .form-evolution-path.lower.split {
   border-left: 1.5px solid #666;
 }
 
-/* line 259, src/sass/form_general_info.scss */
+/* line 250, src/sass/form_general_info.scss */
 .form-evolution-path.lower.split.top {
   border-radius: 10px 0 0 0;
 }
 
-/* line 263, src/sass/form_general_info.scss */
+/* line 254, src/sass/form_general_info.scss */
 .form-evolution-path.lower.split.bottom {
   border: unset;
 }
 
 /* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
 /* Text */
-/* line 72, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .left-aligned {
   text-align: left;
 }
 
-/* line 76, src/sass/common.scss */
+/* line 89, src/sass/common.scss */
 .center-aligned {
   text-align: center;
 }
 
-/* line 80, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .right-aligned {
   text-align: right;
 }
 
-/* line 84, src/sass/common.scss */
+/* line 97, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
 /* Flex */
-/* line 90, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -1770,16 +2069,21 @@
 }
 
 /* Frames */
-/* line 96, src/sass/common.scss */
+/* line 125, src/sass/common.scss */
 .frame {
-  margin-top: 32px;
   padding: 4px;
+  margin: 4px 0;
   border: 1px solid #666;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #ccc;
 }
 
-/* line 104, src/sass/common.scss */
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -1789,13 +2093,12 @@
   background: #222;
 }
 
-/* line 113, src/sass/common.scss */
+/* line 146, src/sass/common.scss */
 .frame-body {
   margin: 4px;
-  overflow: hidden;
 }
 
-/* line 118, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1810,35 +2113,37 @@
   overflow: hidden;
 }
 
-/* line 125, src/sass/common.scss */
+/* line 157, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 130, src/sass/common.scss */
+/* line 162, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 135, src/sass/common.scss */
+/* line 167, src/sass/common.scss */
 .left-column-body {
   padding: 16px;
+  padding-left: 8px;
   border-top: 0.5px solid #666;
   border-right: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 175, src/sass/common.scss */
 .right-column-body {
   padding: 16px;
+  padding-right: 8px;
   border-top: 0.5px solid #666;
   border-left: 0.5px solid #666;
   height: 100%;
 }
 
-/* line 149, src/sass/common.scss */
+/* line 183, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -1846,57 +2151,57 @@
 }
 
 /* Padding/Margins */
-/* line 156, src/sass/common.scss */
+/* line 190, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 160, src/sass/common.scss */
+/* line 194, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 164, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 202, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 172, src/sass/common.scss */
+/* line 206, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 176, src/sass/common.scss */
+/* line 210, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 180, src/sass/common.scss */
+/* line 214, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 184, src/sass/common.scss */
+/* line 218, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 192, src/sass/common.scss */
+/* line 226, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 196, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -1904,21 +2209,300 @@
   top: 0;
 }
 
-/* line 203, src/sass/common.scss */
+/* line 237, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 209, src/sass/common.scss */
+/* line 243, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 215, src/sass/common.scss */
+/* line 249, src/sass/common.scss */
+.hidden {
+  display: none;
+}
+
+/* line 3, src/sass/form_move_info.scss */
+.form-move-body {
+  border-radius: 5px;
+  padding: 8px;
+  margin: 4px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  border: 2px solid #0000;
+}
+
+/* line 12, src/sass/form_move_info.scss */
+.form-move-body > .form-move-exclusive-label {
+  display: none;
+}
+
+/* line 16, src/sass/form_move_info.scss */
+.form-move-body.exclusive {
+  border-color: #99f;
+}
+
+/* line 19, src/sass/form_move_info.scss */
+.form-move-body.exclusive > .form-move-exclusive-label {
+  display: block;
+  position: absolute;
+  right: -1px;
+  top: -2px;
+  padding: 0 2px;
+  border-radius: 0 5px;
+  color: #111;
+  background: #99f;
+  text-transform: uppercase;
+  font-size: 10pt;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+}
+
+/* line 35, src/sass/form_move_info.scss */
+.form-move-caption {
+  margin: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+
+/* Scrollbars */
+/* General */
+/* line 75, src/sass/common.scss */
+.list-item-wrapper {
+  margin: 0;
+}
+
+/* line 78, src/sass/common.scss */
+.list-item-wrapper.hide-content {
+  overflow: hidden;
+}
+
+/* Text */
+/* line 85, src/sass/common.scss */
+.left-aligned {
+  text-align: left;
+}
+
+/* line 89, src/sass/common.scss */
+.center-aligned {
+  text-align: center;
+}
+
+/* line 93, src/sass/common.scss */
+.right-aligned {
+  text-align: right;
+}
+
+/* line 97, src/sass/common.scss */
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* line 101, src/sass/common.scss */
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: 8px;
+}
+
+/* line 107, src/sass/common.scss */
+.uppercase-label {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+/* line 112, src/sass/common.scss */
+.numeric-label {
+  letter-spacing: 0;
+  margin: 8px;
+}
+
+/* Flex */
+/* line 119, src/sass/common.scss */
+.flex-reverse {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+/* Frames */
+/* line 125, src/sass/common.scss */
+.frame {
+  padding: 4px;
+  margin: 4px 0;
+  border: 1px solid #666;
+  border-radius: 5px;
+  color: #ccc;
+}
+
+/* line 132, src/sass/common.scss */
+.frame.with-caption {
+  margin-top: 32px;
+}
+
+/* line 137, src/sass/common.scss */
+.frame-caption {
+  font-weight: bold;
+  font-size: 18pt;
+  position: relative;
+  top: -22px;
+  padding: 0 4px;
+  background: #222;
+}
+
+/* line 146, src/sass/common.scss */
+.frame-body {
+  margin: 4px;
+}
+
+/* line 150, src/sass/common.scss */
+.two-columns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+/* line 157, src/sass/common.scss */
+.left-column-wrapper {
+  width: 50%;
+  margin-right: -0.5px;
+}
+
+/* line 162, src/sass/common.scss */
+.right-column-wrapper {
+  width: 50%;
+  margin-left: -0.5px;
+}
+
+/* line 167, src/sass/common.scss */
+.left-column-body {
+  padding: 16px;
+  padding-left: 8px;
+  border-top: 0.5px solid #666;
+  border-right: 0.5px solid #666;
+  height: 100%;
+}
+
+/* line 175, src/sass/common.scss */
+.right-column-body {
+  padding: 16px;
+  padding-right: 8px;
+  border-top: 0.5px solid #666;
+  border-left: 0.5px solid #666;
+  height: 100%;
+}
+
+/* line 183, src/sass/common.scss */
+.sub-caption {
+  font-weight: bold;
+  margin: 16px 4px 4px 4px;
+  text-align: center;
+}
+
+/* Padding/Margins */
+/* line 190, src/sass/common.scss */
+.pad-top {
+  margin-top: 4px;
+}
+
+/* line 194, src/sass/common.scss */
+.pad-top-half {
+  margin-top: 2px;
+}
+
+/* line 198, src/sass/common.scss */
+.pad-bottom {
+  margin-bottom: 4px;
+}
+
+/* line 202, src/sass/common.scss */
+.pad-bottom-half {
+  margin-bottom: 2px;
+}
+
+/* line 206, src/sass/common.scss */
+.pad-left {
+  margin-left: 4px;
+}
+
+/* line 210, src/sass/common.scss */
+.pad-left-half {
+  margin-left: 2px;
+}
+
+/* line 214, src/sass/common.scss */
+.pad-right {
+  margin-right: 4px;
+}
+
+/* line 218, src/sass/common.scss */
+.pad-right-half {
+  margin-right: 2px;
+}
+
+/* line 222, src/sass/common.scss */
+.border-top {
+  border-top: 4px solid #111;
+}
+
+/* line 226, src/sass/common.scss */
+.border-bottom {
+  border-bottom: 4px solid #111;
+}
+
+/* line 230, src/sass/common.scss */
+#pokemon-caption-type1-color {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+}
+
+/* line 237, src/sass/common.scss */
+.split-top {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+/* line 243, src/sass/common.scss */
+.split-bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 249, src/sass/common.scss */
 .hidden {
   display: none;
 }
@@ -2016,25 +2600,25 @@
   border-radius: 5px;
 }
 
-/* line 50, src/sass/common.scss */
+/* line 53, src/sass/common.scss */
 #pokemon-list::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 55, src/sass/common.scss */
+/* line 58, src/sass/common.scss */
 #pokemon-list::-webkit-scrollbar-track {
   background: #222;
   border-radius: 5px;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 63, src/sass/common.scss */
 #pokemon-list::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 64, src/sass/common.scss */
+/* line 67, src/sass/common.scss */
 #pokemon-list::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
@@ -2054,17 +2638,16 @@
 
 /* line 82, src/sass/pokemon_list.scss */
 .pokemon-list-row-wrapper {
-  overflow: hidden;
   margin-right: 4px;
   margin-top: 4px;
 }
 
-/* line 87, src/sass/pokemon_list.scss */
+/* line 86, src/sass/pokemon_list.scss */
 .pokemon-list-row-wrapper:first-child {
   margin-top: 0;
 }
 
-/* line 92, src/sass/pokemon_list.scss */
+/* line 91, src/sass/pokemon_list.scss */
 .pokemon-list-row {
   cursor: pointer;
   position: relative;
@@ -2081,21 +2664,21 @@
           align-items: center;
 }
 
-/* line 101, src/sass/pokemon_list.scss */
+/* line 100, src/sass/pokemon_list.scss */
 .pokemon-list-type1-color {
   height: 75%;
   -webkit-transition: background 0.075s;
   transition: background 0.075s;
 }
 
-/* line 106, src/sass/pokemon_list.scss */
+/* line 105, src/sass/pokemon_list.scss */
 .pokemon-list-type2-color {
   height: 25%;
   -webkit-transition: background 0.075s;
   transition: background 0.075s;
 }
 
-/* line 111, src/sass/pokemon_list.scss */
+/* line 110, src/sass/pokemon_list.scss */
 .pokemon-list-image-background {
   width: 80px;
   height: 250px;
@@ -2105,7 +2688,7 @@
   transition: background 0.075s;
 }
 
-/* line 118, src/sass/pokemon_list.scss */
+/* line 117, src/sass/pokemon_list.scss */
 .pokemon-list-image {
   width: 52px;
   height: 52px;
@@ -2114,7 +2697,7 @@
           transform: rotate(22.5deg) translate(64px, 74px);
 }
 
-/* line 125, src/sass/pokemon_list.scss */
+/* line 124, src/sass/pokemon_list.scss */
 .pokemon-list-name {
   font-weight: 900;
   letter-spacing: 0.025em;
@@ -2124,7 +2707,7 @@
   z-index: 1;
 }
 
-/* line 8, src/sass/main.scss */
+/* line 9, src/sass/main.scss */
 body {
   font-family: "Lato", sans-serif;
   font-size: 14pt;
@@ -2135,7 +2718,7 @@ body {
   cursor: default;
 }
 
-/* line 18, src/sass/main.scss */
+/* line 19, src/sass/main.scss */
 button {
   border: none;
   padding: none;
@@ -2145,12 +2728,12 @@ button {
   min-width: 0;
 }
 
-/* line 26, src/sass/main.scss */
+/* line 27, src/sass/main.scss */
 button:focus {
   outline: none;
 }
 
-/* line 31, src/sass/main.scss */
+/* line 32, src/sass/main.scss */
 #loading {
   position: absolute;
   top: 0;
@@ -2176,19 +2759,19 @@ button:focus {
           align-items: center;
 }
 
-/* line 47, src/sass/main.scss */
+/* line 48, src/sass/main.scss */
 #progress-bar {
   width: 323.5px;
 }
 
-/* line 51, src/sass/main.scss */
+/* line 52, src/sass/main.scss */
 #progress {
   width: 0;
   -webkit-transition: width 0.15s;
   transition: width 0.15s;
 }
 
-/* line 56, src/sass/main.scss */
+/* line 57, src/sass/main.scss */
 .tooltip {
   background: #111;
   width: 100px;
@@ -2197,7 +2780,7 @@ button:focus {
   z-index: 42;
 }
 
-/* line 64, src/sass/main.scss */
+/* line 65, src/sass/main.scss */
 #main {
   width: 647px;
   position: absolute;
@@ -2214,14 +2797,14 @@ button:focus {
           flex-direction: column;
 }
 
-/* line 79, src/sass/main.scss */
+/* line 80, src/sass/main.scss */
 #main-caption {
   text-align: center;
   font-size: 24pt;
   padding-top: 20px;
 }
 
-/* line 85, src/sass/main.scss */
+/* line 86, src/sass/main.scss */
 #main-body-border {
   border: 1px solid #666;
   width: 100%;
@@ -2235,7 +2818,7 @@ button:focus {
   border-radius: 8px;
 }
 
-/* line 96, src/sass/main.scss */
+/* line 97, src/sass/main.scss */
 #main-body-container {
   scrollbar-width: 10px;
   scrollbar-height: 10px;
@@ -2251,30 +2834,30 @@ button:focus {
           flex-direction: row;
 }
 
-/* line 50, src/sass/common.scss */
+/* line 53, src/sass/common.scss */
 #main-body-container::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 55, src/sass/common.scss */
+/* line 58, src/sass/common.scss */
 #main-body-container::-webkit-scrollbar-track {
   background: #222;
   border-radius: 5px;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 63, src/sass/common.scss */
 #main-body-container::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 64, src/sass/common.scss */
+/* line 67, src/sass/common.scss */
 #main-body-container::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 104, src/sass/main.scss */
+/* line 105, src/sass/main.scss */
 .main-body {
   margin-right: 4px;
   border-radius: 5px;
@@ -2291,7 +2874,7 @@ button:focus {
   color: #ccc;
 }
 
-/* line 115, src/sass/main.scss */
+/* line 116, src/sass/main.scss */
 .page {
   scrollbar-width: 10px;
   scrollbar-height: 10px;
@@ -2302,37 +2885,37 @@ button:focus {
   border-radius: 0 0 5px 5px;
 }
 
-/* line 50, src/sass/common.scss */
+/* line 53, src/sass/common.scss */
 .page::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 55, src/sass/common.scss */
+/* line 58, src/sass/common.scss */
 .page::-webkit-scrollbar-track {
   background: #222;
   border-radius: 5px;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 63, src/sass/common.scss */
 .page::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 64, src/sass/common.scss */
+/* line 67, src/sass/common.scss */
 .page::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 123, src/sass/main.scss */
+/* line 124, src/sass/main.scss */
 .page-body {
   margin-right: 4px;
   background: #222;
   padding: 4px;
 }
 
-/* line 129, src/sass/main.scss */
+/* line 130, src/sass/main.scss */
 #footer {
   font-weight: 300;
   font-size: 8pt;

@@ -28,6 +28,7 @@ class Pokedex extends JSONAssignedObject {
 
     pokedex = this;
 
+
     // Load types
     this.types = json.types.map(t => new Type(t));
 
@@ -67,18 +68,42 @@ class Pokedex extends JSONAssignedObject {
       }
     }
 
-    // Store min and max damage multipliers
-    let min = 1;
-    for (let t1 of this.types) {
-      for (let t2 of this.types) {
-        if (t1.key === t2.key) continue;
-        let m = Math.min(...this.getCounterEffectiveness([t1, t2]).map(e => e.damageMultiplier));
-        if (m < min)
-          min = m;
+    // Store max values
+    this.max = {
+      baseStats: {
+        stamina: d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.stamina)))),
+        attack:  d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.attack)))),
+        defense: d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.defense))))
+      },
+      moveStats: {
+        fast: {
+          gymsAndRaids: {
+            power:      d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.power)),
+            energyGain: d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.energyGain)),
+            duration:   d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.duration))
+          },
+          trainerBattles: {
+            power:      d3.max(this.moves.fast.map(m => m.stats.trainerBattles.power)),
+            energyGain: d3.max(this.moves.fast.map(m => m.stats.trainerBattles.energyGain)),
+            duration:   d3.max(this.moves.fast.map(m => m.stats.trainerBattles.duration)),
+            turns:      d3.max(this.moves.fast.map(m => m.stats.trainerBattles.turns))
+          }
+        },
+        charged: {
+          gymsAndRaids: {
+            power:      d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.power)),
+            energyCost: d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.energyCost)),
+            duration:   d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.duration))
+          },
+          trainerBattles: {
+            power:      d3.max(this.moves.charged.map(m => m.stats.trainerBattles.power)),
+            energyCost: d3.max(this.moves.charged.map(m => m.stats.trainerBattles.energyCost))
+          }
+        }
       }
-    }
-    this.minDamageMultiplier = min;
+    };
 
+    // Store max damage multipliers
     let max = 0;
     for (let t1 of this.types) {
       for (let t2 of this.types) {
@@ -88,7 +113,9 @@ class Pokedex extends JSONAssignedObject {
           max = m;
       }
     }
-    this.maxDamageMultiplier = max;
+    this.max.damageMultiplier = max;
+
+    console.log(this.max);
 
     progress(1);
     done();

@@ -65,7 +65,7 @@
               <div class="page-body">
 
                 <!-- Description -->
-                <div id="form-description-frame" class="frame">
+                <div id="form-description-frame" class="frame with-caption">
                   <div id="form-description-body" class="frame-body">
                   </div>
                 </div>
@@ -75,21 +75,22 @@
                 <div id="form-general-top-wrapper">
 
                   <!-- Gender Ratio -->
-                  <div id="form-female-percent" class="form-top-label right-aligned form-gender-percent"></div>
+                  <div id="form-female-percent" class="form-top-label numeric-label right-aligned form-gender-percent"></div>
                   <img id="form-female-icon" src="img/female.svg"></img>
-                  <div id="form-gender-bar" class="horizontal-bar">
-                    <div id="form-female-bar" class="horizontal-bar-value form-gender-element hidden"></div>
-                    <div id="form-male-bar" class="horizontal-bar-value reverse form-gender-element hidden"></div>
+                  <div id="form-gender-bar" class="bar-horizontal">
+                    <div class="bar-background"></div>
+                    <div id="form-female-bar" class="bar-value form-gender-element hidden" style="left: 0"></div>
+                    <div id="form-male-bar" class="bar-value form-gender-element hidden" style="right: 0"></div>
                     <div id="form-genderless-label" class="caps center-aligned hidden">Genderless</div>
                   </div>
                   <img id="form-male-icon" src="img/male.svg"></img>
-                  <div id="form-male-percent" class="form-top-label form-gender-percent"></div>
+                  <div id="form-male-percent" class="form-top-label numeric-label form-gender-percent"></div>
                   <!-- End Gender Ratio -->
                 </div>
                 <!-- End Top Bar -->
 
                 <!-- Type -->
-                <div id="form-type-frame" class="frame">
+                <div id="form-type-frame" class="frame with-caption">
                   <span class="frame-caption">Type</span>
                   <div id="form-type-body" class="frame-body">
                     <div id="form-types"></div>
@@ -108,7 +109,7 @@
                 <!-- End Type -->
 
                 <!-- Evolution -->
-                <div id="form-evolution-frame" class="frame">
+                <div id="form-evolution-frame" class="frame with-caption">
                   <span class="frame-caption">Evolution</span>
                   <div id="form-evolution-body" class="frame-body">
                     <div id="form-evolution-root" class="form-evolution-row"></div>
@@ -124,16 +125,18 @@
               <div class="page-body">
 
                 <!-- Moves -->
-                <div id="form-moves-frame" class="frame pad-right">
+                <div id="form-moves-frame" class="frame with-caption">
                   <span class="frame-caption">Learnable Moves</span>
-                  <div id="form-moves-wrapper" class="two-columns">
-                    <div class="left-column-wrapper">
-                      <div class="sub-caption">Fast</div>
-                      <div id="form-fast-moves" class="left-column-body"></div>
-                    </div>
-                    <div class="right-column-wrapper">
-                      <div class="sub-caption">Charged</div>
-                      <div id="form-charged-moves" class="right-column-body"></div>
+                  <div class="frame-body">
+                    <div id="form-moves-wrapper" class="two-columns">
+                      <div class="left-column-wrapper">
+                        <div class="sub-caption">Fast</div>
+                        <div id="form-fast-moves" class="left-column-body"></div>
+                      </div>
+                      <div class="right-column-wrapper">
+                        <div class="sub-caption">Charged</div>
+                        <div id="form-charged-moves" class="right-column-body"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -143,11 +146,11 @@
             <!-- End Move Info -->
 
             <!-- Navigation Bar -->
-            <!-- <div id="pokemon-navbar" class="tab-bar pad-top">
+            <div id="pokemon-navbar" class="tab-bar pad-top">
               <button type="button" value="form-general-info-page" id="pokemon-tab-general" class="tab pokemon-navbar-tab pad-right-half selected">General</button>
-              <button type="button" value="form-move-info-page" id="pokemon-tab-moves" class="tab pokemon-navbar-tab pad-left-half pad-right-half">Moves</button>
-              <button type="button" value="form-stat-info-page" id="pokemon-tab-stats" class="tab pokemon-navbar-tab pad-left-half">Stats</button>
-            </div> -->
+              <button type="button" value="form-move-info-page" id="pokemon-tab-moves" class="tab pokemon-navbar-tab pad-left-half">Moves</button>
+              <!-- <button type="button" value="form-stat-info-page" id="pokemon-tab-stats" class="tab pokemon-navbar-tab pad-left-half">Stats</button> -->
+            </div>
           </div>
           <!-- End Pokémon Info -->
         </div>
@@ -168,8 +171,9 @@
       <div>
         Loading
       </div>
-      <div id="progress-bar" class="horizontal-bar round">
-        <div id="progress" class="horizontal-bar-value"></div>
+      <div id="progress-bar" class="bar-horizontal round-start round-end">
+        <div class="bar-background"></div>
+        <div id="progress" class="bar-value round-start round-end"></div>
       </div>
     </div>
     <!-- End Loading Screen -->

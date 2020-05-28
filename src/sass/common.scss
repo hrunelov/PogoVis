@@ -6,12 +6,14 @@ $text-color-dark: #ccc;
 $white-transp-75: #ffffffc0;
 $white-transp-50: #ffffff80;
 $white-transp-25: #ffffff40;
+$white-transp-18: #ffffff30;
 $black-transp-75: #000000c0;
 $black-transp-50: #00000080;
 $dark: #222;
 $medium: #444;
 $light: #666;
 $highlight: #888;
+$exclusive-color: #99f;
 $transition-duration-instant: 0.075s;
 $transition-duration-fast: 0.15s;
 $transition-duration-medium: 0.3s;
@@ -42,6 +44,7 @@ $widget-height-large: 48px;
 }
 
 /* Scrollbars */
+
 @mixin scrollbars($track-color, $thumb-color, $thumb-hover-color) {
   scrollbar-width: $corner-radius * 2;
   scrollbar-height: $corner-radius * 2;
@@ -67,6 +70,16 @@ $widget-height-large: 48px;
   }
 }
 
+/* General */
+
+.list-item-wrapper {
+  margin: 0;
+
+  &.hide-content {
+    overflow: hidden;
+  }
+}
+
 /* Text */
 
 .left-aligned {
@@ -85,6 +98,22 @@ $widget-height-large: 48px;
   letter-spacing: 0;
 }
 
+.caption {
+  font-size: 16pt;
+  font-weight: bold;
+  margin: $padding*2;
+}
+
+.uppercase-label {
+  text-transform: uppercase;
+  margin: $padding*2;
+}
+
+.numeric-label {
+  letter-spacing: 0;
+  margin: $padding*2;
+}
+
 /* Flex */
 
 .flex-reverse {
@@ -94,11 +123,15 @@ $widget-height-large: 48px;
 /* Frames */
 
 .frame {
-  margin-top: 32px;
   padding: $padding;
+  margin: $padding 0;
   border: 1px solid $light;
-  border-radius: $corner-radius - 2px;
+  border-radius: $corner-radius;
   color: $text-color-dark;
+
+  &.with-caption {
+    margin-top: 32px;
+  }
 }
 
 .frame-caption {
@@ -112,7 +145,6 @@ $widget-height-large: 48px;
 
 .frame-body {
   margin: $padding;
-  overflow: hidden;
 }
 
 .two-columns {
@@ -134,6 +166,7 @@ $widget-height-large: 48px;
 
 .left-column-body {
   padding: $padding*4;
+  padding-left: $padding*2;
   border-top: 0.5px solid $light;
   border-right: 0.5px solid $light;
   height: 100%;
@@ -141,6 +174,7 @@ $widget-height-large: 48px;
 
 .right-column-body {
   padding: $padding*4;
+  padding-right: $padding*2;
   border-top: 0.5px solid $light;
   border-left: 0.5px solid $light;
   height: 100%;

@@ -1,47 +1,134 @@
 function updateMoveInfo() {
   updateFastMoves();
   updateChargedMoves();
-
-  animateHeight("#form-moves-wrapper");
 }
 
 function updateFastMoves() {
-  d3.select("#form-fast-moves")
-    .selectAll("div")
-    .remove();
+  listData({
+    data:        selectedForm.movePool.fast.sort((m1,m2) => m2.move.stats.gymsAndRaids.power - m1.move.stats.gymsAndRaids.power),
+    key:         d => d.move.key,
+    container:   d3.select("#form-fast-moves"),
+    classed:     "form-fast-move-wrapper",
+    fade:        true,
+    waitForExit: true,
+    duration:    TRANSITION_DURATION_MEDIUM,
+    onenter: function(s, delay) {
+      let color = (d => mixColors("#222", d.move.type.color, 0.25));
 
-  let m = d3.select("#form-fast-moves")
-    .selectAll("div")
-    .data(selectedForm.movePool.fast)
-    .enter()
-    .append("div")
-    .classed("form-fast-move-wrapper", true);
+      s = s.append("div")
+        .classed("form-move-body", true)
+        .classed("exclusive", (d => d.exclusive))
+        .style("background", color);
 
-  let l = m.append("div")
-    .classed("type-label", true)
-    .classed("right", true);
+      s.append("div")
+        .classed("form-move-exclusive-label", true)
+        .text("Exclusive");
 
-  fadeInIcon(l.append("img")
-    .classed("type-icon", true)
-    .attr("src", d => "img/types/" + d.move.type.key + ".svg"),
-    (d,i) => i * TRANSITION_DELAY);
+      let l = s.append("div")
+        .classed("form-move-caption", true);
 
-  fadeInText(l.append("div")
-    .classed("type-name", true)
-    .classed("move-name", true)
-    .text(d => d.move.name),
-    (d,i) => i * TRANSITION_DELAY);
+      l.appendTypeIcon(d => d.move.type)
+        .attr("title", d => d.move.type.name + "-type move")
+        .zoomIn({
+          delay: delay
+        });
+
+      l.append("div")
+        .classed("caption", true)
+        .text(d => d.move.name)
+        .zoomInY({
+          delay: delay
+        });
+
+      // let db = s.appendBar({
+      //   height: 16,
+      //   segments: 3,
+      //   separatorColor: color
+      // });
+      //
+      // db.appendBarValue({
+      //   initialValue: d => d.move.stats.gymsAndRaids.duration / 3000,
+      //   fadeFromZero: true,
+      //   delay: delay
+      // });
+      //
+      // db.appendBarValue({
+      //   initialValue: d => d.move.stats.gymsAndRaids.damageWindow.end / 3000,
+      //   initialStartValue: d => d.move.stats.gymsAndRaids.damageWindow.start / 3000,
+      //   color: "#c80",
+      //   fadeFromZero: true,
+      //   delay: delay
+      // });
+    },
+    onexit: function(s, delay) {
+      s = s.select(".form-move-body");
+
+      let l = s.select(".form-move-caption");
+
+      l.select(".type-icon").zoomOut({
+          delay: delay
+        });
+
+      l.select(".caption")
+        .zoomOutY({
+          delay: delay
+        });
+    }
+  });
 }
 
 function updateChargedMoves() {
-  d3.select("#form-charged-moves")
-    .selectAll("div")
-    .remove();
+  listData({
+    data:        selectedForm.movePool.charged.sort((m1,m2) => m2.move.stats.gymsAndRaids.power - m1.move.stats.gymsAndRaids.power),
+    key:         d => d.move.key,
+    container:   d3.select("#form-charged-moves"),
+    classed:     "form-charged-move-wrapper",
+    fade:        true,
+    waitForExit: true,
+    duration:    TRANSITION_DURATION_MEDIUM,
+    onenter: function(s, delay) {
+      s = s.append("div")
+        .classed("form-move-body", true)
+        .classed("exclusive", (d => d.exclusive))
+        .style("background", d => mixColors("#222", d.move.type.color, 0.25));
 
-  d3.select("#form-charged-moves")
-    .selectAll("div")
-    .data(selectedForm.movePool.charged)
-    .enter()
-    .append("div")
-    .text(d => d.move.name);
+      s.append("div")
+        .classed("form-move-exclusive-label", true)
+        .text("Exclusive");
+
+      let l = s.append("div")
+        .classed("form-move-caption", true);
+
+      l.appendTypeIcon(d => d.move.type)
+        .attr("title", d => d.move.type.name + "-type move")
+        .zoomIn({
+          delay: delay
+        });
+
+      l.append("div")
+        .classed("caption", true)
+        .text(d => d.move.name)
+        .zoomInY({
+          delay: delay
+        });
+    },
+    onupdate: function(s, delay) {
+      s.select(".form-move-body")
+        .classed("exclusive", (d => d.exclusive));
+    },
+    onexit: function(s, delay) {
+      s = s.select(".form-move-body");
+
+      let l = s.select(".form-move-caption");
+
+      l.select(".type-icon").zoomOut({
+          delay: delay
+        });
+
+      l.select(".caption")
+        .zoomOutY({
+          delay: delay
+        });
+    }
+  });
 }

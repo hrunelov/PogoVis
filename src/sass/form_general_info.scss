@@ -22,16 +22,9 @@
   align-items: center;
 }
 
-.form-general-top-label {
-  margin: $padding;
-  margin-bottom: $padding + 1px;
-}
-
 /* Gender Ratio */
 
 .form-gender-percent {
-  letter-spacing: 0;
-  margin: $padding*2;
   width: 50px;
 }
 
@@ -40,11 +33,15 @@
 }
 
 #form-female-bar {
+  left: 0;
+  right: unset;
   background: #bd4d8d;
   border-right: 1.25px solid $dark;
 }
 
 #form-male-bar {
+  right: 0;
+  left: unset;
   background: #3d6dbd;
   border-left: 1.25px solid $dark;
 }
@@ -84,11 +81,6 @@
   align-items: center;
 }
 
-.type-name {
-  text-transform: uppercase;
-  margin: $padding*2;
-}
-
 .form-type-effectiveness-label {
   height: $widget-height-large;
   margin: $padding;
@@ -106,7 +98,6 @@
 
 .form-type-effectiveness-percent {
   margin: $padding;
-  letter-spacing: 0;
   color: $text-color;
   @include text-shadow-subtle;
 }

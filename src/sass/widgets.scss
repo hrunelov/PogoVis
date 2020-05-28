@@ -49,14 +49,25 @@
 
 /* Bars/Meters */
 
-.horizontal-bar {
-  height: $widget-height-small;
-  margin: $padding;
+.bar-content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  position: relative;
-  border-radius: $corner-radius - 2px;
-  background: $medium;
+}
+
+.bar-background {
+  @extend .bar-content-wrapper;
+  background: $white-transp-18;
+}
+
+.bar-value-base {
+  @extend .bar-content-wrapper;
+
+  width: 50%;
+  background: $text-color-dark;
 
   &.round-left {
     border-top-left-radius: 9001px;
@@ -67,50 +78,131 @@
     border-top-right-radius: 9001px;
     border-bottom-right-radius: 9001px;
   }
+}
 
-  &.large {
-    height: $widget-height-large;
+.bar-segment-base {
+  border-style: solid;
+  border-width: 0;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.bar {
+  position: relative;
+  margin: $padding;
+  border-radius: $corner-radius - 2px;
+  overflow: hidden;
+
+  &.grow {
+    flex-grow: 1;
   }
 
   &.transparent {
     background: none;
   }
-}
 
-.horizontal-bar-segment {
-  flex-grow: 1;
-  border-left: 0.5px solid $dark;
-  border-right: 0.5px solid $dark;
+  &-horizontal {
+    @extend .bar;
 
-  &.start {
-    border-left: 0;
+    height: $widget-height-small;
+
+    & > .bar-content-wrapper {
+      flex-direction: row;
+
+      & > .bar-segment {
+        @extend .bar-segment-base;
+
+        border-left-width: 0.5px;
+        border-right-width: 0.5px;
+
+        &:first-child {
+          border-left: 0;
+        }
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+
+    &.round-start {
+      border-top-left-radius: 9001px;
+      border-bottom-left-radius: 9001px;
+    }
+
+    &.round-end {
+      border-top-right-radius: 9001px;
+      border-bottom-right-radius: 9001px;
+    }
+
+    & > .bar-value {
+      @extend .bar-value-base;
+
+      width: 50%;
+      height: 100%;
+
+      &.round-start {
+        border-top-left-radius: 9001px;
+        border-bottom-left-radius: 9001px;
+      }
+
+      &.round-end {
+        border-top-right-radius: 9001px;
+        border-bottom-right-radius: 9001px;
+      }
+    }
   }
 
-  &.end {
-    border-right: 0;
-  }
+  &-vertical {
+    @extend .bar;
 
-  z-index: 1;
-}
+    width: $widget-height-small;
 
-.horizontal-bar-value {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: $text-color-dark;
+    & > .bar-content-wrapper {
+      flex-direction: column;
 
-  &.reverse {
-    right: 0;
-  }
+      & > .bar-segment {
+        @extend .bar-segment-base;
 
-  &.round-left {
-    border-top-left-radius: 9001px;
-    border-bottom-left-radius: 9001px;
-  }
+        border-top-width: 0.5px;
+        border-bottom-width: 0.5px;
 
-  &.round-right {
-    border-top-right-radius: 9001px;
-    border-bottom-right-radius: 9001px;
+        &:first-child {
+          border-top: 0;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    &.round-start {
+      border-top-left-radius: 9001px;
+      border-top-right-radius: 9001px;
+    }
+
+    &.round-end {
+      border-bottom-left-radius: 9001px;
+      border-bottom-right-radius: 9001px;
+    }
+
+    & > .bar-value {
+      @extend .bar-value-base;
+
+      width: 100%;
+      height: 50%;
+
+      &.round-start {
+        border-top-left-radius: 9001px;
+        border-top-right-radius: 9001px;
+      }
+
+      &.round-end {
+        border-bottom-left-radius: 9001px;
+        border-bottom-right-radius: 9001px;
+      }
+    }
   }
 }
 

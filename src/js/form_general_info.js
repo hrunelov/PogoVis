@@ -85,22 +85,21 @@ function updateTypeInfo() {
     container:   d3.select("#form-types"),
     classed:     "type-label",
     horizontal:  true,
+    hideContent: false,
     fade:        false,
     waitForExit: true,
-    duration:    TRANSITION_DURATION_MEDIUM,
     onenter:     function(s, delay) {
       s.classed("type-label", true);
       s.appendTypeIcon()
         .zoomIn({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           ease:     d3.easeBackOut
         });
       s.append("div")
+        .classed("uppercase-label", true)
         .classed("type-name", true)
         .text(d => d.name)
         .zoomInY({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           fade:     true
         });
@@ -112,7 +111,6 @@ function updateTypeInfo() {
       s.select(".type-icon")
         .interrupt()
         .zoomOut({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           ease:     d3.easeBackIn
         });
@@ -120,7 +118,6 @@ function updateTypeInfo() {
       s.select(".type-name")
         .interrupt()
         .zoomOutY({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           fade:     true
         });
@@ -133,7 +130,10 @@ function updateTypeInfo() {
     .filter(e => e.damageMultiplier < 1)
     .sort((e1, e2) => e1.damageMultiplier - e2.damageMultiplier);
   var weaknesses = selectedForm.counterEffectiveness
-    .filter(e => e.damageMultiplier > 1)
+    .filter(e => {
+      console.log(e.damageMultiplier);
+      return e.damageMultiplier > 1;
+    })
     .sort((e1, e2) => e2.damageMultiplier - e1.damageMultiplier);
 
   listTypeEffectivenesses(resistances, "#form-resistances", true);
@@ -149,9 +149,9 @@ function listTypeEffectivenesses(data, container, reverse) {
     key:         d => d.attackingType.key,
     container:   d3.select(container),
     classed:     "form-type-effectiveness-label-wrapper",
+    hideContent: false,
     fade:        false,
     waitForExit: true,
-    duration:    TRANSITION_DURATION_MEDIUM,
     onenter:     function(s, delay) {
       s = s.append("div")
         .classed("form-type-effectiveness-label", true)
@@ -162,16 +162,14 @@ function listTypeEffectivenesses(data, container, reverse) {
 
       s.appendTypeIcon(d => d.attackingType)
         .zoomIn({
-          duration: TRANSITION_DURATION_MEDIUM,
-          delay:    delay,
-          ease:     d3.easeBackOut
+          delay:    delay
         });
 
       s.append("div")
+        .classed("numeric-label", true)
         .classed("form-type-effectiveness-percent", true)
         .text(d => oneDecimal(d.damageMultiplier * 100) + "%")
         .zoomInY({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           fade:     true
         });
@@ -180,8 +178,8 @@ function listTypeEffectivenesses(data, container, reverse) {
         .duration(TRANSITION_DURATION_MEDIUM)
         .delay((d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3)
         .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.maxDamageMultiplier :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.maxDamageMultiplier)) *
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.max.damageMultiplier :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.max.damageMultiplier)) *
                              (w-m) + m + "px");
 
     },
@@ -198,25 +196,22 @@ function listTypeEffectivenesses(data, container, reverse) {
         .transition()
         .duration(TRANSITION_DURATION_MEDIUM)
         .delay(delayFunc)
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.maxDamageMultiplier :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.maxDamageMultiplier)) *
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.max.damageMultiplier :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.max.damageMultiplier)) *
                              (w-m) + m + "px");
     },
     onexit: function(s, delay) {
-      s = s.select(".form-type-effectiveness-label")
+      s = s.select(".form-type-effectiveness-label");
 
       s.select(".type-icon")
         .interrupt()
         .zoomOut({
-          duration: TRANSITION_DURATION_MEDIUM,
-          delay:    delay,
-          ease:     d3.easeBackIn
+          delay:    delay
         });
 
       s.select(".form-type-effectiveness-percent")
         .interrupt()
         .zoomOutY({
-          duration: TRANSITION_DURATION_MEDIUM,
           delay:    delay,
           fade:     true
         });
