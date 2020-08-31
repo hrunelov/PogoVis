@@ -1,33 +1,74 @@
 @import "common.scss";
 
+.form-move-column {
+  padding-bottom: 0 !important;
+}
+
+.form-move-wrapper {
+  margin: $padding*3 0 !important;
+
+  &:first-child {
+    margin-top: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
 .form-move-body {
   border-radius: $corner-radius;
   padding: $padding*2;
-  margin: $padding 0;
   display: flex;
   flex-direction: column;
   position: relative;
-  border: 2px solid #0000;
 
-  & > .form-move-exclusive-label {
+  color: $text-color;
+  overflow-y: hidden;
+
+  & > .form-move-availability-label {
     display: none;
   }
 
-  &.exclusive {
-    border-color: $exclusive-color;
+  &.special {
+    border-color: none;
 
-    & > .form-move-exclusive-label {
+    & > .form-move-availability-label {
       display: block;
       position: absolute;
-      right: -1px;
-      top: -2px;
+      right: 0;
+      top: 0;
       padding: 0 2px;
       border-radius: 0 $corner-radius;
       color: $back-color;
-      background: $exclusive-color;
       text-transform: uppercase;
       font-size: 10pt;
       @include extra-bold;
+      box-shadow: 0 0 2px $dark;
+
+      &.elite {
+        background: #99f;
+      }
+      &.photobomb {
+        background: #ca9c44;
+      }
+      &.legacy {
+        background: #999;
+      }
+      &.shadow {
+        background: #ba89de;
+      }
+      &.purified {
+        background: #51b0b4;
+      }
+    }
+  }
+
+  & > .bar-container > svg > text {
+    fill: $white-transp-50;
+
+    &:first-of-type {
+      font-size: 12pt;
     }
   }
 }
@@ -37,5 +78,25 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: $text-color;
+
+  & > .caption {
+    @include extra-bold;
+    @include text-shadow-subtle;
+  }
+
+  // & > img {
+  //   min-width: 32px;
+  //   min-height: 32px;
+  //   width: 32px;
+  //   height: 32px;
+  // }
+}
+
+.form-move-bar-highlight {
+  fill: #ff04;
+}
+
+.form-move-number {
+  @include extra-bold;
+  font-size: 20pt;
 }

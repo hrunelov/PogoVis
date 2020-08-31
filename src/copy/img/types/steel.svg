@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2_1_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
-<filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
-</filter>
+<defs>
+	<filter id="shadow">
+		<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="7" />
+		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+	</filter>
+</defs>
 <g id="Layer_2">
 	<circle fill="#437882" cx="165" cy="165" r="165"/>
 </g>
 <g filter="url(#shadow)">
-	<path fill="#FFFFFF" d="M212.631,82.5h-95.262L69.737,165l47.632,82.5h95.262l47.632-82.5L212.631,82.5L212.631,82.5z M165,205.024
-		c-22.104,0-40.024-17.92-40.024-40.024c0-22.105,17.919-40.024,40.024-40.024c22.105,0,40.024,17.919,40.024,40.024
-		C205.024,187.104,187.105,205.024,165,205.024L165,205.024z"/>
+	<path fill="none" d="M165,139.625c-13.992,0-25.375,11.383-25.375,25.375s11.383,25.375,25.375,25.375s25.375-11.383,25.375-25.375
+		S178.992,139.625,165,139.625z"/>
+	<path fill="#FFFFFF" d="M214.917,83.739c-0.825-1.429-2.851-2.598-4.5-2.598h-90.833c-1.65,0-3.675,1.169-4.5,2.598l-45.416,78.663
+		c-0.825,1.429-0.825,3.767,0,5.196l45.416,78.664c0.825,1.43,2.85,2.598,4.5,2.598h90.833c1.649,0,3.675-1.168,4.5-2.598
+		l45.414-78.664c0.825-1.429,0.825-3.767,0-5.196L214.917,83.739z M165,202.375c-20.642,0-37.375-16.734-37.375-37.375
+		c0-20.642,16.733-37.375,37.375-37.375c20.643,0,37.375,16.733,37.375,37.375C202.375,185.641,185.643,202.375,165,202.375z"/>
 </g>
 </svg>

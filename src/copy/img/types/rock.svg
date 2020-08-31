@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
-<filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  mode="normal" in="SourceGraphic" in2="blurOut"></feBlend>
-</filter>
-<g id="Layer_1_1_">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="330px"
+	 height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<defs>
+	<filter id="shadow">
+		<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="7" />
+		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+	</filter>
+</defs>
+<g id="Layer_1">
 	<g id="Layer_2">
-		<circle fill="#A29772" cx="165" cy="165" r="165"/>
+		<circle fill="#a29772" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<g filter="url(#shadow)">
-	<polygon fill="#FFFFFF" points="126.709,232.498 156.813,248.596 200.566,217.658 185.081,191.223 	"/>
-	<polygon fill="#FFFFFF" points="174.521,173.193 180.25,169.837 211.813,93.637 146.291,94.005 77.377,142.211 76.881,205.854 
-		106.984,221.95 174.936,173.902 	"/>
-	<polygon fill="#FFFFFF" points="253.119,93.405 233.512,93.515 199.344,176.002 216.957,206.07 251.657,181.535 	"/>
+<g id="Layer_2_1_" filter="url(#shadow)">
+	<g>
+		<polygon fill="#FFFFFF" points="224.862,196.618 205.439,169.212 128.377,220.705 172.833,234.583 		"/>
+		<polygon fill="#FFFFFF" points="212.886,95.417 133.833,95.417 75.667,164.083 75.667,204.25 114.882,216.492 201.822,158.399
+			"/>
+		<polygon fill="#FFFFFF" points="233.796,190.201 254.333,175.25 229.333,95.417 224.054,95.417 212.647,160.358 		"/>
+	</g>
 </g>
 </svg>

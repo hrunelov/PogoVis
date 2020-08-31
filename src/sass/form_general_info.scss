@@ -61,14 +61,16 @@
 }
 
 #form-resistances {
-  padding-bottom: $padding*2;
+  padding: $padding*2;
+  padding-bottom: $padding;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 #form-weaknesses {
-  padding-bottom: $padding*2;
+  padding: $padding*2;
+  padding-bottom: $padding;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -105,18 +107,32 @@
 /* Evolutions */
 
 $form-evolution-full-width: 100px;
+$form-evolution-medium-width: 32px;
 $form-evolution-short-width: 20px;
 $form-evolution-path-corner-radius: $corner-radius*2;
 $form-evolution-path-width: 1.5px;
 
 #form-evolution-body {
+  @include scrollbars($dark, $light, $highlight);
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: -25px 0 25px 0;
+  padding-bottom: 25px;
+  margin-top: -20px;
   color: $light;
   text-transform: uppercase;
+  overflow: hidden;
+
+  &.overflow {
+    overflow-x: scroll;
+
+    & > #form-evolution-root {
+      padding-left: 40px;
+    }
+  }
+}
+
+#form-evolution-root {
+  margin: auto;
 }
 
 .form-evolution-row {
@@ -168,9 +184,11 @@ $form-evolution-path-width: 1.5px;
   color: $text-color-dark;
   display: flex;
   flex-direction: row;
+  text-align: right;
 }
 
 .form-evolution-req-number {
+  text-transform: none !important;
   letter-spacing: 0;
   margin-left: $padding;
 }
@@ -200,6 +218,10 @@ $form-evolution-path-width: 1.5px;
 
   &.full {
     width: $form-evolution-full-width;
+  }
+
+  &.medium {
+    width: $form-evolution-medium-width;
   }
 
   &.short {

@@ -1,9 +1,9 @@
 @import "common.scss";
 @import "widgets.scss";
-@import "spiderchart.scss";
 @import "pokemon_info.scss";
 @import "form_general_info.scss";
 @import "form_move_info.scss";
+@import "form_stat_info.scss";
 @import "pokemon_list.scss";
 
 body {
@@ -14,6 +14,10 @@ body {
   background: $back-color;
   overflow: hidden;
   cursor: default;
+}
+
+div {
+  box-sizing: border-box;
 }
 
 button {
@@ -95,7 +99,6 @@ button {
 }
 
 #main-body-container {
-  @include scrollbars($dark, $light, $highlight);
   margin: $padding;
   border-radius: $corner-radius;
   display: flex;
@@ -114,15 +117,13 @@ button {
 }
 
 .page {
-  @include scrollbars($dark, $light, $highlight);
   height: 100%;
   margin-top: $padding;
-  overflow-y: scroll;
   border-radius: 0 0 $corner-radius $corner-radius;
+  background: $dark;
 }
 
 .page-body {
-  margin-right: $padding;
   background: $dark;
   padding: $padding;
 }

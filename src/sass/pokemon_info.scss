@@ -11,7 +11,7 @@
   flex-direction: row;
   align-items: center;
   overflow: hidden;
-  box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
+  box-shadow: 0 $corner-radius*2 $corner-radius*2 #00000088;
   z-index: 1;
 }
 
@@ -24,16 +24,30 @@
 }
 
 #pokemon-caption-image-background {
+  position: relative;
   width: 160px;
   height: 500px;
   transform: rotate(-22.5deg) translate(-60px);
 }
 
 #pokemon-caption-image {
+  position: absolute;
   width: 112px;
   height: 112px;
+  object-fit: scale-down;
   margin: $padding;
   transform: rotate(22.5deg) translate(128px, 148px);
+
+  &-shiny {
+    @extend #pokemon-caption-image;
+
+    opacity: 0;
+    transition: opacity $transition-duration-medium;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 #pokemon-caption-name-wrapper {
@@ -91,7 +105,7 @@
 /* Form Selector */
 
 #form-selection-bar {
-  box-shadow: -$corner-radius*2.5 $corner-radius*2 $corner-radius*2 #00000088;
+  box-shadow: 0 $corner-radius*2 $corner-radius*2 #00000088;
   z-index: 1;
   transition: min-height $transition-duration-medium, height $transition-duration-medium;
 
@@ -108,6 +122,6 @@
 /* Navbar */
 
 .pokemon-navbar-tab {
-  width: 50%;
+  width: 33%;
   background: $light;
 }

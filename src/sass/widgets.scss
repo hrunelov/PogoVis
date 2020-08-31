@@ -47,9 +47,46 @@
   }
 }
 
-/* Bars/Meters */
+/* Bars/Meters (svg) */
 
-.bar-content-wrapper {
+.bar-container {
+  margin: $padding;
+  position: relative;
+  height: 16px;
+
+  & > svg {
+    position: absolute;
+  }
+}
+
+.bar-background {
+  fill: $black-transp-12;
+}
+
+.bar-mask {
+  rx: $corner-radius - 2px;
+  ry: $corner-radius - 2px;
+}
+
+.bar-tick {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.bar-label {
+  font-size: 14pt;
+  //text-transform: uppercase;
+  letter-spacing: 0.1em;
+  fill: $text-color-dark;
+}
+
+.bar-value {
+  fill: $text-color;
+}
+
+/* Bars/Meters (div) */
+
+.div-bar-content-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,13 +95,13 @@
   display: flex;
 }
 
-.bar-background {
-  @extend .bar-content-wrapper;
+.div-bar-background {
+  @extend .div-bar-content-wrapper;
   background: $white-transp-18;
 }
 
-.bar-value-base {
-  @extend .bar-content-wrapper;
+.div-bar-value-base {
+  @extend .div-bar-content-wrapper;
 
   width: 50%;
   background: $text-color-dark;
@@ -80,14 +117,14 @@
   }
 }
 
-.bar-segment-base {
+.div-bar-segment-base {
   border-style: solid;
   border-width: 0;
   flex-grow: 1;
   z-index: 1;
 }
 
-.bar {
+.div-bar {
   position: relative;
   margin: $padding;
   border-radius: $corner-radius - 2px;
@@ -102,18 +139,19 @@
   }
 
   &-horizontal {
-    @extend .bar;
+    @extend .div-bar;
 
     height: $widget-height-small;
+    min-height: $widget-height-small;
 
-    & > .bar-content-wrapper {
+    & > .div-bar-content-wrapper {
       flex-direction: row;
 
-      & > .bar-segment {
-        @extend .bar-segment-base;
+      & > .div-bar-segment {
+        @extend .div-bar-segment-base;
 
-        border-left-width: 0.5px;
-        border-right-width: 0.5px;
+        border-left-width: 1px;
+        border-right-width: 1px;
 
         &:first-child {
           border-left: 0;
@@ -135,8 +173,8 @@
       border-bottom-right-radius: 9001px;
     }
 
-    & > .bar-value {
-      @extend .bar-value-base;
+    & > .div-bar-value {
+      @extend .div-bar-value-base;
 
       width: 50%;
       height: 100%;
@@ -154,15 +192,15 @@
   }
 
   &-vertical {
-    @extend .bar;
+    @extend .div-bar;
 
     width: $widget-height-small;
 
-    & > .bar-content-wrapper {
+    & > .div-bar-content-wrapper {
       flex-direction: column;
 
-      & > .bar-segment {
-        @extend .bar-segment-base;
+      & > .div-bar-segment {
+        @extend .div-bar-segment-base;
 
         border-top-width: 0.5px;
         border-bottom-width: 0.5px;
@@ -187,8 +225,8 @@
       border-bottom-right-radius: 9001px;
     }
 
-    & > .bar-value {
-      @extend .bar-value-base;
+    & > .div-bar-value {
+      @extend .div-bar-value-base;
 
       width: 100%;
       height: 50%;
@@ -204,6 +242,38 @@
       }
     }
   }
+}
+
+/* Spider Chart */
+
+.spider-axis {
+  fill: none;
+  stroke: $light;
+  stroke-width: 0.5px;
+}
+
+.spider-tick {
+  fill: none;
+  stroke: $medium;
+  stroke-width: 0.5px;
+}
+
+.spider-tick-outer {
+  fill: none;
+  stroke: $light;
+}
+
+.spider-shape {
+  stroke: $text-color-dark;
+  stroke-width: 0.5px;
+  fill: $white-transp-25;
+}
+
+.spider-label {
+  font-size: 4pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  fill: $text-color-dark;
 }
 
 /* Type Icon */
@@ -243,6 +313,7 @@
 .pokemon-image {
   width: 66%;
   height: 66%;
+  object-fit: scale-down;
   position: absolute;
   top: 17%;
   left: 17%;
@@ -250,7 +321,7 @@
 
 .pokemon-image-name {
   position: absolute;
-  bottom: 0;
+  bottom: 0pt;
   left: -50%;
   right: -50%;
   text-align: center;
@@ -258,6 +329,14 @@
   font-size: 12pt;
   color: $light;
   transition: color $transition-duration-instant;
+
+  &.two-lines {
+    bottom: -12pt;
+
+    & > .pokemon-image-hot-area {
+      bottom: -12pt !important;
+    }
+  }
 
   &.selected {
     color: $text-color-dark;

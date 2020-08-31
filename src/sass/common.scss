@@ -7,13 +7,15 @@ $white-transp-75: #ffffffc0;
 $white-transp-50: #ffffff80;
 $white-transp-25: #ffffff40;
 $white-transp-18: #ffffff30;
+$white-transp-12: #ffffff20;
 $black-transp-75: #000000c0;
 $black-transp-50: #00000080;
+$black-transp-25: #00000040;
+$black-transp-12: #00000020;
 $dark: #222;
 $medium: #444;
 $light: #666;
 $highlight: #888;
-$exclusive-color: #99f;
 $transition-duration-instant: 0.075s;
 $transition-duration-fast: 0.15s;
 $transition-duration-medium: 0.3s;
@@ -24,6 +26,11 @@ $padding: 4px;
 $widget-height-small: 24px;
 $widget-height-medium: 32px;
 $widget-height-large: 48px;
+
+@mixin bold {
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
 
 @mixin extra-bold {
   font-weight: 900;
@@ -46,17 +53,17 @@ $widget-height-large: 48px;
 /* Scrollbars */
 
 @mixin scrollbars($track-color, $thumb-color, $thumb-hover-color) {
-  scrollbar-width: $corner-radius * 2;
-  scrollbar-height: $corner-radius * 2;
+  scrollbar-width: $corner-radius;
+  scrollbar-height: $corner-radius;
   scrollbar-color: $thumb-color $track-color;
 
   &::-webkit-scrollbar {
-    width:  $corner-radius * 2;
-    height: $corner-radius * 2;
+    width:  $corner-radius;
+    height: $corner-radius;
   }
 
   &::-webkit-scrollbar-track {
-    background: $track-color;
+    background: inherit;
     border-radius: $corner-radius;
   }
 
@@ -68,6 +75,29 @@ $widget-height-large: 48px;
       background: $thumb-hover-color;
     }
   }
+}
+
+.scroll-x {
+  @include scrollbars($dark, $light, $highlight);
+  padding: $corner-radius*2;
+  padding-bottom: $corner-radius !important;
+  width: 100%;
+  overflow: hidden !important;
+  overflow-x: scroll !important;
+}
+
+.scroll-y {
+  @include scrollbars($dark, $light, $highlight);
+  padding: $corner-radius*2 !important;
+  padding-right: $corner-radius !important;
+  height: 100%;
+  overflow: hidden !important;
+  overflow-y: scroll !important;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+  padding: $corner-radius*2;
 }
 
 /* General */
@@ -83,15 +113,15 @@ $widget-height-large: 48px;
 /* Text */
 
 .left-aligned {
-  text-align: left;
+  text-align: left !important;
 }
 
 .center-aligned {
-  text-align: center;
+  text-align: center !important;
 }
 
 .right-aligned {
-  text-align: right;
+  text-align: right !important;
 }
 
 .no-letter-spacing {
@@ -110,6 +140,7 @@ $widget-height-large: 48px;
 }
 
 .numeric-label {
+  @include bold;
   letter-spacing: 0;
   margin: $padding*2;
 }
@@ -144,7 +175,7 @@ $widget-height-large: 48px;
 }
 
 .frame-body {
-  margin: $padding;
+  margin: 0;
 }
 
 .two-columns {
@@ -164,26 +195,35 @@ $widget-height-large: 48px;
   margin-left: -0.5px;
 }
 
-.left-column-body {
-  padding: $padding*4;
-  padding-left: $padding*2;
-  border-top: 0.5px solid $light;
-  border-right: 0.5px solid $light;
+.left-column-frame {
+  border-top: 1px solid $light;
+  border-right: 1px solid $light;
+  padding: $padding;
+  padding-left: 0;
   height: 100%;
 }
 
-.right-column-body {
-  padding: $padding*4;
-  padding-right: $padding*2;
-  border-top: 0.5px solid $light;
-  border-left: 0.5px solid $light;
+.right-column-frame {
+  border-top: 1px solid $light;
+  border-left: 1px solid $light;
+  padding: $padding;
+  padding-right: 0;
   height: 100%;
+}
+
+.left-column-body {
+
+}
+
+.right-column-body {
+
 }
 
 .sub-caption {
   font-weight: bold;
   margin: $padding*4 $padding $padding $padding;
   text-align: center;
+  height: 20px;
 }
 
 /* Padding/Margins */
@@ -247,5 +287,5 @@ $widget-height-large: 48px;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }

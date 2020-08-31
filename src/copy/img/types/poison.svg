@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
-<filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
-</filter>
-<g id="Layer_1_1_">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="330px"
+	 height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<defs>
+	<filter id="shadow">
+		<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="7" />
+		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+	</filter>
+</defs>
+<g id="Layer_1">
 	<g id="Layer_2">
-		<circle fill="#944EA6" cx="165" cy="165" r="165"/>
+		<circle fill="#944ea6" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<g>
-	<path fill="none" d="M207,155.009c0-23.159-18.842-42-42-42c-23.159,0-42,18.841-42,42c0,23.159,18.841,42,42,42
-		C188.158,197.009,207,178.168,207,155.009z"/>
-	<path filter="url(#shadow)" fill="#FFFFFF" d="M248,155.009c0-45.766-37.234-83-83-83c-45.766,0-83,37.234-83,83c0,21.176,7.991,41.331,22.5,56.782v25.7
-		c0,11.304,9.196,20.5,20.5,20.5c9.754,0,17.939-6.849,20-15.989c2.061,9.141,10.246,15.989,20,15.989
-		c9.754,0,17.939-6.849,20-15.989c2.061,9.141,10.246,15.989,20,15.989c11.304,0,20.5-9.196,20.5-20.5v-25.7
-		C240.009,196.34,248,176.185,248,155.009z M123,155.009c0-23.159,18.841-42,42-42c23.158,0,42,18.841,42,42
-		c0,23.159-18.842,42-42,42C141.841,197.009,123,178.168,123,155.009z"/>
+<g id="Layer_2_1_" filter="url(#shadow)">
+	<g>
+		<ellipse fill="none" cx="165" cy="155.499" rx="50.5" ry="37.505"/>
+		<path fill="#FFFFFF" d="M254.5,155.498c0-42.066-40.07-76.169-89.499-76.169c-49.431,0-89.501,34.103-89.501,76.169
+			c0,21.601,10.566,41.099,27.538,54.961c-0.994,3.188-1.538,6.626-1.538,10.212c0,16.568,11.566,30,25.833,30
+			c7.429,0,14.121-3.646,18.833-9.477c4.712,5.83,11.404,9.477,18.833,9.477s14.121-3.647,18.834-9.477
+			c4.713,5.829,11.404,9.477,18.832,9.477c14.268,0,25.834-13.432,25.834-30c0-3.586-0.544-7.024-1.538-10.212
+			C243.934,196.597,254.5,177.099,254.5,155.498z M165,117.993c27.891,0,50.5,16.792,50.5,37.505
+			c0,20.715-22.609,37.506-50.5,37.506s-50.5-16.791-50.5-37.506C114.5,134.785,137.109,117.993,165,117.993z"/>
+	</g>
 </g>
 </svg>

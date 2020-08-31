@@ -17,19 +17,21 @@ function setSelectedPage(key) {
       .classed("hidden", true);
   }
 
-  switch (selectedPage) {
-    case PAGE_GENERAL:
-      d3.select("#form-general-info-page")
-        .classed("hidden", false);
-      updateGeneralInfo();
-      break;
-    case PAGE_MOVES:
-      d3.select("#form-move-info-page")
-        .classed("hidden", false);
-      updateMoveInfo();
-      break;
-    default:
-  }
+  d3.select("#" + selectedPage)
+    .classed("hidden", false);
+
+  // switch (selectedPage) {
+  //   case PAGE_GENERAL:
+  //     updateGeneralInfo();
+  //     break;
+  //   case PAGE_MOVES:
+  //     updateMoveInfo();
+  //     break;
+  //   case PAGE_STATS:
+  //     updateStatInfo();
+  //     break;
+  //   default:
+  // }
 
   d3.select("#" + selectedPage)
     .node().scrollTo({
@@ -54,8 +56,19 @@ function setSelectedForm(idx) {
   updateFormSelectionBar();
 
   setSelectedPage();
-  //updateMoveInfo();
-  //statChart.update(Object.values(selectedForm.baseStats));
+
+  // Temporary hack
+  d3.selectAll(".page.hidden")
+    .classed("hidden", false)
+    .classed("unhidden", true);
+
+  updateGeneralInfo();
+  updateMoveInfo();
+  updateStatInfo();
+
+  d3.selectAll(".page.unhidden")
+    .classed("hidden", true)
+    .classed("unhidden", false);
 }
 
 // Caption (Pokémon Name, category, id)
@@ -104,11 +117,14 @@ function updateCaptionForm() {
     .style("background", mixColors("#000", selectedForm.types[0].color, 0.2));
 
   let imgPath = POKEMON_IMG_PATH + selectedForm.image + IMG_EXTENSION;
+  let imgPathShiny = POKEMON_IMG_PATH + selectedForm.image + "_shiny" + IMG_EXTENSION;
   if (imgPath !== d3.select("#pokemon-caption-image").attr("src")) {
     fadeIn(d3.select("#pokemon-caption-image")
     .interrupt()
     .attr("src", imgPath));
   }
+  d3.select("#pokemon-caption-image-shiny")
+    .attr("src", imgPathShiny);
 }
 
 // Form Selection Bar
