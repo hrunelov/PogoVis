@@ -2538,12 +2538,12 @@
   margin-top: 0 !important;
 }
 
-/* line 14, src/sass/form_move_info.scss */
+/* line 13, src/sass/form_move_info.scss */
 .form-move-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
-/* line 19, src/sass/form_move_info.scss */
+/* line 18, src/sass/form_move_info.scss */
 .form-move-body {
   border-radius: 5px;
   padding: 8px;
@@ -2556,20 +2556,24 @@
           flex-direction: column;
   position: relative;
   color: #fff;
-  overflow-y: hidden;
 }
 
-/* line 29, src/sass/form_move_info.scss */
+/* line 26, src/sass/form_move_info.scss */
+.form-move-body.fast:not(.selected) {
+  cursor: pointer;
+}
+
+/* line 30, src/sass/form_move_info.scss */
 .form-move-body > .form-move-availability-label {
   display: none;
 }
 
-/* line 33, src/sass/form_move_info.scss */
+/* line 34, src/sass/form_move_info.scss */
 .form-move-body.special {
   border-color: none;
 }
 
-/* line 36, src/sass/form_move_info.scss */
+/* line 37, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label {
   display: block;
   position: absolute;
@@ -2586,42 +2590,42 @@
           box-shadow: 0 0 2px #222;
 }
 
-/* line 49, src/sass/form_move_info.scss */
+/* line 50, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label.elite {
   background: #99f;
 }
 
-/* line 52, src/sass/form_move_info.scss */
+/* line 53, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label.photobomb {
   background: #ca9c44;
 }
 
-/* line 55, src/sass/form_move_info.scss */
+/* line 56, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label.legacy {
   background: #999;
 }
 
-/* line 58, src/sass/form_move_info.scss */
+/* line 59, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label.shadow {
   background: #ba89de;
 }
 
-/* line 61, src/sass/form_move_info.scss */
+/* line 62, src/sass/form_move_info.scss */
 .form-move-body.special > .form-move-availability-label.purified {
   background: #51b0b4;
 }
 
-/* line 67, src/sass/form_move_info.scss */
+/* line 68, src/sass/form_move_info.scss */
 .form-move-body > .bar-container > svg > text {
   fill: #ffffff80;
 }
 
-/* line 70, src/sass/form_move_info.scss */
+/* line 71, src/sass/form_move_info.scss */
 .form-move-body > .bar-container > svg > text:first-of-type {
   font-size: 12pt;
 }
 
-/* line 76, src/sass/form_move_info.scss */
+/* line 77, src/sass/form_move_info.scss */
 .form-move-caption {
   margin: 4px;
   display: -webkit-box;
@@ -2636,19 +2640,19 @@
           align-items: center;
 }
 
-/* line 82, src/sass/form_move_info.scss */
+/* line 83, src/sass/form_move_info.scss */
 .form-move-caption > .caption {
   font-weight: 900;
   letter-spacing: 0.025em;
   text-shadow: 0 0 2px #000;
 }
 
-/* line 95, src/sass/form_move_info.scss */
+/* line 96, src/sass/form_move_info.scss */
 .form-move-bar-highlight {
   fill: #ff04;
 }
 
-/* line 99, src/sass/form_move_info.scss */
+/* line 100, src/sass/form_move_info.scss */
 .form-move-number {
   font-weight: 900;
   letter-spacing: 0.025em;

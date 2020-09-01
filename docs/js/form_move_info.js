@@ -43,7 +43,8 @@ function updateFastMoves(battleType) {
       let color1 = (d => mixColors("#222", d.move.type.color, 0.25));
       let color2 = (d => mixColors("#222", d.move.type.color, 0.5));
 
-      s = appendMoveCaption(s, delay);
+      s = appendMoveBody(s, delay);
+      s.classed("fast", true);
 
       // Append duration
       let db = s.appendBar({
@@ -121,6 +122,10 @@ function updateFastMoves(battleType) {
           .style("fill", "#fff");
       }))
       .on("click", (function(d,i) {
+        if (d3.select(this).classed("selected"))
+          return;
+        d3.select(this).classed("selected", true);
+
         let fev = ev.at(i);
         let fdv = dv.at(i);
 
@@ -236,6 +241,8 @@ function updateFastMoves(battleType) {
         attack.bind(this)();
       }))
       .on("mouseleave", (function() {
+        d3.select(this).classed("selected", false);
+
         d3.select("body")
           .interrupt();
 
@@ -371,7 +378,7 @@ function updateChargedMoves(battleType) {
     onenter: function(s, delay) {
       let color = (d => mixColors("#222", d.move.type.color, 0.25));
 
-      s = appendMoveCaption(s, delay);
+      s = appendMoveBody(s, delay);
 
       // Append duration
       if (battleType === PVE) {
@@ -437,7 +444,7 @@ function updateChargedMoves(battleType) {
   });
 }
 
-function appendMoveCaption(s, delay) {
+function appendMoveBody(s, delay) {
   s = s.append("div")
     .classed("form-move-body", true)
     .classed("special", d => d.availability)
