@@ -8,6 +8,7 @@ var collapsedHeights = d3.local();
 // Terribly ugly hack to keep the content from stretching the container beyond the bottom,
 // because the obnoxious CSS just won't. Don't try this at home.
 new ResizeObserver(function() {
+  console.log("resize");
   d3.selectAll(".form-move-column")
     .style("max-height", d3.select("#form-move-info-page").node().offsetHeight
                        - d3.select(".form-move-column").node().offsetTop * 0.5
@@ -16,8 +17,8 @@ new ResizeObserver(function() {
 }).observe(d3.select("#form-move-info-page").node());
 
 function updateMoveInfo() {
-  updateChargedMoves(PVP);
-  updateFastMoves(PVP);
+  updateChargedMoves(PVE);
+  updateFastMoves(PVE);
 }
 
 function updateFastMoves(battleType) {
@@ -443,23 +444,14 @@ function appendMoveCaption(s, delay) {
     .text(d => d.availability);
 
   let l = s.append("div")
-    .classed("form-move-caption", true)
-    .zoomInY({
-      delay: delay
-    });
+    .classed("form-move-caption", true);
 
   l.appendTypeIcon(d => d.move.type)
-    .attr("title", d => d.move.type.name + " type move")
-    .zoomIn({
-      delay: delay
-    });
+    .attr("title", d => d.move.type.name + " type move");
 
   l.append("div")
     .classed("caption", true)
-    .text(d => d.move.name)
-    .zoomInY({
-      delay: delay
-    });
+    .text(d => d.move.name);
 
   return s;
 }
