@@ -18,8 +18,8 @@ new ResizeObserver(function() {
 }).observe(d3.select("#form-move-info-page").node());
 
 function updateMoveInfo() {
-  updateChargedMoves(PVE);
-  updateFastMoves(PVE);
+  updateChargedMoves(PVP);
+  updateFastMoves(PVP);
 }
 
 function updateFastMoves(battleType) {
