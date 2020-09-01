@@ -46,6 +46,7 @@
               <div id="pokemon-caption-type2-color" class="split-bottom"></div>
               <div id="pokemon-caption-image-background">
                 <img id="pokemon-caption-image"></img>
+                <img id="pokemon-caption-image-shiny"></img>
               </div>
               <div id="pokemon-caption-name-wrapper">
                 <div id="pokemon-caption-name"></div>
@@ -61,14 +62,14 @@
             <!-- End Form Selector -->
 
             <!-- Form General Info -->
-            <div id="form-general-info-page" class="page">
+            <div id="form-general-info-page" class="page scroll-y">
               <div class="page-body">
 
                 <!-- Description -->
-                <div id="form-description-frame" class="frame with-caption">
+                <!-- <div id="form-description-frame" class="frame with-caption">
                   <div id="form-description-body" class="frame-body">
                   </div>
-                </div>
+                </div> -->
                 <!-- End Description -->
 
                 <!-- Top Bar -->
@@ -77,10 +78,10 @@
                   <!-- Gender Ratio -->
                   <div id="form-female-percent" class="form-top-label numeric-label right-aligned form-gender-percent"></div>
                   <img id="form-female-icon" src="img/female.svg"></img>
-                  <div id="form-gender-bar" class="bar-horizontal">
-                    <div class="bar-background"></div>
-                    <div id="form-female-bar" class="bar-value form-gender-element hidden" style="left: 0"></div>
-                    <div id="form-male-bar" class="bar-value form-gender-element hidden" style="right: 0"></div>
+                  <div id="form-gender-bar" class="div-bar-horizontal">
+                    <div class="div-bar-background"></div>
+                    <div id="form-female-bar" class="div-bar-value form-gender-element hidden" style="left: 0"></div>
+                    <div id="form-male-bar" class="div-bar-value form-gender-element hidden" style="right: 0"></div>
                     <div id="form-genderless-label" class="caps center-aligned hidden">Genderless</div>
                   </div>
                   <img id="form-male-icon" src="img/male.svg"></img>
@@ -97,11 +98,15 @@
                     <div id="form-type-effectiveness-wrapper" class="two-columns">
                       <div class="left-column-wrapper">
                         <div class="sub-caption">Resists</div>
-                        <div id="form-resistances" class="left-column-body"></div>
+                        <div class="left-column-frame">
+                          <div id="form-resistances" class="frame-body"></div>
+                        </div>
                       </div>
                       <div class="right-column-wrapper">
                         <div class="sub-caption">Weak to</div>
-                        <div id="form-weaknesses" class="right-column-body"></div>
+                        <div class="right-column-frame">
+                          <div id="form-weaknesses" class="frame-body"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -121,21 +126,25 @@
             <!-- End General Info -->
 
             <!-- Move Info -->
-            <div id="form-move-info-page" class="page hidden">
+            <div id="form-move-info-page" class="page no-scroll hidden">
               <div class="page-body">
 
                 <!-- Moves -->
                 <div id="form-moves-frame" class="frame with-caption">
-                  <span class="frame-caption">Learnable Moves</span>
+                  <span class="frame-caption">Knowable Moves</span>
                   <div class="frame-body">
                     <div id="form-moves-wrapper" class="two-columns">
                       <div class="left-column-wrapper">
                         <div class="sub-caption">Fast</div>
-                        <div id="form-fast-moves" class="left-column-body"></div>
+                        <div class="left-column-frame form-move-column">
+                          <div id="form-fast-moves" class="frame-body scroll-y"></div>
+                        </div>
                       </div>
                       <div class="right-column-wrapper">
                         <div class="sub-caption">Charged</div>
-                        <div id="form-charged-moves" class="right-column-body"></div>
+                        <div class="right-column-frame form-move-column">
+                          <div id="form-charged-moves" class="frame-body scroll-y"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -145,11 +154,40 @@
             </div>
             <!-- End Move Info -->
 
+            <!-- Stats -->
+            <div id="form-stat-info-page" class="page scroll-y hidden">
+              <div class="page-body">
+
+                <!-- Stats -->
+                <div id="form-stats-frame" class="frame with-caption">
+                  <span class="frame-caption">Stats</span>
+                  <div class="frame-body">
+                    <div id="form-stats-wrapper" class="two-columns">
+                      <div class="left-column-wrapper">
+                        <div class="sub-caption">Base</div>
+                        <div class="left-column-frame">
+                          <div id="form-basestats-chart" class="frame-body"></div>
+                        </div>
+                      </div>
+                      <div class="right-column-wrapper">
+                        <div id="form-stats-caption" class="sub-caption">At ʟ</div>
+                        <div class="left-column-frame">
+                          <div id="form-stats-chart" class="frame-body"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Stats -->
+              </div>
+            </div>
+            <!-- End Stats -->
+
             <!-- Navigation Bar -->
             <div id="pokemon-navbar" class="tab-bar pad-top">
               <button type="button" value="form-general-info-page" id="pokemon-tab-general" class="tab pokemon-navbar-tab pad-right-half selected">General</button>
-              <button type="button" value="form-move-info-page" id="pokemon-tab-moves" class="tab pokemon-navbar-tab pad-left-half">Moves</button>
-              <!-- <button type="button" value="form-stat-info-page" id="pokemon-tab-stats" class="tab pokemon-navbar-tab pad-left-half">Stats</button> -->
+              <button type="button" value="form-move-info-page" id="pokemon-tab-moves" class="tab pokemon-navbar-tab pad-left-half pad-right-half">Moves</button>
+              <button type="button" value="form-stat-info-page" id="pokemon-tab-stats" class="tab pokemon-navbar-tab pad-left-half">Stats</button>
             </div>
           </div>
           <!-- End Pokémon Info -->
@@ -159,8 +197,7 @@
 
       <!-- Disclaimer -->
       <div id="footer">
-        Pokémon images attributed to The Artificial: https://github.com/TheArtificial/pokemon-icons</br/>
-        Pokémon is © Gamefreak, Nintendo and The Pokémon Company 2001-2020. Character names and descriptions owned and trademarked by Gamefreak, Nintendo, The Pokémon Company, and Niantic are property of their respective owners. No copyright or trademark infringement is intended, and all usage of names, descriptions and other data are for informational purposes only and believed to qualify as Fair Use.
+        Pokémon is © Gamefreak, Nintendo and The Pokémon Company 2001-2020. Character names and descriptions owned and trademarked by Gamefreak, Nintendo, The Pokémon Company and Niantic are property of their respective owners. No copyright or trademark infringement is intended, and all usage of images, names, descriptions and other data are for informational and educational purposes only, and believed to qualify as Fair Use.
       </div>
       <!-- End Disclaimer -->
     </div>
@@ -171,20 +208,20 @@
       <div>
         Loading
       </div>
-      <div id="progress-bar" class="bar-horizontal round-start round-end">
-        <div class="bar-background"></div>
-        <div id="progress" class="bar-value round-start round-end"></div>
+      <div id="progress-bar" class="div-bar-horizontal round-start round-end">
+        <div class="div-bar-background"></div>
+        <div id="progress" class="div-bar-value round-start round-end"></div>
       </div>
     </div>
     <!-- End Loading Screen -->
     <!-- <div id="tooltip">Tooltip</div> -->
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
     <script src="js/constants.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/d3_ext.js"></script>
-    <script src="js/widgets.js"></script>
     <script src="js/spiderchart.js"></script>
     <script src="js/pokedex.js"></script>
     <script src="js/statcalc.js"></script>
@@ -192,6 +229,7 @@
     <script src="js/details.js"></script>
     <script src="js/form_move_info.js"></script>
     <script src="js/form_general_info.js"></script>
+    <script src="js/form_stat_info.js"></script>
     <script src="js/pokemon_info.js"></script>
     <script src="js/main.js"></script>
   </body>

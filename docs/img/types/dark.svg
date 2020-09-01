@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
-<filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
-</filter>
-<g id="Layer_1_1_">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="330px"
+	 height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<defs>
+	<filter id="shadow">
+		<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="7" />
+		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+	</filter>
+</defs>
+<g id="Layer_1">
 	<g id="Layer_2">
-		<circle fill="#51525E" cx="165" cy="165" r="165"/>
+		<circle fill="#51525e" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<path fill="none" d="M227.5,165c0-34.462-28.037-62.5-62.5-62.5v125C199.463,227.5,227.5,199.463,227.5,165z"/>
-<g filter="url(#shadow)">
-	<path fill="none" d="M165,102.5v125c34.463,0,62.5-28.037,62.5-62.5C227.5,130.538,199.463,102.5,165,102.5z"/>
-	<path fill="#FFFFFF" d="M165,82.5c-45.563,0-82.5,36.937-82.5,82.5s36.937,82.5,82.5,82.5s82.5-36.937,82.5-82.5
-		S210.563,82.5,165,82.5z M165,227.5v-125c34.463,0,62.5,28.038,62.5,62.5C227.5,199.463,199.463,227.5,165,227.5z"/>
+<g id="Layer_2_1_" filter="url(#shadow)">
+	<g>
+		<path fill="none" d="M168.601,103.112c15.159,16.195,24.444,37.956,24.444,61.888s-9.285,45.692-24.445,61.889
+			C201.165,225.022,227,198.032,227,165S201.165,104.978,168.601,103.112z"/>
+		<path fill="#FFFFFF" d="M165,78c-48.049,0-87,38.951-87,87s38.951,87,87,87s87-38.951,87-87S213.049,78,165,78z M168.6,226.889
+			c15.16-16.196,24.445-37.956,24.445-61.889s-9.285-45.693-24.444-61.888C201.165,104.978,227,131.968,227,165
+			S201.165,225.022,168.6,226.889z"/>
+	</g>
 </g>
 </svg>

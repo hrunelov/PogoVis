@@ -29,9 +29,9 @@ class Pokedex extends JSONAssignedObject {
 
     pokedex = this;
 
-
     // Load types
     this.types = json.types.map(t => new Type(t));
+    progress(0.09);
 
     // Replace keys with references to types
     for (let t of this.types) {
@@ -41,89 +41,94 @@ class Pokedex extends JSONAssignedObject {
           e.defendingType = tt;
       }
     }
+    progress(0.18);
 
     // Load moves
     this.moves = {
       fast: json.moves.fast.map(m => new FastMove(m)),
       charged: json.moves.charged.map(m => new ChargedMove(m))
     };
+    progress(0.27);
 
     // Load items
     this.items = json.items.map(i => Object.assign(new Item(), i));
+    progress(0.36);
 
     // Load Pokémon
     this.pokemon = json.pokemon.map(p => new Pokemon(p));
+    progress(0.45);
 
     // Replace keys with references to Pokémon forms in evolutions, and set images
     for (let p of this.pokemon) {
       for (let f of p.forms) {
-        for (let e of f.evolutions) {
-          const ec = e;
-          for (let pp of this.pokemon.filter(ppp => ppp.key === ec.pokemon))
-          for (let ff of pp.forms.filter(fff => fff.key === ec.form))
-          e.descendant = ff;
-          delete e.pokemon;
-          delete e.form;
-        }
-        f.image = (imgIndex.includes(f.key) ? f.key : p.forms[0].key);
-      }
-    }
-
-    // Store max values
-    this.max = {
-      baseStats: {
-        stamina: d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.stamina)))),
-        attack:  d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.attack)))),
-        defense: d3.max(this.pokemon.map(p => d3.max(p.forms.map(f => f.baseStats.defense))))
-      },
-      moveStats: {
-        fast: {
-          gymsAndRaids: {
-            power:      d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.power)),
-            energyGain: d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.energyGain)),
-            duration:   d3.max(this.moves.fast.map(m => m.stats.gymsAndRaids.duration))
-          },
-          trainerBattles: {
-            power:      d3.max(this.moves.fast.map(m => m.stats.trainerBattles.power)),
-            energyGain: d3.max(this.moves.fast.map(m => m.stats.trainerBattles.energyGain)),
-            duration:   d3.max(this.moves.fast.map(m => m.stats.trainerBattles.duration)),
-            turns:      d3.max(this.moves.fast.map(m => m.stats.trainerBattles.turns))
-          }
-        },
-        charged: {
-          gymsAndRaids: {
-            power:      d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.power)),
-            energyCost: d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.energyCost)),
-            duration:   d3.max(this.moves.charged.map(m => m.stats.gymsAndRaids.duration))
-          },
-          trainerBattles: {
-            power:      d3.max(this.moves.charged.map(m => m.stats.trainerBattles.power)),
-            energyCost: d3.max(this.moves.charged.map(m => m.stats.trainerBattles.energyCost))
+        if (f.evolutions) {
+          for (let e of f.evolutions) {
+            const ec = e;
+            for (let pp of this.pokemon.filter(ppp => ppp.key === ec.pokemon))
+            for (let ff of pp.forms.filter(fff => fff.key === ec.form))
+            e.descendant = ff;
+            delete e.pokemon;
+            delete e.form;
           }
         }
-      }
-    };
-
-    // Store max damage multipliers
-    let max = 0;
-    for (let t1 of this.types) {
-      for (let t2 of this.types) {
-        if (t1.key === t2.key) continue;
-        let m = Math.max(...this.getCounterEffectiveness([t1, t2]).map(e => e.damageMultiplier));
-        if (m > max)
-          max = m;
+        f.image = /*(imgIndex.includes(f.key) ?*/ f.key /*: p.forms[0].key)*/;
       }
     }
-    this.max.damageMultiplier = max;
+    progress(0.54);
 
-    console.log(this.max);
+    // Super Effective Multiplier
+    this.superEffectiveMultiplier = function() {
+      for (let t of this.types)
+        for (let e of t.effectiveness)
+          if (e.damageMultiplier > 1)
+            return e.damageMultiplier;
+    }.bind(this)();
+
+    // Not Very Effective Multiplier
+    this.notVeryEffectiveMultiplier = function() {
+      for (let t of this.types)
+        for (let e of t.effectiveness)
+          if (e.damageMultiplier < 1 && this.types.find(tt => tt.effectiveness.find(ee => ee.damageMultiplier < e.damageMultiplier)))
+            return e.damageMultiplier;
+    }.bind(this)();
+
+    // Immune Multiplier
+    this.immuneMultiplier = function() {
+      for (let t of this.types)
+        for (let e of t.effectiveness)
+          if (!this.types.find(tt => tt.effectiveness.find(ee => ee.damageMultiplier < e.damageMultiplier)))
+            return e.damageMultiplier;
+    }.bind(this)();
+
+    // Store max league stats
+    // let maxGreatStats = this.pokemon.map(p => p.forms.map(f => listOptimalStatsForCPCap(f,1500).maxStats));
+    // this.max.greatStats = {
+    //   attack:   d3.max(maxGreatStats.map(p => d3.max(p.map(f => f.attack)))),
+    //   defense:  d3.max(maxGreatStats.map(p => d3.max(p.map(f => f.defense)))),
+    //   hp:       d3.max(maxGreatStats.map(p => d3.max(p.map(f => f.hp))))
+    // };
+    progress(0.72);
+    // let maxUltraStats = this.pokemon.map(p => p.forms.map(f => listOptimalStatsForCPCap(f,2500).maxStats));
+    // this.max.ultraStats = {
+    //   attack:   d3.max(maxUltraStats.map(p => d3.max(p.map(f => f.attack)))),
+    //   defense:  d3.max(maxUltraStats.map(p => d3.max(p.map(f => f.defense)))),
+    //   hp:       d3.max(maxUltraStats.map(p => d3.max(p.map(f => f.hp))))
+    // };
+    progress(0.81);
+    // let maxMasterStats = this.pokemon.map(p => p.forms.map(f => listOptimalStatsForCPCap(f,0).maxStats));
+    // this.max.masterStats = {
+    //   attack:   d3.max(maxMasterStats.map(p => d3.max(p.map(f => f.attack)))),
+    //   defense:  d3.max(maxMasterStats.map(p => d3.max(p.map(f => f.defense)))),
+    //   hp:       d3.max(maxMasterStats.map(p => d3.max(p.map(f => f.hp))))
+    // };
+    progress(0.9);
 
     progress(1);
     done();
   }
 
   getCounterEffectiveness(types) {
-    let result = pokedex.types.map(t => { return {
+    let result = this.types.map(t => { return {
       attackingType: t,
       damageMultiplier: 1
     };});
@@ -175,14 +180,20 @@ class Pokemon extends JSONAssignedObject {
   constructor(json) {
     super(json);
 
+    if (!this.name)
+      this.name = "MissingNo.";
+
+    if (!this.category)
+      this.category = "??? Pokémon";
+
     this.forms = this.forms.map(function(f) {
       let form = new Form(f);
       form.pokemon = this;
-      if (!form.description) {
-        const description = this.description;
-        delete form.description;
-        Object.defineProperty(form, "description", {get: () => description});
-      }
+      // if (!form.description) {
+      //   const description = (this.description ? this.description : "Data missing.");
+      //   delete form.description;
+      //   Object.defineProperty(form, "description", {get: () => description});
+      // }
       return form;
     }.bind(this));
   }
@@ -203,10 +214,12 @@ class Form extends JSONAssignedObject {
       m.move = pokedex.moves.charged.find(mm => mm.key === mc.move);
     }
 
-    for (let e of this.evolutions) {
-      const ec = e;
-      if (e.requirements.item)
-        e.requirements.item = pokedex.items.find(i => i.key === ec.requirements.item);
+    if (this.evolutions) {
+      for (let e of this.evolutions) {
+        const ec = e;
+        if (e.requirements.item)
+          e.requirements.item = pokedex.items.find(i => i.key === ec.requirements.item);
+      }
     }
   }
 
@@ -217,7 +230,7 @@ class Form extends JSONAssignedObject {
   get ancestor() {
     for (let p of pokedex.pokemon)
       for (let f of p.forms)
-        if (f.evolutions.find(e => e.descendant.key === this.key) !== undefined)
+        if (f.evolutions && f.evolutions.find(e => e.descendant && e.descendant.key === this.key) !== undefined)
           return f;
     return undefined;
   }

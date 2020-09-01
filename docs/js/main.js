@@ -33,8 +33,8 @@ function init() {
 }
 
 d3.json("data/pokedex.min.json").then(
-  data => d3.json("img/pokemon/index.json").then(
-  index => pokedex = new Pokedex(data, index, updateProgress, init)));
+  /*data => d3.json("img/pokemon/index.json").then(*/
+  /*index*/ data => pokedex = new Pokedex(data, /*index*/ null, updateProgress, init));
 
 scaleToFit();
 window.addEventListener("resize", scaleToFit);

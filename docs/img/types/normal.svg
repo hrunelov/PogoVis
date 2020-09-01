@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
-<filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
-</filter>
-<g id="Layer_1_1_">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="330px"
+	 height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
+<defs>
+	<filter id="shadow">
+		<feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
+		<feGaussianBlur result="blurOut" in="offOut" stdDeviation="7" />
+		<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+	</filter>
+</defs>
+<g id="Layer_1">
 	<g id="Layer_2">
-		<circle fill="#747B81" cx="165" cy="165" r="165"/>
+		<circle fill="#747b81" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<g>
-	<path filter="url(#shadow)" fill="#FFFFFF" d="M165,122.5c23.435,0,42.5,19.065,42.5,42.5s-19.065,42.5-42.5,42.5s-42.5-19.065-42.5-42.5
-		S141.565,122.5,165,122.5 M165,82.5c-45.563,0-82.5,36.937-82.5,82.5s36.937,82.5,82.5,82.5s82.5-36.937,82.5-82.5
-		S210.563,82.5,165,82.5L165,82.5z"/>
+<g id="Layer_2_1_" filter="url(#shadow)">
+	<path fill="#FFFFFF" d="M165,77.167c-48.509,0-87.833,39.324-87.833,87.833c0,48.509,39.324,87.834,87.833,87.834
+		s87.833-39.325,87.833-87.834C252.833,116.491,213.509,77.167,165,77.167z M165,210.167c-24.945,0-45.167-20.223-45.167-45.167
+		c0-24.945,20.222-45.167,45.167-45.167c24.945,0,45.167,20.222,45.167,45.167C210.167,189.944,189.945,210.167,165,210.167z"/>
 </g>
 </svg>

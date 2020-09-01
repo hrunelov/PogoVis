@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_2_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="330px" height="330px" viewBox="0 0 330 330" enable-background="new 0 0 330 330" xml:space="preserve">
 <filter  id="shadow">
-	<feOffset  dy="0" dx="0" in="SourceAlpha" result="offOut"></feOffset>
-	<feGaussianBlur  in="offOut" stdDeviation="7" result="blurOut"></feGaussianBlur>
-	<feBlend  in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+	<feOffset  result="offOut" dx="0" in="SourceAlpha" dy="0"></feOffset>
+	<feGaussianBlur  result="blurOut" stdDeviation="7" in="offOut"></feGaussianBlur>
+	<feBlend  in2="blurOut" in="SourceGraphic" mode="normal"></feBlend>
 </filter>
 <g id="Layer_1_1_">
 	<g id="Layer_2">
 		<circle fill="#4E5797" cx="165" cy="165" r="165"/>
 	</g>
 </g>
-<path filter="url(#shadow)" fill="#FFFFFF" d="M165,56.877C165,56.877,165,56.877,165,56.877c-41.045,0-75.075,29.977-81.424,69.229
-	c-0.699,4.322-1.076,8.751-1.076,13.271c0,0.014,0.001,0.028,0.001,0.042c0.025,73.005,63.337,133.704,129.161,133.704
-	c0-83.623,35.838-84.623,35.838-133.745c0,0,0-0.001,0-0.001s0,0,0,0v0C247.5,93.813,210.564,56.877,165,56.877z M140.334,146.713
-	c-10.596,2.108-20.896-4.774-23.004-15.37c-1.734-8.725,2.632-17.236,10.142-21.151c-0.159,1.808-0.082,3.667,0.291,5.538
-	c2.109,10.596,12.407,17.478,23.004,15.37c1.87-0.372,3.616-1.011,5.229-1.852C155.25,137.686,149.058,144.978,140.334,146.713z
-	 M212.67,131.343c-2.109,10.596-12.407,17.478-23.004,15.37c-8.726-1.735-14.918-9.028-15.661-17.465
-	c1.61,0.84,3.356,1.479,5.229,1.851c10.596,2.108,20.895-4.774,23.001-15.369c0.373-1.871,0.45-3.729,0.293-5.539
-	C210.038,114.106,214.404,122.617,212.67,131.343z"/>
+<g id="Layer_2_1_" filter="url(#shadow)">
+	<path fill="#FFFFFF" d="M233.016,222.564c11.85-13.269,22.151-37.604,22.151-58.564c0-49.798-40.369-90.167-90.167-90.167
+		S74.833,114.202,74.833,164s47.369,92.167,97.167,92.167c62.33,0,72.5-7.667,74.602-16.728
+		C248.307,232.088,226.631,229.715,233.016,222.564z M137.451,168.235c-9.32,0-16.876-7.555-16.876-16.876
+		c0-5.944,3.081-11.159,7.726-14.167c2.751,8.858,11.012,15.292,20.774,15.292c1.806,0,3.55-0.245,5.227-0.659
+		C154.054,160.929,146.613,168.235,137.451,168.235z M192.549,168.234c-9.161,0-16.603-7.307-16.852-16.408
+		c1.679,0.413,3.422,0.658,5.226,0.658c9.763,0,18.024-6.433,20.776-15.292c4.643,3.007,7.725,8.223,7.725,14.168
+		C209.424,160.68,201.869,168.234,192.549,168.234z"/>
+</g>
 </svg>

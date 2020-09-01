@@ -1,58 +1,136 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 /* Scrollbars */
+/* line 80, src/sass/common.scss */
+.scroll-x {
+  scrollbar-width: 5px;
+  scrollbar-height: 5px;
+  scrollbar-color: #666 #222;
+  padding: 10px;
+  padding-bottom: 5px !important;
+  width: 100%;
+  overflow: hidden !important;
+  overflow-x: scroll !important;
+}
+
+/* line 60, src/sass/common.scss */
+.scroll-x::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* line 65, src/sass/common.scss */
+.scroll-x::-webkit-scrollbar-track {
+  background: inherit;
+  border-radius: 5px;
+}
+
+/* line 70, src/sass/common.scss */
+.scroll-x::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+
+/* line 74, src/sass/common.scss */
+.scroll-x::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* line 89, src/sass/common.scss */
+.scroll-y {
+  scrollbar-width: 5px;
+  scrollbar-height: 5px;
+  scrollbar-color: #666 #222;
+  padding: 10px !important;
+  padding-right: 5px !important;
+  height: 100%;
+  overflow: hidden !important;
+  overflow-y: scroll !important;
+}
+
+/* line 60, src/sass/common.scss */
+.scroll-y::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* line 65, src/sass/common.scss */
+.scroll-y::-webkit-scrollbar-track {
+  background: inherit;
+  border-radius: 5px;
+}
+
+/* line 70, src/sass/common.scss */
+.scroll-y::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+
+/* line 74, src/sass/common.scss */
+.scroll-y::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* line 98, src/sass/common.scss */
+.no-scroll {
+  overflow: hidden !important;
+  padding: 10px;
+}
+
 /* General */
-/* line 75, src/sass/common.scss */
+/* line 105, src/sass/common.scss */
 .list-item-wrapper {
   margin: 0;
 }
 
-/* line 78, src/sass/common.scss */
+/* line 108, src/sass/common.scss */
 .list-item-wrapper.hide-content {
   overflow: hidden;
 }
 
 /* Text */
-/* line 85, src/sass/common.scss */
+/* line 115, src/sass/common.scss */
 .left-aligned {
-  text-align: left;
+  text-align: left !important;
 }
 
-/* line 89, src/sass/common.scss */
+/* line 119, src/sass/common.scss */
 .center-aligned {
-  text-align: center;
+  text-align: center !important;
 }
 
-/* line 93, src/sass/common.scss */
+/* line 123, src/sass/common.scss */
 .right-aligned {
-  text-align: right;
+  text-align: right !important;
 }
 
-/* line 97, src/sass/common.scss */
+/* line 127, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
-/* line 101, src/sass/common.scss */
+/* line 131, src/sass/common.scss */
 .caption {
   font-size: 16pt;
   font-weight: bold;
   margin: 8px;
 }
 
-/* line 107, src/sass/common.scss */
+/* line 137, src/sass/common.scss */
 .uppercase-label {
   text-transform: uppercase;
   margin: 8px;
 }
 
-/* line 112, src/sass/common.scss */
+/* line 142, src/sass/common.scss */
 .numeric-label {
+  font-weight: 700;
+  letter-spacing: 0.025em;
   letter-spacing: 0;
   margin: 8px;
 }
 
 /* Flex */
-/* line 119, src/sass/common.scss */
+/* line 150, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -61,7 +139,7 @@
 }
 
 /* Frames */
-/* line 125, src/sass/common.scss */
+/* line 156, src/sass/common.scss */
 .frame {
   padding: 4px;
   margin: 4px 0;
@@ -70,12 +148,12 @@
   color: #ccc;
 }
 
-/* line 132, src/sass/common.scss */
+/* line 163, src/sass/common.scss */
 .frame.with-caption {
   margin-top: 32px;
 }
 
-/* line 137, src/sass/common.scss */
+/* line 168, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -85,12 +163,12 @@
   background: #222;
 }
 
-/* line 146, src/sass/common.scss */
+/* line 177, src/sass/common.scss */
 .frame-body {
-  margin: 4px;
+  margin: 0;
 }
 
-/* line 150, src/sass/common.scss */
+/* line 181, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,95 +183,96 @@
   overflow: hidden;
 }
 
-/* line 157, src/sass/common.scss */
+/* line 188, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 162, src/sass/common.scss */
+/* line 193, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 167, src/sass/common.scss */
-.left-column-body {
-  padding: 16px;
-  padding-left: 8px;
-  border-top: 0.5px solid #666;
-  border-right: 0.5px solid #666;
+/* line 198, src/sass/common.scss */
+.left-column-frame {
+  border-top: 1px solid #666;
+  border-right: 1px solid #666;
+  padding: 4px;
+  padding-left: 0;
   height: 100%;
 }
 
-/* line 175, src/sass/common.scss */
-.right-column-body {
-  padding: 16px;
-  padding-right: 8px;
-  border-top: 0.5px solid #666;
-  border-left: 0.5px solid #666;
+/* line 206, src/sass/common.scss */
+.right-column-frame {
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
+  padding: 4px;
+  padding-right: 0;
   height: 100%;
 }
 
-/* line 183, src/sass/common.scss */
+/* line 222, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
   text-align: center;
+  height: 20px;
 }
 
 /* Padding/Margins */
-/* line 190, src/sass/common.scss */
+/* line 230, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 194, src/sass/common.scss */
+/* line 234, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 198, src/sass/common.scss */
+/* line 238, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 202, src/sass/common.scss */
+/* line 242, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 206, src/sass/common.scss */
+/* line 246, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 210, src/sass/common.scss */
+/* line 250, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 214, src/sass/common.scss */
+/* line 254, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 218, src/sass/common.scss */
+/* line 258, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 222, src/sass/common.scss */
+/* line 262, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 226, src/sass/common.scss */
+/* line 266, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 230, src/sass/common.scss */
+/* line 270, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -201,21 +280,21 @@
   top: 0;
 }
 
-/* line 237, src/sass/common.scss */
+/* line 277, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 243, src/sass/common.scss */
+/* line 283, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 249, src/sass/common.scss */
+/* line 289, src/sass/common.scss */
 .hidden {
-  display: none;
+  display: none !important;
 }

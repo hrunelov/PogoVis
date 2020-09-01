@@ -1,5 +1,6 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 var heights = {};
+var uid = 0;
 
 // Convenience function for listing data with transitions
 function listData({
@@ -77,7 +78,7 @@ function listData({
   let xDelayFunc = d => delay;
   let uDelayFunc = d => delay + (waitForExit && !xs.empty() && !es.empty() ? duration : 0);
   let eDelayFunc = d => delay + (waitForExit && !xs.empty() ? duration : 0);
-  let attr = (horizontal ? "width" : "height");
+  let size = (horizontal ? "width" : "height");
 
   // Exit
   if (!xs.empty()) {
@@ -87,7 +88,7 @@ function listData({
       .transition("tween")
       .duration(duration)
       .delay(xDelayFunc)
-      .style(attr, "0px")
+      .style(size, "0px")
       .style("opacity", fade ? 0 : 1)
       .remove();
   }
@@ -99,21 +100,33 @@ function listData({
   // Enter
   if (!es.empty()) {
     onenter.bind(es.node())(es, eDelayFunc);
-    let size = (horizontal ? es.node().offsetWidth : es.node().offsetHeight) + "px";
 
-    es.style(attr, "0px")
+    es.style(size, "0px")
       .style("opacity", fade ? 0 : 1)
       .transition("tween")
       .duration(duration)
       .delay(eDelayFunc)
-      .style(attr, size)
+      .style(size, null)
       .style("opacity", 1);
   }
 }
 
-// Delay without transition (why isn't this included by default?)
+// Select element by index
+d3.selection.prototype.at = function(i) {
+  return this.filter((d,j) => j === i);
+}
+
+// Get SVG Viewbox
+d3.selection.prototype.svgViewBox = function() {
+  let svg;
+  for (svg = this.node(); svg && svg.tagName !== "svg"; svg = svg.parentNode);
+  if (!svg) return null;
+  return svg.viewBox.baseVal;
+}
+
+// Delay without transition
 d3.selection.prototype.delay = function(ms) {
-  return this.transition().delay(ms);
+  return this.transition("delay").delay(ms);
 };
 
 // Zoom In
@@ -133,7 +146,10 @@ d3.selection.prototype.zoomIn = function({
     .ease(ease)
     .style("transform", "scale(1,1)");
 
-  return fade ? s.style("opacity", 1) : s;
+  if (fade)
+    s = s.style("opacity", 1);
+
+  return this;
 };
 
 // Zoom In Y
@@ -153,7 +169,10 @@ d3.selection.prototype.zoomInY = function({
     .ease(ease)
     .style("transform", "scaleY(1)");
 
-  return fade ? s.style("opacity", 1) : s;
+  if (fade)
+    s = s.style("opacity", 1);
+
+  return this;
 };
 
 // Zoom Out
@@ -169,7 +188,10 @@ d3.selection.prototype.zoomOut = function({
     .ease(ease)
     .style("transform", "scale(0,0)");
 
-  return fade ? s.style("opacity", 0) : s;
+  if (fade)
+    s = s.style("opacity", 0);
+
+  return this;
 };
 
 // Zoom Out Y
@@ -185,49 +207,328 @@ d3.selection.prototype.zoomOutY = function({
     .ease(ease)
     .style("transform", "scaleY(0)");
 
-  return fade ? s.style("opacity", 0) : s;
+  if (fade)
+    s = s.style("opacity", 0);
+
+  return this;
 };
 
 // Bar Container
+var barProps = d3.local();
 d3.selection.prototype.appendBar = function({
-  vertical        = false,
-  width           = null,
-  height          = null,
-  roundStart      = false,
-  roundEnd        = false,
-  transparent     = false,
-  segments        = 1,
-  separatorColor  = null
+  width            = null,
+  height           = null,
+  background       = null,
+  shadow           = false,
+  max              = 100,
+  minorTickStep    = 0,
+  minMinorTick     = 0,
+  maxMinorTick     = 100,
+  majorTickStep    = 0,
+  minMajorTick     = 0,
+  maxMajorTick     = 100,
+  minorTickWidth   = 2,
+  minorTickOpacity = 0.33,
+  majorTickWidth   = 2,
+  majorTickOpacity = 1,
+  labels           = null,
+  labelAnchor      = "middle",
+  keepLabelsInside = true
 } = {}) {
-  if (vertical && !width)
-    width = 24;
-  if (!vertical && !height)
-    height = 24;
+  width = functionize(width);
+  height = functionize(height);
+  background = functionize(background);
+  minorTickStep = functionize(minorTickStep);
+  minMinorTick = functionize(minMinorTick);
+  maxMinorTick = functionize(maxMinorTick);
+  majorTickStep = functionize(majorTickStep);
+  minMajorTick = functionize(minMinorTick);
+  maxMajorTick = functionize(maxMajorTick);
+  labels = functionize(labels);
 
   let b = this.append("div")
-    .classed("bar-" + (vertical ? "vertical" : "horizontal"), true)
-    .classed("round-start", roundStart)
-    .classed("round-end", roundEnd);
+    .classed("bar-container", true)
+    .style("width", d => width(d) ? width(d) + "px" : null)
+    .style("height", d => height(d) ? height(d) + "px" : null);
 
-  if (width)
-    b.style("width", width + "px");
-  if (height)
-    b.style("height", height + "px");
+  // Extend height in case of labels
+  let labelHeight = (d => labels(d) !== null ? 28 : 0);
 
-  if (!transparent && segments > 0)
-    b.append("div")
-      .classed("bar-background", true);
+  b.style("height", (function(d) {
+    return d3.select(this).node().offsetHeight + labelHeight(d) + "px";
+  }));
 
-  let sw = b.append("div")
-    .classed("bar-content-wrapper", true);
-  for (let i = 0; i < segments; ++i) {
-    let s = sw.append("div")
-      .classed("bar-segment", true);
+  b.each((function(d) {
+      barProps.set(this, {
+        max:              max,
+        minorTickStep:    minorTickStep(d),
+        minMinorTick:     minMinorTick(d),
+        maxMinorTick:     maxMinorTick(d),
+        majorTickStep:    majorTickStep(d),
+        minMajorTick:     minMajorTick(d),
+        maxMajorTick:     maxMajorTick(d),
+        minorTickWidth:   minorTickWidth,
+        minorTickOpacity: minorTickOpacity,
+        majorTickWidth:   majorTickWidth,
+        majorTickOpacity: majorTickOpacity,
+        labels:           labels(d),
+        labelAnchor:      labelAnchor,
+        keepLabelsInside: keepLabelsInside,
+        barWidth:         d3.select(this).node().offsetWidth,
+        barHeight:        d3.select(this).node().offsetHeight,
+        labelHeight:      labelHeight(d)
+      })
+    }));
 
-    if (separatorColor)
-      s.style("border-color", separatorColor);
-  }
+  // Create SVG surface
+  let svg = b.append("svg")
+    .attr("viewBox", (function() {
+      return "0 0 " + d3.select(this).node().parentNode.offsetWidth + " " + d3.select(this).node().parentNode.offsetHeight;
+    }));
+
+  // Drop Shadow
+  let s = svg.append("filter")
+    .attr("id", "shadow");
+  s.append("feOffset")
+    .attr("dx", 0)
+    .attr("dy", 0)
+    .attr("in", "SourceAlpha")
+    .attr("result", "offOut");
+  s.append("feGaussianBlur")
+    .attr("in", "offOut")
+    .attr("stdDeviation", 1)
+    .attr("result", "blurOut");
+  s.append("feBlend")
+    .attr("in", "SourceGraphic")
+    .attr("in2", "blurOut")
+    .attr("mode", "normal");
+
+  let g = svg.append("g");
+
+  // Bar background
+  let bg = g.append("rect")
+    .classed("bar-background", true)
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", "100%")
+    .style("fill", d => background(d) ? background(d) : null);
+  bg.attr("height", (function(d) {
+    return d3.select(this).svgViewBox().height - labelHeight(d);
+  }));
+  if (shadow)
+    bg.attr("filter", "url(#shadow)");
+
+  // Ticks and mask
+  let ticks = svg.append("mask")
+    .attr("id", (d,i) => "ticks" + uid++ + i)
+  g.attr("mask", (d,i) => "url(#" + ticks.at(i).attr("id") + ")");
+  ticks.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .style("fill", "#000");
+  let mask = ticks.append("rect")
+    .classed("bar-mask", true)
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", "100%")
+    .style("fill", "#fff");
+  mask.attr("height", (function(d) {
+      return d3.select(this).svgViewBox().height - labelHeight(d);
+    }));
+  b.setBarTickStep({
+    minorTickStep:   d => minorTickStep(d),
+    majorTickStep:   d => majorTickStep(d),
+    labels:          d => labels(d)
+  });
+
   return b;
+};
+
+// Set Bar Ticks
+d3.selection.prototype.setBarTickStep = function({
+  minorTickStep   = null,
+  majorTickStep   = null,
+  labels          = null,
+} = {}) {
+  let ticks = this.select("svg").select("mask");
+
+  let xFunc = function(t,i) {
+    return (t/barProps.get(this).max) * i * barProps.get(this).barWidth;
+  };
+
+  if (minorTickStep !== null) {
+    minorTickStep = functionize(minorTickStep);
+    this.each((function(d) {
+      barProps.get(this).minorTickStep = minorTickStep(d);
+    }));
+
+    ticks.selectAll(".minor")
+      .remove();
+    ticks.selectAll(".minor")
+      .data((function(d) {
+        return (minorTickStep(d)
+          ? new Array(Math.floor(Math.min(barProps.get(this).maxMinorTick, barProps.get(this).max - 0.0001)
+            / minorTickStep(d))).fill(minorTickStep(d))
+          : []);
+      }))
+      .enter()
+      .append("line")
+      .classed("bar-tick", true)
+      .classed("minor", true)
+      .attr("x1", (function(t,i) {
+        return xFunc.bind(this)(t,i+1);
+      }))
+      .attr("y1", 0)
+      .attr("x2", (function(t,i) {
+        return xFunc.bind(this)(t,i+1);
+      }))
+      .attr("y2", "100%")
+      .style("stroke-width", (function() {
+        return barProps.get(this).minorTickWidth;
+      }))
+      .style("opacity", (function() {
+        return barProps.get(this).minorTickOpacity;
+      }));
+  }
+  if (majorTickStep !== null) {
+    majorTickStep = functionize(majorTickStep);
+    this.each((function(d) {
+      barProps.get(this).majorTickStep = majorTickStep(d);
+    }));
+
+    ticks.selectAll(".major")
+      .remove();
+    ticks.selectAll(".bar-label")
+      .remove();
+
+    let data = function(d) {
+      let step = barProps.get(this).majorTickStep;
+      return (step ? new Array(Math.floor(Math.min(barProps.get(this).maxMajorTick, barProps.get(this).max - 0.0001) / step)).fill(step) : []);
+    };
+    ticks.selectAll(".major")
+      .data(data)
+      .enter()
+      .append("line")
+      .classed("bar-tick", true)
+      .classed("major", true)
+      .attr("x1", (function(t,i) {
+        return xFunc.bind(this)(t,i+1);
+      }))
+      .attr("y1", 0)
+      .attr("x2", (function(t,i) {
+        return xFunc.bind(this)(t,i+1);
+      }))
+      .attr("y2", "100%")
+      .style("stroke-width", (function() {
+        return barProps.get(this).majorTickWidth;
+      }))
+      .style("opacity", (function() {
+        return barProps.get(this).majorTickOpacity;
+      }));
+  }
+  if (labels !== null) {
+    labels = functionize(labels);
+    this.each((function(d) {
+      barProps.get(this).labels = labels(d);
+    }));
+
+    let svg = this.select("svg");
+    svg.selectAll(".bar-label")
+      .remove();
+
+    let data = function(d) {
+      if (!labels(d))
+        return [];
+      let step = barProps.get(this).majorTickStep;
+      return (step ? new Array(Math.floor(Math.min(barProps.get(this).maxMajorTick, barProps.get(this).max) / step) + 1).fill(step) : []);
+    };
+    svg.selectAll(".bar-label")
+      .data(data)
+      .enter()
+      .append("text")
+      .classed("bar-label", true)
+      .classed("numeric-label", true)
+      .attr("text-anchor", (function() {
+        return barProps.get(this).labelAnchor;
+      }))
+      .text((function(t,i) {
+        let labels = barProps.get(this).labels;
+        return (labels[i] ? labels[i] : t*i).toString().replace(Infinity, "∞");
+      }))
+      .attr("x", (function(t,i) {
+        let x = xFunc.bind(this)(t,i);
+        if (!barProps.get(this).keepLabelsInside)
+          return x;
+        let w = d3.select(this).node().getBBox().width;
+        let lw, rw;
+        switch (barProps.get(this).labelAnchor) {
+          case "start":
+            lw = 0;
+            rw = w;
+            break;
+          case "middle":
+            lw = w*0.5;
+            rw = lw;
+            break;
+          case "end":
+            lw = w;
+            rw = 0;
+            break;
+        }
+        return Math.min(x - Math.min(0, x-lw), barProps.get(this).barWidth - rw);
+      }))
+      .attr("y", (function() {
+        return barProps.get(this).barHeight - barProps.get(this).labelHeight + 20;
+      }));
+  }
+
+  return this;
+}
+
+// Bar Value
+d3.selection.prototype.appendBarValue = function({
+  color             = null,
+  shadow            = false,
+  value             = 0.5,
+  startValue        = 0,
+  fadeFromZero      = false,
+  duration          = TRANSITION_DURATION_MEDIUM,
+  delay             = 0
+} = {}) {
+  let svg = this.select("svg");
+
+  let v = svg.select("g")
+    .append("rect")
+    .classed("bar-value", true)
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("height", "100%");
+
+  if (color)
+    v.style("fill", color);
+
+  v.setBarValue({
+    value:      fadeFromZero ? 0 : value,
+    startValue: fadeFromZero ? 0 : startValue,
+    immediate:  true
+  });
+
+  if (fadeFromZero) {
+    v.setBarValue({
+      value:      value,
+      startValue: startValue,
+      immediate:  false,
+      duration:   duration,
+      delay:      delay
+    });
+  }
+
+  if (shadow)
+    v.attr("filter", "url(#shadow)");
+
+  return v;
 };
 
 // Set Bar Value
@@ -236,74 +537,192 @@ d3.selection.prototype.setBarValue = function({
   startValue = 0,
   immediate  = false,
   duration   = TRANSITION_DURATION_MEDIUM,
-  delay      = 0
+  delay      = 0,
+  ease       = d3.easeQuad
 } = {}) {
   value = functionize(value);
   startValue = functionize(startValue);
 
-  let valueAttr = "";
-  let startValueAttr = "";
-  if (d3.select(this.node().parentNode).classed("bar-horizontal")) {
-    valueAttr = "width";
-    startValueAttr = (this.classed("reverse") ? "right" : "left");
-  }
-  if (d3.select(this.node().parentNode).classed("bar-vertical")) {
-    valueAttr = "height";
-    startValueAttr = (this.classed("reverse") ? "bottom" : "top");
-  }
-
   if (immediate) {
-    this.style(startValueAttr, d => startValue(d) * 100 + "%");
-    this.style(valueAttr, d => (value(d) - startValue(d)) * 100 + "%");
+    this.interrupt("fade");
+    this.attr("x", (function(d) {
+        return(startValue(d)/barProps.get(this).max) * 100 + "%";
+      }))
+      .attr("width", (function(d) {
+        let w = ((value(d) - startValue(d))/barProps.get(this).max) * 100;
+        return (w !== Infinity && !isNaN(w) ? w : 0) + "%";
+      }));
   }
   else {
-    this.transition()
+    this.transition("fade")
       .duration(duration)
       .delay(delay)
-      .style(startValueAttr, d => startValue(d) * 100 + "%")
-      .style(valueAttr, d => (value(d) - startValue(d)) * 100 + "%");
+      .ease(ease)
+      .attr("x", (function(d) {
+        return(startValue(d)/barProps.get(this).max) * 100 + "%";
+      }))
+      .attr("width", (function(d) {
+        let w = ((value(d) - startValue(d))/barProps.get(this).max) * 100;
+        return (w !== Infinity && !isNaN(w) ? w : 0) + "%";
+      }));
   }
+
+  return this;
 };
 
-// Bar Value
-d3.selection.prototype.appendBarValue = function({
-  roundStart        = false,
-  roundEnd          = false,
-  reverse           = false,
-  color             = null,
-  initialValue      = 0.5,
-  initialStartValue = 0,
+// Spider Chart
+var spiderProps = d3.local();
+d3.selection.prototype.appendSpiderChart = function({
+  width           = null,
+  height          = null,
+  max             = 1,
+  tick            = 0.25,
+  labels          = ["X","Y","Z"],
+  anchors         = null,
+  anchorOffsets   = null
+} = {}) {
+
+  let flipped = false;
+
+  let n = labels.length;
+  let c = this.append("div")
+    .classed("spider-container", true);
+
+  spiderProps.set(c, {
+    width:      width,
+    height:     height,
+    max:        max,
+    tick:       tick,
+    n:          n,
+
+    atoc:       function(angle, value) {
+                  let scale = d3.scaleLinear()
+                    .domain([0, max])
+                    .range([0, height*0.4]);
+
+                  let x = Math.cos(angle) * scale(value);
+                  let y = Math.sin(angle) * scale(value) * (flipped ? -1 : 1);
+                  return {"x": width*0.5 + x, "y": height*0.5 - y};
+                },
+
+     makeLine:  function() {
+                  let n = labels.length;
+                  return d3.line()
+                    .x((d, i) => p.atoc((Math.PI/2) + (2 * Math.PI * i/n), d).x)
+                    .y((d, i) => p.atoc((Math.PI/2) + (2 * Math.PI * i/n), d).y)
+                    .curve(d3.curveLinearClosed);
+                }
+  });
+  let p = spiderProps.get(c);
+
+  // Create SVG surface
+  let svg = c.append("svg")
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 " + width + " " + height);
+
+  // Scale
+  let scale = d3.scaleLinear()
+    .domain([0, max])
+    .range([0, height*0.4]);
+
+  // Ticks
+  let ticks = [];
+  for (let i = tick; i <= max; i += tick) {
+    ticks.push(i);
+  }
+
+  // Draw ticks
+  for (let t of ticks) {
+    svg.append("path")
+      .datum(new Array(n).fill(t))
+      .attr("class", t < max ? "spider-tick" : "spider-tick-outer")
+      .attr("d", p.makeLine());
+  }
+
+  // Label anchors
+  if (!anchors) {
+    anchors = ["middle"];
+    for (let i = 1; i < n; ++i) {
+      if (i < n/2) anchors.push("end");
+      else if (i == n/2) anchors.push("middle");
+      else anchors.push("start");
+    }
+  }
+  if (!anchorOffsets)
+    anchorOffsets = new Array(n).fill({x:0,y:0});
+
+  // Draw axes and labels
+  for (let i = 0; i < n; ++i) {
+    let label = labels[i];
+    let angle = (Math.PI/2) + (2 * Math.PI * i/n);
+    let lineCoord = p.atoc(angle, max);
+    let labelCoord = p.atoc(angle, max + 40);
+
+    // Axes
+    svg.append("line")
+      .classed("spider-axis", true)
+      .attr("x1", width*0.5)
+      .attr("y1", height*0.5)
+      .attr("x2", lineCoord.x)
+      .attr("y2", lineCoord.y);
+
+    // Labels
+    svg.append("text")
+      .classed("spider-label", true)
+      .attr("text-anchor", anchors[i])
+      .attr("x", labelCoord.x + anchorOffsets[i].x)
+      .attr("y", labelCoord.y + anchorOffsets[i].y)
+      .text(label);
+  }
+
+  return c;
+};
+
+// Spider Chart Data
+d3.selection.prototype.appendSpiderChartData = function({
+  strokeWidth       = null,
+  strokeColor       = null,
+  fillColor         = null,
+  data              = [],
   fadeFromZero      = false,
   duration          = TRANSITION_DURATION_MEDIUM,
   delay             = 0
 } = {}) {
-  let v = this.append("div")
-    .classed("bar-value", true)
-    .classed("round-start", roundStart)
-    .classed("round-end", roundEnd)
-    .classed("reverse", reverse);
+  let p = spiderProps.get(this);
 
-  if (color)
-    v.style("background", color);
+  let svg = this.select("svg");
 
-  v.setBarValue({
-    value: fadeFromZero ? 0 : initialValue,
-    startValue: fadeFromZero ? 0 : initialStartValue,
-    immediate: true,
-  });
+  let d = svg.append("path")
+    .datum(data)
+    .classed("spider-shape", true)
+    .attr("d", p.makeLine());
 
-  if (fadeFromZero) {
-    v.setBarValue({
-      value: initialValue,
-      startValue: initialStartValue,
-      immediate: false,
-      duration: duration,
-      delay: delay
-    });
-  }
+  if (strokeWidth !== null)
+    d.style("stroke-width", strokeWidth + "px");
+  if (strokeColor !== null)
+    d.style("stroke", strokeColor);
+  if (fillColor !== null)
+    d.style("fill", fillColor);
 
-  return v;
+  spiderProps.set(d,p);
+
+  return d;
 };
+
+// Set Spider Chart Data
+d3.selection.prototype.setSpiderChartData = function({
+  data       = [],
+  immediate  = false,
+  duration   = TRANSITION_DURATION_MEDIUM,
+  delay      = 0
+} = {}) {
+  let p = spiderProps.get(this);
+
+  this.datum(data)
+    .transition()
+    .duration(delay + duration)
+    .attr("d", p.makeLine());
+}
 
 // Type Icon
 d3.selection.prototype.appendTypeIcon = function(typeFunc) {
@@ -355,6 +774,15 @@ d3.selection.prototype.appendPokemonImage = function({
     .classed("selected", selected)
     .text(form.pokemon.name)
     .style("transform", fadeFrame ? "scaleY(0)" : "");
+
+  if (form.ancestor) {
+    let type = form.ancestor.evolutions.filter(e => e.descendant.key === form.key)[0].evolutionType;
+    if (type) {
+      type = type.split("_");
+      n.classed("two-lines", true)
+        .html(capitalize(type[0]) + "<br/>" + form.pokemon.name + (type[1] ? " " + capitalize(type[1]) : ""));
+    }
+  }
 
   if (!selected) {
     w.append("button")

@@ -3,7 +3,7 @@ var typeChar;
 var evoFadeDelays = 0;
 
 function updateGeneralInfo() {
-  updateDescription();
+  // updateDescription();
   updateTopBar();
   updateTypeInfo();
   updateEvolution();
@@ -36,14 +36,14 @@ function updateDescription() {
 // Top Bar (Gender ratio, etc)
 function updateTopBar() {
   d3.select("#form-female-percent")
-    .text(selectedForm.genderRatio !== null ? oneDecimal(selectedForm.genderRatio * 100) + "%" : "");
+    .text(selectedForm.femaleToMaleRatio !== undefined ? oneDecimal(selectedForm.femaleToMaleRatio * 100) + "%" : "");
 
-  let barRatio = selectedForm.genderRatio === 1 ? 1.01 : selectedForm.genderRatio;
+  let barRatio = selectedForm.femaleToMaleRatio === 1 ? 1.01 : selectedForm.femaleToMaleRatio;
   let b = d3.select("#form-female-bar")
     .style("z-index", barRatio >= 1 ? 1 : 0);
 
   let w = (barRatio * 100) + "%";
-  if (!lastForm || lastForm.genderRatio === null)
+  if (!lastForm || lastForm.femaleToMaleRatio === undefined)
     b.style("width", w);
   else {
     b.transition()
@@ -55,7 +55,7 @@ function updateTopBar() {
     .style("z-index", barRatio === 0 ? 1 : 0);
 
   w = (100 - Math.min(barRatio, 1) * 100) + "%";
-  if (!lastForm || lastForm.genderRatio === null)
+  if (!lastForm || lastForm.femaleToMaleRatio === undefined)
     b.style("width", w);
   else {
     b.transition()
@@ -64,13 +64,13 @@ function updateTopBar() {
   }
 
   d3.selectAll(".form-gender-element")
-    .classed("hidden", selectedForm.genderRatio === null);
+    .classed("hidden", selectedForm.femaleToMaleRatio === undefined);
 
   d3.select("#form-genderless-label")
-    .classed("hidden", selectedForm.genderRatio !== null);
+    .classed("hidden", selectedForm.femaleToMaleRatio !== undefined);
 
   d3.select("#form-male-percent")
-    .text(selectedForm.genderRatio !== null ? 100 - oneDecimal(selectedForm.genderRatio * 100) + "%" : "");
+    .text(selectedForm.femaleToMaleRatio !== undefined ? 100 - oneDecimal(selectedForm.femaleToMaleRatio * 100) + "%" : "");
 }
 
 // Type
@@ -131,10 +131,7 @@ function updateTypeInfo() {
     .filter(e => e.damageMultiplier < 1)
     .sort((e1, e2) => e1.damageMultiplier - e2.damageMultiplier);
   var weaknesses = selectedForm.counterEffectiveness
-    .filter(e => {
-      console.log(e.damageMultiplier);
-      return e.damageMultiplier > 1;
-    })
+    .filter(e => e.damageMultiplier > 1)
     .sort((e1, e2) => e2.damageMultiplier - e1.damageMultiplier);
 
   listTypeEffectivenesses(resistances, "#form-resistances", true);
@@ -179,8 +176,8 @@ function listTypeEffectivenesses(data, container, reverse) {
         .duration(TRANSITION_DURATION_MEDIUM)
         .delay((d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3)
         .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.max.damageMultiplier :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.max.damageMultiplier)) *
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
                              (w-m) + m + "px");
 
     },
@@ -193,12 +190,11 @@ function listTypeEffectivenesses(data, container, reverse) {
         .delay(delayFunc)
         .text(d => oneDecimal(d.damageMultiplier * 100) + "%");
 
-      s.interrupt()
-        .transition()
+      s.transition()
         .duration(TRANSITION_DURATION_MEDIUM)
         .delay(delayFunc)
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.max.damageMultiplier :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.max.damageMultiplier)) *
+        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
+                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
                              (w-m) + m + "px");
     },
     onexit: function(s, delay) {
@@ -233,7 +229,7 @@ function updateEvolution() {
     .remove();
 
   // No lineage, don't display any evolutions
-  if (selectedForm.firstAncestor.evolutions.length === 0) {
+  if (!selectedForm.firstAncestor.evolutions) {
     d3.select("#form-evolution-root")
       .html("<br/>No known lineage");
 
@@ -260,8 +256,17 @@ function updateEvolution() {
   }
 
   // Recursively display evolution branches
-  var displayEvolution = function(s, ancestor) {
+  let depth = 0;
+  function displayEvolution(s, ancestor, curDepth) {
     const evoFadeStartDelay = TRANSITION_DURATION_MEDIUM/2;
+
+    if (!curDepth) {
+      depth = 0;
+      curDepth = 1;
+    }
+
+    if (curDepth > depth)
+      depth = curDepth;
 
     let c = s.append("div")
       .classed("form-evolution-column", true);
@@ -282,7 +287,7 @@ function updateEvolution() {
       .classed("form-evolution-descendant-line", true);
 
     // No descendants, we're done
-    if (ancestor.evolutions.length == 0)
+    if (!ancestor.evolutions)
       return;
 
     // Group evolutions by same requirements
@@ -292,7 +297,7 @@ function updateEvolution() {
       let group = [e1];
       for (let e2 of ancestor.evolutions) {
         if (group.includes(e2)) continue;
-        if (equivalent(e1, e2, ["descendant"])) group.push(e2);
+        if (equivalent(e1, e2, ["descendant", "evolutionType"])) group.push(e2);
       }
       evoGroups.push(group);
     }
@@ -304,11 +309,11 @@ function updateEvolution() {
 
       c.append("div")
         .classed("form-evolution-path", true)
-        .classed("short", true)
+        .classed("medium", true)
         .classed("upper", true);
       c.append("div")
         .classed("form-evolution-path", true)
-        .classed("short", true)
+        .classed("medium", true)
         .classed("lower", true);
     }
 
@@ -366,71 +371,118 @@ function updateEvolution() {
         .append("div")
         .classed("form-evolution-reqs-body", true);
 
+       // Item, time and gender are grouped together
       if (e.requirements.item || e.requirements.timeOfDay || e.requirements.gender) {
         let br = er.append("div")
           .classed("form-evolution-req-icons-wrapper", true);
 
+        if (e.requirements.gender) {
+          let img = br.append("img")
+            .classed("form-evolution-req-icon", true)
+            .attr("src", "img/" + e.requirements.gender + ".svg")
+            .attr("title", capitalize(e.requirements.gender) + " only");
+          if (doTransitions)
+            fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+        }
+
         if (e.requirements.item) {
           let img = br.append("img")
             .classed("form-evolution-req-icon", true)
-            .attr("src", "img/items/" + e.requirements.item.key + ".svg");
-            if (doTransitions)
-              fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+            .attr("src", "img/items/" + e.requirements.item.key + ".png")
+            .attr("title", "Requires " + e.requirements.item.name);
+          if (doTransitions)
+            fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
         }
 
         if (e.requirements.timeOfDay) {
           let img = br.append("img")
             .classed("form-evolution-req-icon", true)
-            .attr("src", "img/" + e.requirements.timeOfDay + ".svg");
-            if (doTransitions)
+            .attr("src", "img/" + e.requirements.timeOfDay + ".svg")
+            .attr("title", "Only during the " + e.requirements.timeOfDay);
+          if (doTransitions)
             fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
-        }
-
-        if (e.requirements.gender) {
-          let img = br.append("img")
-            .classed("form-evolution-req-icon", true)
-            .attr("src", "img/" + e.requirements.gender + ".svg");
-            if (doTransitions)
-              fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
         }
       }
 
+      // Buddy distance
       if (e.requirements.buddyDistance) {
         let l = er.append("div")
-          .classed("form-evolution-req-label", true);
+          .classed("form-evolution-req-label", true)
+          .attr("title", "Must be buddy and walked " + e.requirements.buddyDistance + " km first");
         let img = l.append("img")
           .attr("src", "img/distance.svg");
-          if (doTransitions)
-            fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+        if (doTransitions)
+          fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
         let t = l.append("div")
           .classed("form-evolution-req-number", true)
           .text(e.requirements.buddyDistance + " km");
-          if (doTransitions)
-            fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
-      }
-
-      if (e.requirements.other) {
-        let t = er.append("div")
-          .classed("form-evolution-req-text", true)
-          .text(e.requirements.other);
-          if (doTransitions)
-            fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
-      }
-
-      let l = er.append("div")
-        .classed("form-evolution-req-label", true);
-      let img = l.append("img")
-        .attr("src", "img/candy.svg");
-        if (doTransitions)
-          fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
-      let t = l.append("div")
-        .classed("form-evolution-req-number", true)
-        .text(e.requirements.candy);
         if (doTransitions)
           fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
+      }
+
+      // Stats
+      if (e.requirements.highestStat) {
+        let l = er.append("div")
+          .classed("form-evolution-req-label", true)
+          .attr("title", "Highest stat is " + e.requirements.highestStat);
+        let t = l.append("div")
+          .classed("form-evolution-req-text", true)
+          .text(e.requirements.highestStat)
+        if (doTransitions)
+          fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
+      }
+
+      // Mega energy
+      if (e.requirements.megaEnergy) {
+        let l = er.append("div")
+          .classed("form-evolution-req-label", true)
+          .attr("title", "Requires " + e.requirements.megaEnergy.first + " Mega Energy first, " + e.requirements.megaEnergy.subsequent +
+          " afterwards");
+        let img = l.append("img")
+          .attr("src", "img/mega.svg");
+        if (doTransitions)
+          fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+        let t = l.append("div")
+          .classed("form-evolution-req-number", true)
+          .html(e.requirements.megaEnergy.first + "<br/>🡖" + e.requirements.megaEnergy.subsequent);
+        if (doTransitions)
+          fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
+      }
+
+      // Candy
+      if (e.requirements.candy) {
+        let l = er.append("div")
+          .classed("form-evolution-req-label", true)
+          .attr("title", "Requires " + e.requirements.candy + " candy");
+        let img = l.append("img")
+          .attr("src", "img/candy.svg");
+        if (doTransitions)
+          fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+        let t = l.append("div")
+          .classed("form-evolution-req-number", true)
+          .text(e.requirements.candy);
+        if (doTransitions)
+          fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
+      }
+
+      // Trade discount
+      if (e.tradeDiscount) {
+        l = er.append("div")
+          .classed("form-evolution-req-label", true)
+          .attr("title", "No candy requirement if traded");
+        t = l.append("div")
+          .classed("form-evolution-req-number", true)
+          .html("or&nbsp;&nbsp;");
+        if (doTransitions)
+          fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
+        img = l.append("img")
+          .attr("src", "img/trade.svg");
+        if (doTransitions)
+          fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
+      }
 
       cc = r.append("div")
-          .classed("form-evolution-column", true);
+        .classed("form-evolution-column", true);
 
       // Draw line to separate req list from image or split
       cc.append("div")
@@ -461,28 +513,31 @@ function updateEvolution() {
 
           cc.append("div")
             .classed("form-evolution-path", true)
-            .classed("short", true)
+            .classed("medium", true)
             .classed("upper", true)
             .classed("split", true)
             .classed("top", subTop)
             .classed("bottom", subBottom);
           cc.append("div")
             .classed("form-evolution-path", true)
-            .classed("short", true)
+            .classed("medium", true)
             .classed("lower", true)
             .classed("split", true)
             .classed("top", subTop)
             .classed("bottom", subBottom);
 
-          displayEvolution(cc2.append("div").classed("form-evolution-row", true), e.descendant);
+          displayEvolution(cc2.append("div").classed("form-evolution-row", true), e.descendant, curDepth+1);
         }
       }
       else
-        displayEvolution(r, e.descendant);
+        displayEvolution(r, e.descendant, curDepth+1);
     }
-  };
+  }
   evoFadeDelays = 0;
   displayEvolution(d3.select("#form-evolution-root"), selectedForm.firstAncestor);
+
+  d3.select("#form-evolution-body")
+    .classed("overflow", depth > 3);
 
   animateHeight("#form-evolution-body");
 }

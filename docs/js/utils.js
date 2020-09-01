@@ -22,6 +22,9 @@ function deepFreeze(o) {
 }
 
 function equivalent(o1, o2, ignore) {
+  if (!o1)
+    return !o2;
+
 	if (typeof o1 !== typeof o2)
   	return false;
 
@@ -41,7 +44,7 @@ function equivalent(o1, o2, ignore) {
     checked1.push(oo1);
     checked2.push(oo2);
 
-    let len = Object.getOwnPropertyNames(oo1).length;
+    let len = Math.max(Object.getOwnPropertyNames(oo1).length, Object.getOwnPropertyNames(oo2).length);
     let props1 = Object.getOwnPropertyNames(oo1);
     let props2 = Object.getOwnPropertyNames(oo2);
 
@@ -50,7 +53,7 @@ function equivalent(o1, o2, ignore) {
       let prop2 = props2[i];
 
       if (ignore && (ignore.includes(prop1) || ignore.includes(prop2)))
-        return;
+        continue;
 
       if (prop1 !== prop2) {
         differs = true;
@@ -63,6 +66,7 @@ function equivalent(o1, o2, ignore) {
         recurse(value1, value2);
       else if (value1 !== value2) {
         differs = true;
+        return;
       }
     }
   };
