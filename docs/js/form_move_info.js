@@ -9,7 +9,6 @@ var collapsedHeights = d3.local();
 // Terribly ugly hack to keep the content from stretching the container beyond the bottom,
 // because the obnoxious CSS just won't. Don't try this at home.
 new ResizeObserver(function() {
-  console.log("resize");
   d3.selectAll(".form-move-column")
     .style("max-height", d3.select("#form-move-info-page").node().offsetHeight
                        - d3.select(".form-move-column").node().offsetTop * 0.5
@@ -91,18 +90,11 @@ function updateFastMoves(battleType) {
         shadow: true
       }).classed("sim-value", true);
 
-      // Select Charge moves
-      let c = d3.select("#form-charged-moves")
-        .selectAll(".form-move-body");
-      let ceb = c.select(".energy-bar");
-      let cev = ceb.select("svg")
-        .select("g")
-        .select(".sim-value");
-      let ccv = ceb.select("svg")
-        .select("g")
-        .select(".charged-value");
-
       s.on("mouseenter", (function(d,i) {
+        // Select Charge moves
+        let c = d3.select("#form-charged-moves")
+          .selectAll(".form-move-body");
+        let ceb = c.select(".energy-bar");
 
         // Dim other Fast moves
         d3.select("#form-fast-moves")
@@ -131,6 +123,17 @@ function updateFastMoves(battleType) {
       .on("click", (function(d,i) {
         let fev = ev.at(i);
         let fdv = dv.at(i);
+
+        // Select Charge moves
+        let c = d3.select("#form-charged-moves")
+          .selectAll(".form-move-body");
+        let ceb = c.select(".energy-bar");
+        let cev = ceb.select("svg")
+          .select("g")
+          .select(".sim-value");
+        let ccv = ceb.select("svg")
+          .select("g")
+          .select(".charged-value");
 
         // Dim Charge moves
         c.selectAll(".form-move-body > div:not(.energy-bar)")
