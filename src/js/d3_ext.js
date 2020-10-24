@@ -2,10 +2,8 @@ var heights = {};
 var uid = 0;
 
 // Convenience function for listing data with transitions
-function listData({
-  container    = d3.select("body"),
+d3.selection.prototype.listData = function({
   tag          = "div",
-  classed      = null,
   data         = [],
   key          = d => d,
   horizontal   = false,
@@ -19,8 +17,7 @@ function listData({
   onenter      = () => {}
 } = {}) {
   const notExiting = ":not(.exiting)";
-  let selector = (classed ? "." + classed : tag);
-
+  const selector = "list-item-wrapper";
   let xs, us, es;
 
   // For smooth reordering
@@ -57,7 +54,7 @@ function listData({
   };
 
   // Update selection
-  us = container.selectAll(selector + notExiting)
+  us = this.selectAll("." + selector + notExiting)
     .data(data, key);
 
   // Exit selection
@@ -69,9 +66,8 @@ function listData({
   // Enter selection
   es = us.enter()
     .append(tag)
-    .classed("list-item-wrapper", true)
-    .classed("hide-content", hideContent)
-    .classed(classed, classed);
+    .classed(selector, true)
+    .classed("hide-content", hideContent);
 
   // Delays
   let xDelayFunc = d => delay;
@@ -108,20 +104,50 @@ function listData({
       .style(size, null)
       .style("opacity", 1);
   }
-}
+
+  return this.selectAll("." + selector);
+};
 
 // Select element by index
 d3.selection.prototype.at = function(i) {
   return this.filter((d,j) => j === i);
-}
+};
 
-// Get SVG Viewbox
-d3.selection.prototype.svgViewBox = function() {
-  let svg;
-  for (svg = this.node(); svg && svg.tagName !== "svg"; svg = svg.parentNode);
-  if (!svg) return null;
-  return svg.viewBox.baseVal;
-}
+// Append SVG
+d3.selection.prototype.appendSvg = function(width, height) {
+  let s = this;
+  return s.append("svg")
+    .style("width", function(d,i) {
+      return width ? width + (isNumber(width) ? "px" : "") : null;
+    })
+    .style("height", function(d,i) {
+      return height ? height + (isNumber(height) ? "px" : "") : null;
+    });
+};
+
+// Select a parent
+d3.selection.prototype.selectParentWithTag = function(tag) {
+  tag = tag.toLowerCase();
+  let s;
+  for (s = this.node(); s && s.tagName !== tag; s = s.parentNode);
+  if (!s) return null;
+  return d3.select(s);
+};
+d3.selection.prototype.selectParentWithClass = function(cl) {
+  let s;
+  for (s = this.node(); s && !d3.select(s).classed(cl); s = s.parentNode);
+  if (!s) return null;
+  return d3.select(s);
+};
+
+// Interpolate
+d3.transition.prototype.interp = function(a,b,f) {
+  return this.tween("interp", function() {
+    return function(t) {
+      f((1-t)*a + t*b);
+    };
+  });
+};
 
 // Delay without transition
 d3.selection.prototype.delay = function(ms) {
@@ -174,6 +200,20 @@ d3.selection.prototype.zoomInY = function({
   return this;
 };
 
+// Fade In
+d3.selection.prototype.fadeIn = function({
+  duration = TRANSITION_DURATION_MEDIUM,
+  delay    = 0
+} = {}) {
+  this.style("opacity", 0)
+    .transition()
+    .duration(duration)
+    .delay(delay)
+    .style("opacity", 1);
+
+  return this;
+};
+
 // Zoom Out
 d3.selection.prototype.zoomOut = function({
   duration = TRANSITION_DURATION_MEDIUM,
@@ -212,6 +252,19 @@ d3.selection.prototype.zoomOutY = function({
   return this;
 };
 
+// Fade Out
+d3.selection.prototype.fadeOut = function({
+  duration = TRANSITION_DURATION_MEDIUM,
+  delay    = 0
+} = {}) {
+    this.transition()
+      .duration(duration)
+      .delay(delay)
+      .style("opacity", 0);
+
+  return this;
+};
+
 // Bar Container
 var barProps = d3.local();
 d3.selection.prototype.appendBar = function({
@@ -232,7 +285,8 @@ d3.selection.prototype.appendBar = function({
   majorTickOpacity = 1,
   labels           = null,
   labelAnchor      = "middle",
-  keepLabelsInside = true
+  keepLabelsInside = true,
+  classes          = []
 } = {}) {
   width = functionize(width);
   height = functionize(height);
@@ -249,6 +303,9 @@ d3.selection.prototype.appendBar = function({
     .classed("bar-container", true)
     .style("width", d => width(d) ? width(d) + "px" : null)
     .style("height", d => height(d) ? height(d) + "px" : null);
+
+  for (let c of classes)
+    b.classed(c, true);
 
   // Extend height in case of labels
   let labelHeight = (d => labels(d) !== null ? 28 : 0);
@@ -280,10 +337,7 @@ d3.selection.prototype.appendBar = function({
     });
 
   // Create SVG surface
-  let svg = b.append("svg")
-    .attr("viewBox", function() {
-      return "0 0 " + d3.select(this).node().parentNode.offsetWidth + " " + d3.select(this).node().parentNode.offsetHeight;
-    });
+  let svg = b.appendSvg("100%", "100%");
 
   // Drop Shadow
   let s = svg.append("filter")
@@ -311,9 +365,7 @@ d3.selection.prototype.appendBar = function({
     .attr("y", 0)
     .attr("width", "100%")
     .style("fill", d => background(d) ? background(d) : null);
-  bg.attr("height", function(d) {
-    return d3.select(this).svgViewBox().height - labelHeight(d);
-  });
+  bg.attr("height", (d,i) => svg.at(i).node().clientHeight - labelHeight(d));
   if (shadow)
     bg.attr("filter", "url(#shadow)");
 
@@ -333,9 +385,7 @@ d3.selection.prototype.appendBar = function({
     .attr("y", 0)
     .attr("width", "100%")
     .style("fill", "#fff");
-  mask.attr("height", function(d) {
-      return d3.select(this).svgViewBox().height - labelHeight(d);
-    });
+  mask.attr("height", (d,i) => svg.at(i).node().clientHeight - labelHeight(d));
   b.setBarTickStep({
     minorTickStep:   d => minorTickStep(d),
     majorTickStep:   d => majorTickStep(d),
@@ -427,7 +477,7 @@ d3.selection.prototype.setBarTickStep = function({
         return barProps.get(this).majorTickOpacity;
       });
   }
-  if (labels !== null) {
+  if (labels) {
     labels = functionize(labels);
     this.each(function(d) {
       barProps.get(this).labels = labels(d);
@@ -492,6 +542,7 @@ d3.selection.prototype.appendBarValue = function({
   shadow            = false,
   value             = 0.5,
   startValue        = 0,
+  label             = false,
   fadeFromZero      = false,
   duration          = TRANSITION_DURATION_MEDIUM,
   delay             = 0
@@ -507,6 +558,15 @@ d3.selection.prototype.appendBarValue = function({
 
   if (color)
     v.style("fill", color);
+
+  if (label)
+    svg.append("text")
+      .classed("bar-value-label", true)
+      .classed("numeric-label", true)
+      .attr("text-anchor", "middle")
+      .attr("y", function() {
+        return barProps.get(this).barHeight - barProps.get(this).labelHeight + 20;
+      });
 
   v.setBarValue({
     value:      fadeFromZero ? 0 : value,
@@ -542,8 +602,12 @@ d3.selection.prototype.setBarValue = function({
   value = functionize(value);
   startValue = functionize(startValue);
 
-  if (immediate) {
-    this.interrupt("fade");
+  let l = this.selectParentWithTag("svg")
+    .select(".bar-value-label");
+
+  l.text(value);
+
+  function setBar() {
     this.attr("x", function(d) {
         return(startValue(d)/barProps.get(this).max) * 100 + "%";
       })
@@ -552,18 +616,45 @@ d3.selection.prototype.setBarValue = function({
         return (w !== Infinity && !isNaN(w) ? w : 0) + "%";
       });
   }
+
+  function setLabel() {
+    this.attr("x", function(d,i) {
+      let x = ((value(d) - startValue(d))/barProps.get(this).max) * barProps.get(this).barWidth;
+      let w = l.at(i).node().getBBox().width;
+      let lw, rw;
+      switch ("middle") {
+        case "start":
+          lw = 0;
+          rw = w;
+          break;
+        case "middle":
+          lw = w*0.5;
+          rw = lw;
+          break;
+        case "end":
+          lw = w;
+          rw = 0;
+          break;
+      }
+      return Math.min(x - Math.min(0, x-lw), barProps.get(this).barWidth - rw);
+    });
+  }
+
+  if (immediate) {
+    this.interrupt("fade1")
+        .interrupt("fade2");
+    setBar.bind(this)();
+    setLabel.bind(l)();
+  }
   else {
-    this.transition("fade")
+    setBar.bind(this.transition("fade1")
       .duration(duration)
       .delay(delay)
-      .ease(ease)
-      .attr("x", function(d) {
-        return(startValue(d)/barProps.get(this).max) * 100 + "%";
-      })
-      .attr("width", function(d) {
-        let w = ((value(d) - startValue(d))/barProps.get(this).max) * 100;
-        return (w !== Infinity && !isNaN(w) ? w : 0) + "%";
-      });
+      .ease(ease))();
+    setLabel.bind(l.transition("fade2")
+      .duration(duration)
+      .delay(delay)
+      .ease(ease))();
   }
 
   return this;
@@ -586,6 +677,11 @@ d3.selection.prototype.appendSpiderChart = function({
   let n = labels.length;
   let c = this.append("div")
     .classed("spider-container", true);
+
+  // Create SVG surface
+  let svg = c.appendSvg(width, height);
+  width = svg.node().clientWidth;
+  height = svg.node().clientHeight;
 
   spiderProps.set(c, {
     width:      width,
@@ -613,11 +709,6 @@ d3.selection.prototype.appendSpiderChart = function({
                 }
   });
   let p = spiderProps.get(c);
-
-  // Create SVG surface
-  let svg = c.append("svg")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 " + width + " " + height);
 
   // Scale
   let scale = d3.scaleLinear()
@@ -655,7 +746,7 @@ d3.selection.prototype.appendSpiderChart = function({
     let label = labels[i];
     let angle = (Math.PI/2) + (2 * Math.PI * i/n);
     let lineCoord = p.atoc(angle, max);
-    let labelCoord = p.atoc(angle, max + 40);
+    let labelCoord = p.atoc(angle, max + max*0.08);
 
     // Axes
     svg.append("line")
@@ -720,6 +811,7 @@ d3.selection.prototype.setSpiderChartData = function({
   this.datum(data)
     .transition()
     .duration(delay + duration)
+    .ease(d3.easeQuadOut)
     .attr("d", p.makeLine());
 }
 
@@ -772,7 +864,7 @@ d3.selection.prototype.appendPokemonImage = function({
     .classed("pokemon-image-name", true)
     .classed("selected", selected)
     .text(form.pokemon.name)
-    .style("transform", fadeFrame ? "scaleY(0)" : "");
+    .style("opacity", fadeFrame ? 0 : 1);
 
   if (form.ancestor) {
     let type = form.ancestor.evolutions.filter(e => e.descendant.key === form.key)[0].evolutionType;
@@ -810,7 +902,7 @@ d3.selection.prototype.appendPokemonImage = function({
     n.transition()
       .duration(TRANSITION_DURATION_MEDIUM)
       .delay(fadeDelay)
-      .style("transform", "scaleY(1)");
+      .style("opacity", 1);
   }
 
   return w;
@@ -848,12 +940,12 @@ function fadeOutIcon(s, delay) {
 function fadeInText(s, delay) {
   delay = (!delay ? 0 : delay);
   s.style("opacity", 0)
-    .style("transform", "scaleY(0)")
+    //.style("transform", "scaleY(0)")
     .transition()
     .duration(TRANSITION_DURATION_MEDIUM)
     .delay(delay)
     .style("opacity", 1)
-    .style("transform", "scaleY(1)");
+    //.style("transform", "scaleY(1)");
 }
 
 function fadeOutText(s, delay) {
@@ -863,18 +955,18 @@ function fadeOutText(s, delay) {
     .duration(TRANSITION_DURATION_MEDIUM)
     .delay(delay)
     .style("opacity", 0)
-    .style("transform", "scaleY(0)");
+    //.style("transform", "scaleY(0)");
 }
 
 function animateHeight(selector, duration, expandOnly) {
   let s = d3.select(selector);
 
   if (!heights[selector])
-    heights[selector] = s.node().offsetHeight;
+    heights[selector] = s.node().clientHeight;
   else {
     s.style("height", "auto");
     const oldHeight = heights[selector];
-    const newHeight = s.node().offsetHeight;
+    const newHeight = s.node().clientHeight;
     s.style("height", oldHeight + "px");
     heights[selector] = newHeight;
 

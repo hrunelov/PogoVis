@@ -1,6 +1,6 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 /* Scrollbars */
-/* line 80, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .scroll-x {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
@@ -8,34 +8,33 @@
   padding: 10px;
   padding-bottom: 5px !important;
   width: 100%;
-  overflow: hidden !important;
-  overflow-x: scroll !important;
+  overflow-x: scroll;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 65, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-/* line 65, src/sass/common.scss */
+/* line 70, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 5px;
 }
 
-/* line 70, src/sass/common.scss */
+/* line 75, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 74, src/sass/common.scss */
+/* line 79, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 89, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .scroll-y {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
@@ -43,85 +42,93 @@
   padding: 10px !important;
   padding-right: 5px !important;
   height: 100%;
-  overflow: hidden !important;
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 65, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-/* line 65, src/sass/common.scss */
+/* line 70, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 5px;
 }
 
-/* line 70, src/sass/common.scss */
+/* line 75, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 74, src/sass/common.scss */
+/* line 79, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 98, src/sass/common.scss */
+/* line 101, src/sass/common.scss */
 .no-scroll {
   overflow: hidden !important;
   padding: 10px;
 }
 
 /* General */
-/* line 105, src/sass/common.scss */
+/* line 108, src/sass/common.scss */
 .list-item-wrapper {
   margin: 0;
 }
 
-/* line 108, src/sass/common.scss */
+/* line 111, src/sass/common.scss */
 .list-item-wrapper.hide-content {
   overflow: hidden;
 }
 
 /* Text */
-/* line 115, src/sass/common.scss */
+/* line 118, src/sass/common.scss */
 .left-aligned {
   text-align: left !important;
 }
 
-/* line 119, src/sass/common.scss */
+/* line 122, src/sass/common.scss */
 .center-aligned {
   text-align: center !important;
 }
 
-/* line 123, src/sass/common.scss */
+/* line 126, src/sass/common.scss */
 .right-aligned {
   text-align: right !important;
 }
 
-/* line 127, src/sass/common.scss */
+/* line 130, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
-/* line 131, src/sass/common.scss */
+/* line 134, src/sass/common.scss */
 .caption {
   font-size: 16pt;
   font-weight: bold;
   margin: 8px;
 }
 
-/* line 137, src/sass/common.scss */
+/* line 140, src/sass/common.scss */
 .uppercase-label {
+  font-weight: 700;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   margin: 8px;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 145, src/sass/common.scss */
+.uppercase-label-small {
+  text-transform: uppercase;
+  font-size: 12pt;
+  margin: 8px;
+}
+
+/* line 152, src/sass/common.scss */
 .numeric-label {
   font-weight: 700;
   letter-spacing: 0.025em;
@@ -130,7 +137,7 @@
 }
 
 /* Flex */
-/* line 150, src/sass/common.scss */
+/* line 160, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -139,7 +146,7 @@
 }
 
 /* Frames */
-/* line 156, src/sass/common.scss */
+/* line 166, src/sass/common.scss */
 .frame {
   padding: 4px;
   margin: 4px 0;
@@ -148,12 +155,12 @@
   color: #ccc;
 }
 
-/* line 163, src/sass/common.scss */
+/* line 173, src/sass/common.scss */
 .frame.with-caption {
   margin-top: 32px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 178, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -163,12 +170,12 @@
   background: #222;
 }
 
-/* line 177, src/sass/common.scss */
+/* line 187, src/sass/common.scss */
 .frame-body {
   margin: 0;
 }
 
-/* line 181, src/sass/common.scss */
+/* line 191, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -183,19 +190,19 @@
   overflow: hidden;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 193, src/sass/common.scss */
+/* line 203, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 198, src/sass/common.scss */
+/* line 208, src/sass/common.scss */
 .left-column-frame {
   border-top: 1px solid #666;
   border-right: 1px solid #666;
@@ -204,7 +211,7 @@
   height: 100%;
 }
 
-/* line 206, src/sass/common.scss */
+/* line 216, src/sass/common.scss */
 .right-column-frame {
   border-top: 1px solid #666;
   border-left: 1px solid #666;
@@ -213,7 +220,7 @@
   height: 100%;
 }
 
-/* line 222, src/sass/common.scss */
+/* line 232, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -222,57 +229,57 @@
 }
 
 /* Padding/Margins */
-/* line 230, src/sass/common.scss */
+/* line 240, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 234, src/sass/common.scss */
+/* line 244, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 238, src/sass/common.scss */
+/* line 248, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 242, src/sass/common.scss */
+/* line 252, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 246, src/sass/common.scss */
+/* line 256, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 250, src/sass/common.scss */
+/* line 260, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 254, src/sass/common.scss */
+/* line 264, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 258, src/sass/common.scss */
+/* line 268, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 262, src/sass/common.scss */
+/* line 272, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 266, src/sass/common.scss */
+/* line 276, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 270, src/sass/common.scss */
+/* line 280, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -280,26 +287,159 @@
   top: 0;
 }
 
-/* line 277, src/sass/common.scss */
+/* line 287, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 283, src/sass/common.scss */
+/* line 293, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 289, src/sass/common.scss */
+/* line 299, src/sass/common.scss */
 .hidden {
   display: none !important;
 }
 
 /* line 3, src/sass/form_stat_info.scss */
-#form-stats-wrapper {
-  height: 290px;
+#form-league-wrapper {
+  padding: 12px;
+  padding-left: 0;
+}
+
+/* line 9, src/sass/form_stat_info.scss */
+#form-league-tab-great {
+  background: #58d;
+  text-shadow: 0 0 2px #000;
+}
+
+/* line 13, src/sass/form_stat_info.scss */
+#form-league-tab-ultra {
+  background: #b82;
+  text-shadow: 0 0 2px #000;
+}
+
+/* line 17, src/sass/form_stat_info.scss */
+#form-league-tab-master {
+  background: #96d;
+  text-shadow: 0 0 2px #000;
+}
+
+/* line 23, src/sass/form_stat_info.scss */
+#form-iv-wrapper {
+  padding: 12px;
+  padding-right: 0;
+}
+
+/* line 29, src/sass/form_stat_info.scss */
+.form-iv-slider {
+  background: #4440;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+/* line 36, src/sass/form_stat_info.scss */
+.form-iv-slider:first-child {
+  margin-top: 0;
+}
+
+/* line 40, src/sass/form_stat_info.scss */
+.form-iv-slider:last-child {
+  margin-bottom: 0;
+}
+
+/* line 44, src/sass/form_stat_info.scss */
+.form-iv-slider > div > svg > g > .bar-background {
+  fill: #444;
+}
+
+/* line 49, src/sass/form_stat_info.scss */
+.form-iv-label {
+  display: inline-block;
+  padding: 0 !important;
+  padding-left: 6px !important;
+  margin: 0 !important;
+  width: 20px;
+}
+
+/* line 58, src/sass/form_stat_info.scss */
+.form-iv-bar .bar-background {
+  fill: #555;
+}
+
+/* line 62, src/sass/form_stat_info.scss */
+.form-iv-bar .bar-label {
+  fill: #ccc;
+}
+
+/* line 67, src/sass/form_stat_info.scss */
+.form-iv-value {
+  fill: #ccc;
+}
+
+/* line 71, src/sass/form_stat_info.scss */
+.form-iv-min {
+  fill: #999;
+}
+
+/* line 75, src/sass/form_stat_info.scss */
+.form-stat-top-label {
+  width: 100%;
+  margin: 20px 0 -20px 2px;
+  text-align: center;
+  letter-spacing: 0;
+  font-size: unset;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+/* line 84, src/sass/form_stat_info.scss */
+.form-stat-bottom-labels {
+  width: 100%;
+  margin: -52px 0 20px 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+/* line 90, src/sass/form_stat_info.scss */
+.form-stat-bottom-labels > * {
+  width: 50%;
+  text-align: center;
+  letter-spacing: 0;
+  font-size: unset;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+/* line 97, src/sass/form_stat_info.scss */
+.form-stat-bottom-labels > *:first-child {
+  margin-right: 30px;
+}
+
+/* line 100, src/sass/form_stat_info.scss */
+.form-stat-bottom-labels > *:last-child {
+  margin-left: 30px;
+}
+
+/* line 106, src/sass/form_stat_info.scss */
+.form-stat-spiderchart {
+  height: 260px;
+}
+
+/* line 109, src/sass/form_stat_info.scss */
+.form-stat-spiderchart > .spider-container {
+  margin-top: 20px;
+  margin-bottom: -20px;
 }

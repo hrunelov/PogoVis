@@ -11,32 +11,72 @@ function updateGeneralInfo() {
 
 // Description
 function updateDescription() {
-  if (!lastForm || lastForm.description !== selectedForm.description) {
-    d3.select("#form-description-body")
-      .html("<u>" + selectedForm.description + "</u>");
-    animateHeight("#form-description-body");
-    clearInterval(typeChar);
-    var i = 0;
-    typeChar = setInterval((function() {
-      i += 2;
-      if (i > selectedForm.description.length)
-        i = selectedForm.description.length;
-      d3.select("#form-description-body")
-        .html(selectedForm.description.substring(0, i) + "<u>" + selectedForm.description.substring(i) + "</u>");
-      if (i === selectedForm.description.length)
-        clearInterval(typeChar);
-    }), 0);
-  }
+  // if (!lastForm || lastForm.description !== selectedForm.description) {
+  //   d3.select("#form-description-body")
+  //     .html("<u>" + selectedForm.description + "</u>");
+  //   animateHeight("#form-description-body");
+  //   clearInterval(typeChar);
+  //   var i = 0;
+  //   typeChar = setInterval(function() {
+  //     i += 2;
+  //     if (i > selectedForm.description.length)
+  //       i = selectedForm.description.length;
+  //     d3.select("#form-description-body")
+  //       .html(selectedForm.description.substring(0, i) + "<u>" + selectedForm.description.substring(i) + "</u>");
+  //     if (i === selectedForm.description.length)
+  //       clearInterval(typeChar);
+  //   }, 0);
+  // }
 
   // speechSynthesis.speak(new SpeechSynthesisUtterance(selectedPokemon.name + ". " +
   //                                                    selectedPokemon.category + ". " +
   //                                                    selectedPokemon.description));
 }
 
-// Top Bar (Gender ratio, etc)
+// Top Bar (Height, gender ratio, etc)
+var lastW = 0;
+var lastH = 0;
 function updateTopBar() {
-  d3.select("#form-female-percent")
-    .text(selectedForm.femaleToMaleRatio !== undefined ? oneDecimal(selectedForm.femaleToMaleRatio * 100) + "%" : "");
+
+  // Height
+  d3.select("#form-height-icon")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("height", Math.min(PERSON_HEIGHT / selectedForm.height, 1) * 100 + "%");
+  d3.select("#form-height-bar")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("height", Math.min(selectedForm.height / PERSON_HEIGHT, 1) * 100 + "%");
+  d3.select("#form-height-label")
+    .text(selectedForm.height + " m")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("height", Math.min(selectedForm.height / PERSON_HEIGHT, 1) * 100 + "%");
+
+  // Weight
+  function balance(a,b) {
+    if (!b)
+      return 1;
+    return (2*Math.atan(b/a)-Math.PI*0.5)/(Math.PI*0.5);
+  }
+  let personOffset = balance(PERSON_WEIGHT, selectedForm.weight) * 22 + 22;
+  let pokemonOffset = balance(selectedForm.weight, PERSON_WEIGHT) * 22 + 22;
+  d3.select("#form-weight-person")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("margin-bottom", personOffset + "px");
+  d3.select("#form-weight-pokemon")
+    .transition()
+    .duration(TRANSITION_DURATION_MEDIUM)
+    .style("margin-bottom", pokemonOffset + "px");
+  d3.select("#form-weight-label")
+    .text(selectedForm.weight + " kg");
+
+  // Gender ratio
+  let ratio = getRatio(selectedForm.femaleToMaleRatio);
+
+  d3.select("#form-female-ratio")
+    .text(selectedForm.femaleToMaleRatio !== undefined ? ratio[0] : "");
 
   let barRatio = selectedForm.femaleToMaleRatio === 1 ? 1.01 : selectedForm.femaleToMaleRatio;
   let b = d3.select("#form-female-bar")
@@ -69,8 +109,8 @@ function updateTopBar() {
   d3.select("#form-genderless-label")
     .classed("hidden", selectedForm.femaleToMaleRatio !== undefined);
 
-  d3.select("#form-male-percent")
-    .text(selectedForm.femaleToMaleRatio !== undefined ? 100 - oneDecimal(selectedForm.femaleToMaleRatio * 100) + "%" : "");
+  d3.select("#form-male-ratio")
+    .text(selectedForm.femaleToMaleRatio !== undefined ? ratio[1] : "");
 }
 
 // Type
@@ -79,54 +119,50 @@ function updateTypeInfo() {
     return;
 
   // Typing
+  d3.select("#form-types")
+    .listData({
+      duration:    selectedPageIndex === PAGE_GENERAL ? undefined : 0,
+      data:        selectedForm.types,
+      key:         d => d.key,
+      horizontal:  true,
+      hideContent: false,
+      fade:        false,
+      waitForExit: true,
+      onenter:     function(s, delay) {
+        s.classed("type-label", true);
+        s.appendTypeIcon()
+          .zoomIn({
+            delay:    delay,
+            ease:     d3.easeBackOut
+          });
+        s.append("div")
+          .classed("uppercase-label", true)
+          .classed("type-name", true)
+          .text(d => d.name)
+          .fadeIn({
+            delay:    delay
+          });
 
-  listData({
-    data:        selectedForm.types,
-    key:         d => d.key,
-    container:   d3.select("#form-types"),
-    classed:     "type-label",
-    horizontal:  true,
-    hideContent: false,
-    fade:        false,
-    waitForExit: true,
-    onenter:     function(s, delay) {
-      s.classed("type-label", true);
-      s.appendTypeIcon()
-        .zoomIn({
-          delay:    delay,
-          ease:     d3.easeBackOut
-        });
-      s.append("div")
-        .classed("uppercase-label", true)
-        .classed("type-name", true)
-        .text(d => d.name)
-        .zoomInY({
-          delay:    delay,
-          fade:     true
-        });
+        if (selectedForm.types.length > 1)
+          s.style("width", "17.5%");
+      },
+      onexit:     function(s, delay) {
+        s.select(".type-icon")
+          .interrupt()
+          .zoomOut({
+            delay:    delay,
+            ease:     d3.easeBackIn
+          });
 
-      if (selectedForm.types.length > 1)
-        s.style("width", "17.5%");
-    },
-    onexit:     function(s, delay) {
-      s.select(".type-icon")
-        .interrupt()
-        .zoomOut({
-          delay:    delay,
-          ease:     d3.easeBackIn
-        });
-
-      s.select(".type-name")
-        .interrupt()
-        .zoomOutY({
-          delay:    delay,
-          fade:     true
-        });
-    }
-  });
+        s.select(".type-name")
+          .interrupt()
+          .fadeOut({
+            delay:    delay
+          });
+      }
+    }).classed("type-label", true);
 
   // Effectiveness
-
   var resistances = selectedForm.counterEffectiveness
     .filter(e => e.damageMultiplier < 1)
     .sort((e1, e2) => e1.damageMultiplier - e2.damageMultiplier);
@@ -142,103 +178,99 @@ function listTypeEffectivenesses(data, container, reverse) {
   const w = 220;
   const m = 48;
 
-  listData({
-    data:        data,
-    key:         d => d.attackingType.key,
-    container:   d3.select(container),
-    classed:     "form-type-effectiveness-label-wrapper",
-    hideContent: false,
-    fade:        false,
-    waitForExit: true,
-    onenter:     function(s, delay) {
-      s = s.append("div")
-        .classed("form-type-effectiveness-label", true)
-        .classed("reverse", reverse)
-        .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks")
-        .style("width", m + "px")
-        .style("background", "#222");
+  d3.select(container)
+    .listData({
+      duration:    selectedPageIndex === PAGE_GENERAL ? undefined : 0,
+      data:        data,
+      key:         d => d.attackingType.key,
+      hideContent: false,
+      fade:        false,
+      waitForExit: true,
+      onenter:     function(s, delay) {
+        s = s.append("div")
+          .classed("form-type-effectiveness-label", true)
+          .classed("reverse", reverse)
+          .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks")
+          .style("width", m + "px")
+          .style("background", "#222");
 
-      s.appendTypeIcon(d => d.attackingType)
-        .zoomIn({
-          delay:    delay
-        });
+        s.appendTypeIcon(d => d.attackingType)
+          .zoomIn({
+            delay:    delay
+          });
 
-      s.append("div")
-        .classed("numeric-label", true)
-        .classed("form-type-effectiveness-percent", true)
-        .text(d => oneDecimal(d.damageMultiplier * 100) + "%")
-        .zoomInY({
-          delay:    delay,
-          fade:     true
-        });
+        s.append("div")
+          .classed("numeric-label", true)
+          .classed("form-type-effectiveness-percent", true)
+          .text(d => oneDecimal(d.damageMultiplier * 100) + "%")
+          .fadeIn({
+            delay:    delay
+          });
 
-      s.transition()
-        .duration(TRANSITION_DURATION_MEDIUM)
-        .delay((d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3)
-        .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
-                             (w-m) + m + "px");
+        s.transition()
+          .duration(TRANSITION_DURATION_MEDIUM)
+          .delay((d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3)
+          .style("background", d => mixColors("#000", d.attackingType.color, 0.66))
+          .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
+                                                         (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
+                               (w-m) + m + "px");
 
-    },
-    onupdate: function(s, delay) {
-      let delayFunc = (d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3;
-      s = s.select(".form-type-effectiveness-label")
-        .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks");
+      },
+      onupdate: function(s, delay) {
+        let delayFunc = (d,i) => delay(d,i) + TRANSITION_DURATION_MEDIUM/3;
+        s = s.select(".form-type-effectiveness-label")
+          .attr("title", d => oneDecimal(d.damageMultiplier * 100) + "% damage from " + d.attackingType.name + "-type attacks");
 
-      s.select(".form-type-effectiveness-percent")
-        .delay(delayFunc)
-        .text(d => oneDecimal(d.damageMultiplier * 100) + "%");
+        s.select(".form-type-effectiveness-percent")
+          .delay(delayFunc)
+          .text(d => oneDecimal(d.damageMultiplier * 100) + "%");
 
-      s.transition()
-        .duration(TRANSITION_DURATION_MEDIUM)
-        .delay(delayFunc)
-        .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
-                                                       (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
-                             (w-m) + m + "px");
-    },
-    onexit: function(s, delay) {
-      s = s.select(".form-type-effectiveness-label");
+        s.transition()
+          .duration(TRANSITION_DURATION_MEDIUM)
+          .delay(delayFunc)
+          .style("width", d => (d.damageMultiplier > 1 ? d.damageMultiplier/pokedex.boundary.combinedTypeDamageMultiplier.max :
+                                                         (1 - d.damageMultiplier)/(1 - 1/pokedex.boundary.combinedTypeDamageMultiplier.max)) *
+                               (w-m) + m + "px");
+      },
+      onexit: function(s, delay) {
+        s = s.select(".form-type-effectiveness-label");
 
-      s.select(".type-icon")
-        .interrupt()
-        .zoomOut({
-          delay:    delay
-        });
+        s.select(".type-icon")
+          .interrupt()
+          .zoomOut({
+            delay:    delay
+          });
 
-      s.select(".form-type-effectiveness-percent")
-        .interrupt()
-        .zoomOutY({
-          delay:    delay,
-          fade:     true
-        });
+        s.select(".form-type-effectiveness-percent")
+          .interrupt()
+          .fadeOut({
+            delay:    delay
+          });
 
-      s.transition()
-        .duration(TRANSITION_DURATION_MEDIUM)
-        .delay(delay)
-        .style("background", "#222")
-        .style("width", m + "px");
-    }
-  });
+        s.transition()
+          .duration(TRANSITION_DURATION_MEDIUM)
+          .delay(delay)
+          .style("background", "#222")
+          .style("width", m + "px");
+      }
+    }).classed("form-type-effectiveness-label-wrapper", true);
 }
 
-// Evolutions
+// Evolutions and relatives
 function updateEvolution() {
-  d3.select("#form-evolution-root")
+  d3.select("#form-evolution-body")
     .selectAll("div")
     .remove();
 
-  // No lineage, don't display any evolutions
-  if (!selectedForm.firstAncestor.evolutions) {
-    d3.select("#form-evolution-root")
+  // No lineage or relatives, don't display any evolutions
+  if (!selectedForm.firstAncestor.evolutions && !selectedForm.pokemon.relatives) {
+    d3.select("#form-evolution-body")
+      .append("div")
+      .classed("form-evolution-root", true)
       .html("<br/>No known lineage");
 
     animateHeight("#form-evolution-body");
     return;
-  }
-  else {
-    d3.select("#form-evolution-root")
-      .text("");
   }
 
   let doTransitions = !lastForm || !equivalent(lastForm.firstAncestor.evolutions, selectedForm.firstAncestor.evolutions, "descendant");
@@ -256,9 +288,47 @@ function updateEvolution() {
   }
 
   // Recursively display evolution branches
-  let depth = 0;
+  let relatives = [];
+  relatives.push(selectedForm.firstAncestor);
+  if (selectedPokemon.relatives) {
+    for (let r of selectedPokemon.relatives) {
+      let f = r.forms.find(x => x.name === selectedForm.name);
+      if (!f)
+        f = r.forms[0];
+      f = f.firstAncestor;
+      if (!relatives.find(x => x.key === f.key))
+        relatives.push(f);
+    }
+  }
+  relatives.sort((a,b) => a.pokemon.id - b.pokemon.id);
+
+  let depth;
   function displayEvolution(s, ancestor, curDepth) {
     const evoFadeStartDelay = TRANSITION_DURATION_MEDIUM/2;
+
+    function appendLine(s, length, split, top, bottom, dashed) {
+      let svg = s.appendSvg()
+        .classed("form-evolution-path", true)
+        .classed(length, true)
+        .append("g");
+      if (split) {
+        let line = svg.append("rect")
+          .classed("form-evolution-path-line", true)
+          .classed("dashed", dashed)
+          .attr("y", top ? "50%" : "-50%")
+          .attr("width", "200%")
+          .attr("height", bottom ? "100%" : "200%");
+      }
+      if (!split || (!top && !bottom)) {
+        svg.append("line")
+          .classed("form-evolution-path-line", true)
+          .classed("dashed", dashed)
+          .attr("x1", 0)
+          .attr("x2", "100%")
+          .attr("y1", "50%")
+          .attr("y2", "50%");
+      }
+    }
 
     if (!curDepth) {
       depth = 0;
@@ -306,15 +376,7 @@ function updateEvolution() {
     if (evoGroups.length > 1) {
       c = s.append("div")
         .classed("form-evolution-column", true);
-
-      c.append("div")
-        .classed("form-evolution-path", true)
-        .classed("medium", true)
-        .classed("upper", true);
-      c.append("div")
-        .classed("form-evolution-path", true)
-        .classed("medium", true)
-        .classed("lower", true);
+      appendLine(c, "medium");
     }
 
     c = s.append("div")
@@ -326,44 +388,20 @@ function updateEvolution() {
       const split = evoGroups.length > 1;
       const top = split && i == 0;
       const bottom = split && i == evoGroups.length - 1;
+      const dashed = !!e.evolutionType;
 
       let r = c.append("div")
         .classed("form-evolution-row", true);
 
-      // Draw split
       let cc = r.append("div")
         .classed("form-evolution-column", true);
 
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("short", true)
-        .classed("upper", true)
-        .classed("split", split)
-        .classed("top", top)
-        .classed("bottom", bottom);
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("short", true)
-        .classed("lower", true)
-        .classed("split", split)
-        .classed("top", top)
-        .classed("bottom", bottom);
+      appendLine(cc, "short", split, top, bottom, dashed);
 
       cc = r.append("div")
-          .classed("form-evolution-column", true);
+        .classed("form-evolution-column", true);
 
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("full", true)
-        .classed("upper", true)
-        .classed("top", top)
-        .classed("bottom", bottom);
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("full", true)
-        .classed("lower", true)
-        .classed("top", top)
-        .classed("bottom", bottom);
+      appendLine(cc, "full", false, false, false, dashed);
 
       // List requirements
       let er = cc.append("div")
@@ -371,7 +409,7 @@ function updateEvolution() {
         .append("div")
         .classed("form-evolution-reqs-body", true);
 
-       // Item, time and gender are grouped together
+      // Item, time and gender are grouped together
       if (e.requirements.item || e.requirements.timeOfDay || e.requirements.gender) {
         let br = er.append("div")
           .classed("form-evolution-req-icons-wrapper", true);
@@ -444,7 +482,7 @@ function updateEvolution() {
           fadeInIcon(img, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays++));
         let t = l.append("div")
           .classed("form-evolution-req-number", true)
-          .html(e.requirements.megaEnergy.first + "<br/>🡖" + e.requirements.megaEnergy.subsequent);
+          .html(e.requirements.megaEnergy.first + "<br/>>" + e.requirements.megaEnergy.subsequent);
         if (doTransitions)
           fadeInText(t, evoFadeStartDelay + TRANSITION_DELAY/2 * (evoFadeDelays));
       }
@@ -485,18 +523,7 @@ function updateEvolution() {
         .classed("form-evolution-column", true);
 
       // Draw line to separate req list from image or split
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("short", true)
-        .classed("upper", true)
-        .classed("top", top)
-        .classed("bottom", bottom);
-      cc.append("div")
-        .classed("form-evolution-path", true)
-        .classed("short", true)
-        .classed("lower", true)
-        .classed("top", top)
-        .classed("bottom", bottom);
+      appendLine(cc, "short", false, false, false, dashed);
 
       // If multiple evolutions in group, draw split
       if (g.length > 1) {
@@ -511,20 +538,7 @@ function updateEvolution() {
           const subTop = j == 0;
           const subBottom = j == g.length - 1;
 
-          cc.append("div")
-            .classed("form-evolution-path", true)
-            .classed("medium", true)
-            .classed("upper", true)
-            .classed("split", true)
-            .classed("top", subTop)
-            .classed("bottom", subBottom);
-          cc.append("div")
-            .classed("form-evolution-path", true)
-            .classed("medium", true)
-            .classed("lower", true)
-            .classed("split", true)
-            .classed("top", subTop)
-            .classed("bottom", subBottom);
+          appendLine(cc, "medium", true, subTop, subBottom, dashed);
 
           displayEvolution(cc2.append("div").classed("form-evolution-row", true), e.descendant, curDepth+1);
         }
@@ -534,10 +548,27 @@ function updateEvolution() {
     }
   }
   evoFadeDelays = 0;
-  displayEvolution(d3.select("#form-evolution-root"), selectedForm.firstAncestor);
+
+  let overflow = false;
+  let hasEvolutions = false;
+  for (let r of relatives) {
+    let s = d3.select("#form-evolution-body")
+      .append("div")
+      .classed("form-evolution-root", true)
+      .classed("form-evolution-row", true);
+    depth = 0;
+    displayEvolution(s,r);
+    if (depth > 1)
+      hasEvolutions = true;
+    if (depth > 3) {
+      overflow = true;
+      s.classed("overflow", true);
+    }
+  }
 
   d3.select("#form-evolution-body")
-    .classed("overflow", depth > 3);
+    .classed("with-evolutions", hasEvolutions)
+    .classed("overflow", overflow);
 
   animateHeight("#form-evolution-body");
 }

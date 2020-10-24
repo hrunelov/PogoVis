@@ -52,9 +52,9 @@ function calculateOptimalStats(form, iAtk, iDef, iSta, cpCap, startLvl) {
 function listOptimalStatsForCPCap(form, cpCap) {
   let list = [];
   let lastLvl = 20;
-  for (let iAtk = 15; iAtk >= (form.pokemon.tradeable ? 0 : 10); --iAtk) {
-    for (let iDef = 15; iDef >= (form.pokemon.tradeable ? 0 : 10); --iDef) {
-      for (let iSta = 15; iSta >= (form.pokemon.tradeable ? 0 : 10); --iSta) {
+  for (let iAtk = 15; iAtk >= (!form.pokemon.untradeable ? 0 : 10); --iAtk) {
+    for (let iDef = 15; iDef >= (!form.pokemon.untradeable ? 0 : 10); --iDef) {
+      for (let iSta = 15; iSta >= (!form.pokemon.untradeable ? 0 : 10); --iSta) {
         let iPokemon = calculateOptimalStats(form, iAtk,iDef,iSta, cpCap, lastLvl);
         list.push(iPokemon);
         lastLvl = iPokemon.level;

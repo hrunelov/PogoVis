@@ -59,7 +59,7 @@
 }
 
 #pokemon-list {
-  @include scrollbars($dark, $light, $highlight);
+  @include scrollbars;
   margin: $padding;
   padding: 0;
   height: 100%;

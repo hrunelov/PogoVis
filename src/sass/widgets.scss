@@ -1,6 +1,6 @@
 @import "common.scss";
 
-/* Tabs */
+/* Tabs & Menus */
 
 .tab-bar {
   height: 50px;
@@ -11,9 +11,14 @@
 }
 
 .tab {
+  @include bold;
   text-transform: uppercase;
   text-align: center;
   color: $text-color;
+  background: $light;
+  width: 100%;
+  margin: 0 $padding*0.5;
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -22,14 +27,32 @@
   opacity: 0.5;
   cursor: pointer;
 
-  &:hover, &:focus {
-    opacity: 0.75;
+  &:first-child:not(only-child) {
+    margin-left: 0;
+
+    &.round {
+      border-radius: $corner-radius 0 0 $corner-radius;
+    }
   }
 
-  & > * {
-    flex-grow: 1;
-    margin: $padding;
-    line-height: 16pt;
+  &:last-child:not(only-child) {
+    margin-right: 0;
+
+    &.round {
+      border-radius: 0 $corner-radius $corner-radius 0;
+    }
+  }
+
+  &:only-child {
+    margin: 0;
+
+    &.round {
+      border-radius: $corner-radius;
+    }
+  }
+
+  &:hover, &:focus {
+    opacity: 0.75;
   }
 
   &:active {
@@ -37,13 +60,92 @@
   }
 
   &.selected {
-    font-weight: bolder;
     opacity: 1;
     cursor: default;
 
     &:hover {
       opacity: 1;
     }
+  }
+
+  & > * {
+    flex-grow: 1;
+    margin: $padding;
+    line-height: 16pt;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.menu-item {
+  @include bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: $text-color;
+  background: $light;
+  height: 50px;
+  margin: $padding*0.5 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: opacity $transition-duration-instant;
+  opacity: 0.33;
+  cursor: pointer;
+
+  &:first-child:not(only-child) {
+    margin-top: 0;
+
+    &.round {
+      border-radius: $corner-radius $corner-radius 0 0;
+    }
+  }
+
+  &:last-child:not(only-child) {
+    margin-bottom: 0;
+
+    &.round {
+      border-radius: 0 0 $corner-radius $corner-radius;
+    }
+  }
+
+  &:only-child {
+    margin: 0;
+
+    &.round {
+      border-radius: $corner-radius;
+    }
+  }
+
+  &.dark {
+    background: $medium;
+  }
+
+  &:hover, &:focus {
+    opacity: 0.66;
+    background: $medium-light;
+  }
+
+  &:active {
+    opacity: 1;
+    background: $light;
+  }
+
+  &.selected {
+    opacity: 1;
+    background: $light;
+    cursor: default;
+  }
+
+  & > * {
+    flex-grow: 1;
+    margin: $padding;
+    line-height: 16pt;
   }
 }
 
@@ -73,7 +175,7 @@
   stroke-width: 2px;
 }
 
-.bar-label {
+.bar-label, .bar-value-label {
   font-size: 14pt;
   //text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -246,16 +348,21 @@
 
 /* Spider Chart */
 
+.spider-container {
+  width: 100%;
+  height: 100%;
+}
+
 .spider-axis {
   fill: none;
   stroke: $light;
-  stroke-width: 0.5px;
+  stroke-width: 1px;
 }
 
 .spider-tick {
   fill: none;
   stroke: $medium;
-  stroke-width: 0.5px;
+  stroke-width: 1px;
 }
 
 .spider-tick-outer {
@@ -265,14 +372,13 @@
 
 .spider-shape {
   stroke: $text-color-dark;
-  stroke-width: 0.5px;
+  stroke-width: 2px;
   fill: $white-transp-25;
 }
 
 .spider-label {
-  font-size: 4pt;
+  font-size: 12pt;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
   fill: $text-color-dark;
 }
 

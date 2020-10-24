@@ -1,44 +1,12 @@
-const PAGE_GENERAL = "form-general-info-page";
-const PAGE_MOVES = "form-move-info-page";
-const PAGE_STATS = "form-stat-info-page";
+const PAGE_GENERAL = 0;
+const PAGE_MOVES = 1;
+const PAGE_STATS = 2;
 
-var statChart;
-
-var selectedPage = PAGE_GENERAL;
+var selectedPageIndex = 0;
 var lastPokemon;
 var selectedPokemon;
 var lastForm;
 var selectedForm;
-
-function setSelectedPage(key) {
-  if (key) {
-    selectedPage = key;
-    d3.selectAll(".page")
-      .classed("hidden", true);
-  }
-
-  d3.select("#" + selectedPage)
-    .classed("hidden", false);
-
-  // switch (selectedPage) {
-  //   case PAGE_GENERAL:
-  //     updateGeneralInfo();
-  //     break;
-  //   case PAGE_MOVES:
-  //     updateMoveInfo();
-  //     break;
-  //   case PAGE_STATS:
-  //     updateStatInfo();
-  //     break;
-  //   default:
-  // }
-
-  d3.select("#" + selectedPage)
-    .node().scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-}
 
 function setSelectedPokemon(pokemon, formIdx) {
   lastPokemon = selectedPokemon;
@@ -55,8 +23,6 @@ function setSelectedForm(idx) {
   updateCaptionForm();
   updateFormSelectionBar();
 
-  setSelectedPage();
-
   // Temporary hack
   d3.selectAll(".page.hidden")
     .classed("hidden", false)
@@ -64,7 +30,7 @@ function setSelectedForm(idx) {
 
   updateGeneralInfo();
   updateMoveInfo();
-  updateStatInfo();
+  updateStatInfo(true, true);
 
   d3.selectAll(".page.unhidden")
     .classed("hidden", true)
@@ -143,14 +109,12 @@ function updateFormSelectionBar() {
     .enter()
     .append("button")
     .attr("type", "button")
-    .attr("disabled", d => d.key === selectedForm.key ? true : null)
     .classed("tab form-selection-button", true)
     .classed("selected", d => d.key === selectedForm.key)
     .classed("pad-top", true)
     .classed("pad-left-half", (d, i) => i > 0)
     .classed("pad-right-half", (d, i) => i < selectedPokemon.forms.length - 1)
     .attr("title", d => selectedPokemon.forms.length < 10 ? "" : d.name)
-    .style("width", 1/selectedPokemon.forms.length * 100 + "%")
     .style("background", d => getTypeSplitColor(d.types, 0.72, 0.8))
     .on("click", function(d,i) {
       if (d.key !== selectedForm.key)
@@ -161,21 +125,98 @@ function updateFormSelectionBar() {
     .text(d => selectedPokemon.forms.length < 10 ? d.name : d.name.substr(0,2));
 }
 
+// Select page element by index
+function d3SelectPage(i) {
+  return d3.select("#pokemon-info-body").select(".page:nth-child(" + (i+1) + ")");
+}
+
+var pageWidth = d3SelectPage(1).node().offsetLeft - d3SelectPage(0).node().offsetLeft;
+var lastPageTouchX;
+//var pageswipeEnabled = true;
+
+// // Page swipe
+// d3.select("#pokemon-info-body")
+//   .call(d3.drag()
+//   .on("start", function() {
+//     lastPageTouchX = d3.mouse(this)[0] - pageScrollX;
+//   })
+//   .on("drag", function() {
+//     if (!lastPageTouchX)
+//       return;
+//
+//     console.log(this);
+//
+//     let touchX = d3.mouse(this)[0] - pageScrollX;
+//
+//     pageScrollX -= touchX - lastPageTouchX;
+//     if (pageScrollX < 0)
+//       pageScrollX = 0;
+//
+//     d3.select(this)
+//       .style("margin-left", -pageScrollX + "px");
+//
+//     lastPageTouchX = touchX;
+//   })
+//   .on("end", function() {
+//     lastPageTouchX = null;
+//     pageScrollX = (pageScrollX + pageWidth*0.5) - ((pageScrollX + pageWidth*0.5) % pageWidth);
+//     d3.select(this)
+//       .transition()
+//       .duration(TRANSITION_DURATION_MEDIUM)
+//       .ease(d3.easeExpOut)
+//       .style("margin-left", -pageScrollX + "px");
+//   }));
+
+// Smooth page navigation
 d3.selectAll(".pokemon-navbar-tab")
-  .on("click", function() {
+  .on("click", function(d,i) {
+    if (d3.select(this).classed("selected"))
+      return;
+    //pageswipeEnabled = false;
+
+    let dir = Math.sign(i-selectedPageIndex);
+    let vec = i-selectedPageIndex;
+    let dist = Math.abs(i-selectedPageIndex);
+    let b = d3.select("#pokemon-info-body");
+
+    b.selectAll(".page")
+      .style("overflow-y", (e,j) => i === j ? null : "hidden")
+      .classed("content-hidden", (e,j) => i !== j);
+
+    if (dist > 1)
+      for (let j = selectedPageIndex + dir; j != i; j += dir)
+        d3SelectPage(j)
+          .style("min-width", 0)
+          .style("padding", 0);
+
+    if (dir < 0)
+      b.node()
+        .scrollTo(pageWidth * (selectedPageIndex - dist + 1), 0);
+    else
+      dist = 1;
+
+    b.transition()
+      .duration(TRANSITION_DURATION_MEDIUM)
+      .ease(d3.easeExpOut)
+      .interp(pageWidth * selectedPageIndex, pageWidth * (selectedPageIndex + dir * dist), function(v) {
+        d3.select("#pokemon-info-body")
+          .node()
+          .scrollTo(v,0);
+      })
+      .on("end", function() {
+        b.selectAll(".page")
+          .style("min-width", null)
+          .style("padding", null);
+        b.node()
+          .scrollTo(pageWidth * i, 0);
+        //pageswipeEnabled = true;
+      });
+
     d3.selectAll(".pokemon-navbar-tab")
-      .attr("disabled", null)
       .classed("selected", false);
 
     d3.select(this)
-      .attr("disabled", true)
       .classed("selected", true);
 
-  setSelectedPage(d3.select(this).attr("value"));
-});
-
-// statChart = new SpiderChart(d3.select("#form-stats-body"),
-//                             "form-stats-shape",
-//                             280, 200,
-//                             500, 100,
-//                             ["Stamina", "Attack", "Defense"]);
+    selectedPageIndex = i;
+  });

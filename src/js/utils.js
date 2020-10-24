@@ -174,8 +174,25 @@ function splitColor(dir, c1, c2, t) {
                               c2 + " 100%)";
 }
 
+function isNumber(x) {
+  return typeof x === "number";
+}
+
 function oneDecimal(num) {
   return Math.round(num*10)/10;
+}
+
+function getRatio(t) {
+  if (t === null || t === undefined || isNaN(t))
+    return [0,0];
+  if (t >= 1)
+    return [1,0];
+  if (t <= 0)
+    return [0,1];
+  if (t > 0.5)
+    return [t/(1-t),1];
+  else
+    return [1,(1-t)/t];
 }
 
 function functionize(x) {

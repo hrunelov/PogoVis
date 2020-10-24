@@ -12,7 +12,6 @@ body {
   letter-spacing: 0.05em;
   color: $text-color;
   background: $back-color;
-  overflow: hidden;
   cursor: default;
 }
 
@@ -112,13 +111,22 @@ button {
   min-width: $main-width - 8px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   color: $text-color-dark;
+  overflow: hidden;
+}
+
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 
 .page {
+  width: $main-width - 8px;
+  min-width: $main-width - 8px;
   height: 100%;
-  margin-top: $padding;
+  //margin-top: $padding;
   border-radius: 0 0 $corner-radius $corner-radius;
   background: $dark;
 }

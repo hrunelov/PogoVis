@@ -118,10 +118,3 @@
 .form-selection-button.selected {
   @include text-shadow-subtle;
 }
-
-/* Navbar */
-
-.pokemon-navbar-tab {
-  width: 33%;
-  background: $light;
-}

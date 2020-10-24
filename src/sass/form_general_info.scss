@@ -15,17 +15,116 @@
 /* Top Bar */
 
 #form-general-top-wrapper {
-  margin: 10px 0;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 64px;
 }
+
+/* Height */
+
+#form-height-wrapper {
+  width: 21%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  //margin-right: 10%;
+}
+
+#form-height-icon {
+  margin-right: $padding;
+  height: 0;
+}
+
+#form-height-bar {
+  margin-right: $padding;
+  width: 2px;
+  height: 0;
+  background: $text-color-dark;
+}
+
+#form-height-label {
+  margin: 0;
+  margin-bottom: 4px;
+  min-height: 14px;
+  min-width: 80px;
+}
+
+/* Weight */
+
+#form-weight-wrapper {
+  width: 21%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.form-weight-pan {
+  width: $widget-height-small;
+  height: 4px;
+  margin-bottom: 22px;
+  border-radius: 0 0 10px 10px;
+  background: $text-color-dark;
+  display: flex;
+  align-items: flex-end;
+}
+
+#form-weight-person {
+  justify-content: center;
+}
+
+#form-weight-icon {
+  height: 32px;
+  margin-bottom: 6px;
+}
+
+#form-weight-pokemon {
+  justify-content: flex-start;
+}
+
+#form-weight-label {
+  min-width: 100px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+#form-weight-bar {
+  width: 2px;
+  height: 48px;
+  margin: 0 $padding;
+  background: $text-color-dark;
+}
+
+//
+// #form-weight-label {
+//   margin: 0;
+//   text-align: center;
+// }
+//
+// #form-weight-bar {
+//   width: 4px;
+//   height: 74px;
+//   margin: 0 $padding;
+//   background: $text-color-dark;
+// }
 
 /* Gender Ratio */
 
-.form-gender-percent {
-  width: 50px;
+#form-gender-wrapper {
+  width: 58%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-gender-ratio {
+  width: 10px;
 }
 
 #form-gender-bar {
@@ -49,7 +148,11 @@
 #form-genderless-label {
   text-transform: uppercase;
   width: 100%;
-  position: absolute;
+}
+
+/* Encounter rates */
+#form-encounter-wrapper {
+  width: 25%;
 }
 
 /* Type */
@@ -104,38 +207,49 @@
   @include text-shadow-subtle;
 }
 
-/* Evolutions */
+/* Evolutions and relatives */
 
 $form-evolution-full-width: 100px;
 $form-evolution-medium-width: 32px;
 $form-evolution-short-width: 20px;
 $form-evolution-path-corner-radius: $corner-radius*2;
-$form-evolution-path-width: 1.5px;
+$form-evolution-path-width: 2px;
 
 #form-evolution-body {
-  @include scrollbars($dark, $light, $highlight);
+  @include scrollbars;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   padding-bottom: 25px;
   margin-top: -20px;
   color: $light;
   text-transform: uppercase;
   overflow: hidden;
 
+  &.with-evolutions {
+    flex-direction: column;
+    justify-content: unset;
+    align-items: center;
+  }
+
   &.overflow {
     overflow-x: scroll;
 
-    & > #form-evolution-root {
+    & > .form-evolution-root {
       padding-left: 40px;
     }
   }
 }
 
-#form-evolution-root {
-  margin: auto;
+.form-evolution-root {
+  //margin: 0 $form-evolution-medium-width*0.5;
+  &.overflow {
+    margin: auto;
+  }
 }
 
 .form-evolution-row {
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -214,7 +328,7 @@ $form-evolution-path-width: 1.5px;
 }
 
 .form-evolution-path {
-  height: 50%;
+  height: 100%;
 
   &.full {
     width: $form-evolution-full-width;
@@ -228,54 +342,15 @@ $form-evolution-path-width: 1.5px;
     width: $form-evolution-short-width;
   }
 
-  &.upper {
-    border-bottom: $form-evolution-path-width solid $light;
-    margin-bottom: -$form-evolution-path-width/2;
+  &-line {
+    fill: none;
+    stroke: $light;
+    stroke-width: $form-evolution-path-width;
+    rx: $form-evolution-path-corner-radius;
+    x: $form-evolution-path-width * 0.5;
 
-    &.top {
-      border: unset;
-    }
-
-    &.bottom {
-      margin-bottom: $form-evolution-path-width;
-    }
-
-    &.split {
-      height: 50%;
-      border-left: $form-evolution-path-width solid $light;
-
-      &.top {
-        border: unset;
-      }
-
-      &.bottom {
-        border-radius: 0 0 0 $form-evolution-path-corner-radius;
-      }
-    }
-  }
-
-  &.lower {
-    border-top: $form-evolution-path-width solid $light;
-    margin-top: -$form-evolution-path-width/2;
-
-    &.top {
-      margin-top: $form-evolution-path-width;
-    }
-
-    &.bottom {
-      border: unset;
-    }
-
-    &.split {
-      border-left: $form-evolution-path-width solid $light;
-
-      &.top {
-        border-radius: $form-evolution-path-corner-radius 0 0 0;
-      }
-
-      &.bottom {
-        border: unset;
-      }
+    &.dashed {
+      stroke-dasharray: 5 5;
     }
   }
 }

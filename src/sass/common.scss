@@ -13,9 +13,14 @@ $black-transp-50: #00000080;
 $black-transp-25: #00000040;
 $black-transp-12: #00000020;
 $dark: #222;
+$medium-dark: #333;
 $medium: #444;
+$medium-light: #555;
 $light: #666;
 $highlight: #888;
+$great-color: #58d;
+$ultra-color: #b82;
+$master-color: #96d;
 $transition-duration-instant: 0.075s;
 $transition-duration-fast: 0.15s;
 $transition-duration-medium: 0.3s;
@@ -52,7 +57,7 @@ $widget-height-large: 48px;
 
 /* Scrollbars */
 
-@mixin scrollbars($track-color, $thumb-color, $thumb-hover-color) {
+@mixin scrollbars($track-color: $dark, $thumb-color: $light, $thumb-hover-color: $highlight) {
   scrollbar-width: $corner-radius;
   scrollbar-height: $corner-radius;
   scrollbar-color: $thumb-color $track-color;
@@ -78,21 +83,19 @@ $widget-height-large: 48px;
 }
 
 .scroll-x {
-  @include scrollbars($dark, $light, $highlight);
+  @include scrollbars;
   padding: $corner-radius*2;
   padding-bottom: $corner-radius !important;
   width: 100%;
-  overflow: hidden !important;
-  overflow-x: scroll !important;
+  overflow-x: scroll;
 }
 
 .scroll-y {
-  @include scrollbars($dark, $light, $highlight);
+  @include scrollbars;
   padding: $corner-radius*2 !important;
   padding-right: $corner-radius !important;
   height: 100%;
-  overflow: hidden !important;
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 }
 
 .no-scroll {
@@ -135,8 +138,15 @@ $widget-height-large: 48px;
 }
 
 .uppercase-label {
+  @include bold;
   text-transform: uppercase;
   margin: $padding*2;
+
+  &-small {
+    text-transform: uppercase;
+    font-size: 12pt;
+    margin: $padding*2;
+  }
 }
 
 .numeric-label {

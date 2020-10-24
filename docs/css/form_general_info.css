@@ -1,6 +1,6 @@
 /*! PogoVis v0.0.1 | (c) 2020 Hannes Runelöv | MIT License |  */
 /* Scrollbars */
-/* line 80, src/sass/common.scss */
+/* line 85, src/sass/common.scss */
 .scroll-x {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
@@ -8,34 +8,33 @@
   padding: 10px;
   padding-bottom: 5px !important;
   width: 100%;
-  overflow: hidden !important;
-  overflow-x: scroll !important;
+  overflow-x: scroll;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 65, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-/* line 65, src/sass/common.scss */
+/* line 70, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 5px;
 }
 
-/* line 70, src/sass/common.scss */
+/* line 75, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 74, src/sass/common.scss */
+/* line 79, src/sass/common.scss */
 .scroll-x::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 89, src/sass/common.scss */
+/* line 93, src/sass/common.scss */
 .scroll-y {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
@@ -43,85 +42,93 @@
   padding: 10px !important;
   padding-right: 5px !important;
   height: 100%;
-  overflow: hidden !important;
-  overflow-y: scroll !important;
+  overflow-y: scroll;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 65, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-/* line 65, src/sass/common.scss */
+/* line 70, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 5px;
 }
 
-/* line 70, src/sass/common.scss */
+/* line 75, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 74, src/sass/common.scss */
+/* line 79, src/sass/common.scss */
 .scroll-y::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 98, src/sass/common.scss */
+/* line 101, src/sass/common.scss */
 .no-scroll {
   overflow: hidden !important;
   padding: 10px;
 }
 
 /* General */
-/* line 105, src/sass/common.scss */
+/* line 108, src/sass/common.scss */
 .list-item-wrapper {
   margin: 0;
 }
 
-/* line 108, src/sass/common.scss */
+/* line 111, src/sass/common.scss */
 .list-item-wrapper.hide-content {
   overflow: hidden;
 }
 
 /* Text */
-/* line 115, src/sass/common.scss */
+/* line 118, src/sass/common.scss */
 .left-aligned {
   text-align: left !important;
 }
 
-/* line 119, src/sass/common.scss */
+/* line 122, src/sass/common.scss */
 .center-aligned {
   text-align: center !important;
 }
 
-/* line 123, src/sass/common.scss */
+/* line 126, src/sass/common.scss */
 .right-aligned {
   text-align: right !important;
 }
 
-/* line 127, src/sass/common.scss */
+/* line 130, src/sass/common.scss */
 .no-letter-spacing {
   letter-spacing: 0;
 }
 
-/* line 131, src/sass/common.scss */
+/* line 134, src/sass/common.scss */
 .caption {
   font-size: 16pt;
   font-weight: bold;
   margin: 8px;
 }
 
-/* line 137, src/sass/common.scss */
+/* line 140, src/sass/common.scss */
 .uppercase-label {
+  font-weight: 700;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   margin: 8px;
 }
 
-/* line 142, src/sass/common.scss */
+/* line 145, src/sass/common.scss */
+.uppercase-label-small {
+  text-transform: uppercase;
+  font-size: 12pt;
+  margin: 8px;
+}
+
+/* line 152, src/sass/common.scss */
 .numeric-label {
   font-weight: 700;
   letter-spacing: 0.025em;
@@ -130,7 +137,7 @@
 }
 
 /* Flex */
-/* line 150, src/sass/common.scss */
+/* line 160, src/sass/common.scss */
 .flex-reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -139,7 +146,7 @@
 }
 
 /* Frames */
-/* line 156, src/sass/common.scss */
+/* line 166, src/sass/common.scss */
 .frame {
   padding: 4px;
   margin: 4px 0;
@@ -148,12 +155,12 @@
   color: #ccc;
 }
 
-/* line 163, src/sass/common.scss */
+/* line 173, src/sass/common.scss */
 .frame.with-caption {
   margin-top: 32px;
 }
 
-/* line 168, src/sass/common.scss */
+/* line 178, src/sass/common.scss */
 .frame-caption {
   font-weight: bold;
   font-size: 18pt;
@@ -163,12 +170,12 @@
   background: #222;
 }
 
-/* line 177, src/sass/common.scss */
+/* line 187, src/sass/common.scss */
 .frame-body {
   margin: 0;
 }
 
-/* line 181, src/sass/common.scss */
+/* line 191, src/sass/common.scss */
 .two-columns {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -183,19 +190,19 @@
   overflow: hidden;
 }
 
-/* line 188, src/sass/common.scss */
+/* line 198, src/sass/common.scss */
 .left-column-wrapper {
   width: 50%;
   margin-right: -0.5px;
 }
 
-/* line 193, src/sass/common.scss */
+/* line 203, src/sass/common.scss */
 .right-column-wrapper {
   width: 50%;
   margin-left: -0.5px;
 }
 
-/* line 198, src/sass/common.scss */
+/* line 208, src/sass/common.scss */
 .left-column-frame {
   border-top: 1px solid #666;
   border-right: 1px solid #666;
@@ -204,7 +211,7 @@
   height: 100%;
 }
 
-/* line 206, src/sass/common.scss */
+/* line 216, src/sass/common.scss */
 .right-column-frame {
   border-top: 1px solid #666;
   border-left: 1px solid #666;
@@ -213,7 +220,7 @@
   height: 100%;
 }
 
-/* line 222, src/sass/common.scss */
+/* line 232, src/sass/common.scss */
 .sub-caption {
   font-weight: bold;
   margin: 16px 4px 4px 4px;
@@ -222,57 +229,57 @@
 }
 
 /* Padding/Margins */
-/* line 230, src/sass/common.scss */
+/* line 240, src/sass/common.scss */
 .pad-top {
   margin-top: 4px;
 }
 
-/* line 234, src/sass/common.scss */
+/* line 244, src/sass/common.scss */
 .pad-top-half {
   margin-top: 2px;
 }
 
-/* line 238, src/sass/common.scss */
+/* line 248, src/sass/common.scss */
 .pad-bottom {
   margin-bottom: 4px;
 }
 
-/* line 242, src/sass/common.scss */
+/* line 252, src/sass/common.scss */
 .pad-bottom-half {
   margin-bottom: 2px;
 }
 
-/* line 246, src/sass/common.scss */
+/* line 256, src/sass/common.scss */
 .pad-left {
   margin-left: 4px;
 }
 
-/* line 250, src/sass/common.scss */
+/* line 260, src/sass/common.scss */
 .pad-left-half {
   margin-left: 2px;
 }
 
-/* line 254, src/sass/common.scss */
+/* line 264, src/sass/common.scss */
 .pad-right {
   margin-right: 4px;
 }
 
-/* line 258, src/sass/common.scss */
+/* line 268, src/sass/common.scss */
 .pad-right-half {
   margin-right: 2px;
 }
 
-/* line 262, src/sass/common.scss */
+/* line 272, src/sass/common.scss */
 .border-top {
   border-top: 4px solid #111;
 }
 
-/* line 266, src/sass/common.scss */
+/* line 276, src/sass/common.scss */
 .border-bottom {
   border-bottom: 4px solid #111;
 }
 
-/* line 270, src/sass/common.scss */
+/* line 280, src/sass/common.scss */
 #pokemon-caption-type1-color {
   width: 100%;
   height: 80%;
@@ -280,21 +287,21 @@
   top: 0;
 }
 
-/* line 277, src/sass/common.scss */
+/* line 287, src/sass/common.scss */
 .split-top {
   width: 100%;
   position: absolute;
   top: 0;
 }
 
-/* line 283, src/sass/common.scss */
+/* line 293, src/sass/common.scss */
 .split-bottom {
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-/* line 289, src/sass/common.scss */
+/* line 299, src/sass/common.scss */
 .hidden {
   display: none !important;
 }
@@ -315,7 +322,7 @@
 /* Top Bar */
 /* line 17, src/sass/form_general_info.scss */
 #form-general-top-wrapper {
-  margin: 10px 0;
+  margin-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -329,20 +336,148 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 64px;
+}
+
+/* Height */
+/* line 28, src/sass/form_general_info.scss */
+#form-height-wrapper {
+  width: 21%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+/* line 38, src/sass/form_general_info.scss */
+#form-height-icon {
+  margin-right: 4px;
+  height: 0;
+}
+
+/* line 43, src/sass/form_general_info.scss */
+#form-height-bar {
+  margin-right: 4px;
+  width: 2px;
+  height: 0;
+  background: #ccc;
+}
+
+/* line 50, src/sass/form_general_info.scss */
+#form-height-label {
+  margin: 0;
+  margin-bottom: 4px;
+  min-height: 14px;
+  min-width: 80px;
+}
+
+/* Weight */
+/* line 59, src/sass/form_general_info.scss */
+#form-weight-wrapper {
+  width: 21%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+/* line 67, src/sass/form_general_info.scss */
+.form-weight-pan {
+  width: 24px;
+  height: 4px;
+  margin-bottom: 22px;
+  border-radius: 0 0 10px 10px;
+  background: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+/* line 77, src/sass/form_general_info.scss */
+#form-weight-person {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* line 81, src/sass/form_general_info.scss */
+#form-weight-icon {
+  height: 32px;
+  margin-bottom: 6px;
+}
+
+/* line 86, src/sass/form_general_info.scss */
+#form-weight-pokemon {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+/* line 90, src/sass/form_general_info.scss */
+#form-weight-label {
+  min-width: 100px;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+/* line 96, src/sass/form_general_info.scss */
+#form-weight-bar {
+  width: 2px;
+  height: 48px;
+  margin: 0 4px;
+  background: #ccc;
 }
 
 /* Gender Ratio */
-/* line 27, src/sass/form_general_info.scss */
-.form-gender-percent {
-  width: 50px;
+/* line 118, src/sass/form_general_info.scss */
+#form-gender-wrapper {
+  width: 58%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-/* line 31, src/sass/form_general_info.scss */
+/* line 126, src/sass/form_general_info.scss */
+.form-gender-ratio {
+  width: 10px;
+}
+
+/* line 130, src/sass/form_general_info.scss */
 #form-gender-bar {
   width: 134px;
 }
 
-/* line 35, src/sass/form_general_info.scss */
+/* line 134, src/sass/form_general_info.scss */
 #form-female-bar {
   left: 0;
   right: unset;
@@ -350,7 +485,7 @@
   border-right: 1.25px solid #222;
 }
 
-/* line 42, src/sass/form_general_info.scss */
+/* line 141, src/sass/form_general_info.scss */
 #form-male-bar {
   right: 0;
   left: unset;
@@ -358,15 +493,20 @@
   border-left: 1.25px solid #222;
 }
 
-/* line 49, src/sass/form_general_info.scss */
+/* line 148, src/sass/form_general_info.scss */
 #form-genderless-label {
   text-transform: uppercase;
   width: 100%;
-  position: absolute;
+}
+
+/* Encounter rates */
+/* line 154, src/sass/form_general_info.scss */
+#form-encounter-wrapper {
+  width: 25%;
 }
 
 /* Type */
-/* line 57, src/sass/form_general_info.scss */
+/* line 160, src/sass/form_general_info.scss */
 #form-types {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -380,7 +520,7 @@
           justify-content: center;
 }
 
-/* line 63, src/sass/form_general_info.scss */
+/* line 166, src/sass/form_general_info.scss */
 #form-resistances {
   padding: 8px;
   padding-bottom: 4px;
@@ -396,7 +536,7 @@
           align-items: flex-end;
 }
 
-/* line 71, src/sass/form_general_info.scss */
+/* line 174, src/sass/form_general_info.scss */
 #form-weaknesses {
   padding: 8px;
   padding-bottom: 4px;
@@ -412,7 +552,7 @@
           align-items: flex-start;
 }
 
-/* line 79, src/sass/form_general_info.scss */
+/* line 182, src/sass/form_general_info.scss */
 .type-label {
   margin: 4px 0;
   display: -webkit-box;
@@ -427,7 +567,7 @@
           align-items: center;
 }
 
-/* line 86, src/sass/form_general_info.scss */
+/* line 189, src/sass/form_general_info.scss */
 .form-type-effectiveness-label {
   height: 48px;
   margin: 4px;
@@ -447,7 +587,7 @@
           justify-content: start;
 }
 
-/* line 95, src/sass/form_general_info.scss */
+/* line 198, src/sass/form_general_info.scss */
 .form-type-effectiveness-label.reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -458,15 +598,15 @@
           justify-content: end;
 }
 
-/* line 101, src/sass/form_general_info.scss */
+/* line 204, src/sass/form_general_info.scss */
 .form-type-effectiveness-percent {
   margin: 4px;
   color: #fff;
   text-shadow: 0 0 2px #000;
 }
 
-/* Evolutions */
-/* line 115, src/sass/form_general_info.scss */
+/* Evolutions and relatives */
+/* line 218, src/sass/form_general_info.scss */
 #form-evolution-body {
   scrollbar-width: 5px;
   scrollbar-height: 5px;
@@ -478,6 +618,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   padding-bottom: 25px;
   margin-top: -20px;
   color: #666;
@@ -485,46 +628,61 @@
   overflow: hidden;
 }
 
-/* line 60, src/sass/common.scss */
+/* line 65, src/sass/common.scss */
 #form-evolution-body::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-/* line 65, src/sass/common.scss */
+/* line 70, src/sass/common.scss */
 #form-evolution-body::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 5px;
 }
 
-/* line 70, src/sass/common.scss */
+/* line 75, src/sass/common.scss */
 #form-evolution-body::-webkit-scrollbar-thumb {
   background: #666;
   border-radius: 5px;
 }
 
-/* line 74, src/sass/common.scss */
+/* line 79, src/sass/common.scss */
 #form-evolution-body::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 
-/* line 125, src/sass/form_general_info.scss */
+/* line 229, src/sass/form_general_info.scss */
+#form-evolution-body.with-evolutions {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* line 235, src/sass/form_general_info.scss */
 #form-evolution-body.overflow {
   overflow-x: scroll;
 }
 
-/* line 128, src/sass/form_general_info.scss */
-#form-evolution-body.overflow > #form-evolution-root {
+/* line 238, src/sass/form_general_info.scss */
+#form-evolution-body.overflow > .form-evolution-root {
   padding-left: 40px;
 }
 
-/* line 134, src/sass/form_general_info.scss */
-#form-evolution-root {
+/* line 246, src/sass/form_general_info.scss */
+.form-evolution-root.overflow {
   margin: auto;
 }
 
-/* line 138, src/sass/form_general_info.scss */
+/* line 251, src/sass/form_general_info.scss */
 .form-evolution-row {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,7 +695,7 @@
           align-items: stretch;
 }
 
-/* line 144, src/sass/form_general_info.scss */
+/* line 258, src/sass/form_general_info.scss */
 .form-evolution-column {
   position: relative;
   display: -webkit-box;
@@ -552,7 +710,7 @@
           justify-content: center;
 }
 
-/* line 151, src/sass/form_general_info.scss */
+/* line 265, src/sass/form_general_info.scss */
 .form-evolution-reqs-wrapper {
   position: absolute;
   width: 100px;
@@ -568,7 +726,7 @@
           justify-content: center;
 }
 
-/* line 159, src/sass/form_general_info.scss */
+/* line 273, src/sass/form_general_info.scss */
 .form-evolution-reqs-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -582,16 +740,16 @@
           align-items: center;
   padding: 4px;
   background: #222;
-  border: 1.5px solid #666;
+  border: 2px solid #666;
   border-radius: 10px;
 }
 
-/* line 168, src/sass/form_general_info.scss */
+/* line 282, src/sass/form_general_info.scss */
 .form-evolution-reqs-body > * {
   margin: 4px;
 }
 
-/* line 173, src/sass/form_general_info.scss */
+/* line 287, src/sass/form_general_info.scss */
 .form-evolution-req-icons-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -605,12 +763,12 @@
           align-items: center;
 }
 
-/* line 179, src/sass/form_general_info.scss */
+/* line 293, src/sass/form_general_info.scss */
 .form-evolution-req-icon {
   margin: 0 4px;
 }
 
-/* line 183, src/sass/form_general_info.scss */
+/* line 297, src/sass/form_general_info.scss */
 .form-evolution-req-label {
   color: #ccc;
   display: -webkit-box;
@@ -623,115 +781,66 @@
   text-align: right;
 }
 
-/* line 190, src/sass/form_general_info.scss */
+/* line 304, src/sass/form_general_info.scss */
 .form-evolution-req-number {
   text-transform: none !important;
   letter-spacing: 0;
   margin-left: 4px;
 }
 
-/* line 196, src/sass/form_general_info.scss */
+/* line 310, src/sass/form_general_info.scss */
 .form-evolution-req-text {
   text-transform: uppercase;
   font-size: 12pt;
 }
 
-/* line 201, src/sass/form_general_info.scss */
+/* line 315, src/sass/form_general_info.scss */
 .form-evolution-descendant-image-wrapper {
   height: 130px;
 }
 
-/* line 205, src/sass/form_general_info.scss */
+/* line 319, src/sass/form_general_info.scss */
 .form-evolution-descendant-line {
   position: absolute;
   top: 50%;
   bottom: 50%;
   width: 100%;
-  height: 1.5px;
-  margin-top: -0.75px;
+  height: 2px;
+  margin-top: -1px;
   background: #666;
   z-index: -1;
 }
 
-/* line 216, src/sass/form_general_info.scss */
+/* line 330, src/sass/form_general_info.scss */
 .form-evolution-path {
-  height: 50%;
+  height: 100%;
 }
 
-/* line 219, src/sass/form_general_info.scss */
+/* line 333, src/sass/form_general_info.scss */
 .form-evolution-path.full {
   width: 100px;
 }
 
-/* line 223, src/sass/form_general_info.scss */
+/* line 337, src/sass/form_general_info.scss */
 .form-evolution-path.medium {
   width: 32px;
 }
 
-/* line 227, src/sass/form_general_info.scss */
+/* line 341, src/sass/form_general_info.scss */
 .form-evolution-path.short {
   width: 20px;
 }
 
-/* line 231, src/sass/form_general_info.scss */
-.form-evolution-path.upper {
-  border-bottom: 1.5px solid #666;
-  margin-bottom: -0.75px;
+/* line 345, src/sass/form_general_info.scss */
+.form-evolution-path-line {
+  fill: none;
+  stroke: #666;
+  stroke-width: 2px;
+  rx: 10px;
+  x: 1px;
 }
 
-/* line 235, src/sass/form_general_info.scss */
-.form-evolution-path.upper.top {
-  border: unset;
-}
-
-/* line 239, src/sass/form_general_info.scss */
-.form-evolution-path.upper.bottom {
-  margin-bottom: 1.5px;
-}
-
-/* line 243, src/sass/form_general_info.scss */
-.form-evolution-path.upper.split {
-  height: 50%;
-  border-left: 1.5px solid #666;
-}
-
-/* line 247, src/sass/form_general_info.scss */
-.form-evolution-path.upper.split.top {
-  border: unset;
-}
-
-/* line 251, src/sass/form_general_info.scss */
-.form-evolution-path.upper.split.bottom {
-  border-radius: 0 0 0 10px;
-}
-
-/* line 257, src/sass/form_general_info.scss */
-.form-evolution-path.lower {
-  border-top: 1.5px solid #666;
-  margin-top: -0.75px;
-}
-
-/* line 261, src/sass/form_general_info.scss */
-.form-evolution-path.lower.top {
-  margin-top: 1.5px;
-}
-
-/* line 265, src/sass/form_general_info.scss */
-.form-evolution-path.lower.bottom {
-  border: unset;
-}
-
-/* line 269, src/sass/form_general_info.scss */
-.form-evolution-path.lower.split {
-  border-left: 1.5px solid #666;
-}
-
-/* line 272, src/sass/form_general_info.scss */
-.form-evolution-path.lower.split.top {
-  border-radius: 10px 0 0 0;
-}
-
-/* line 276, src/sass/form_general_info.scss */
-.form-evolution-path.lower.split.bottom {
-  border: unset;
+/* line 352, src/sass/form_general_info.scss */
+.form-evolution-path-line.dashed {
+  stroke-dasharray: 5 5;
 }

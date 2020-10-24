@@ -57,21 +57,24 @@ class Pokedex extends JSONAssignedObject {
     this.pokemon = json.pokemon.map(p => new Pokemon(p));
     progress(0.45);
 
-    // Replace keys with references to Pokémon forms in evolutions, and set images
+    // Replace keys with references to Pokémon and forms in evolutions and relatives, and set images
     for (let p of this.pokemon) {
       for (let f of p.forms) {
         if (f.evolutions) {
           for (let e of f.evolutions) {
             const ec = e;
             for (let pp of this.pokemon.filter(ppp => ppp.key === ec.pokemon))
-            for (let ff of pp.forms.filter(fff => fff.key === ec.form))
-            e.descendant = ff;
+              for (let ff of pp.forms.filter(fff => fff.key === ec.form))
+                e.descendant = ff;
             delete e.pokemon;
             delete e.form;
           }
         }
         f.image = /*(imgIndex.includes(f.key) ?*/ f.key /*: p.forms[0].key)*/;
       }
+      if (p.relatives)
+        for (let i = 0; i < p.relatives.length; ++i)
+          p.relatives[i] = this.pokemon.filter(pp => pp.key === p.relatives[i])[0];
     }
     progress(0.54);
 
@@ -229,15 +232,28 @@ class Form extends JSONAssignedObject {
   get ancestor() {
     for (let p of pokedex.pokemon)
       for (let f of p.forms)
-        if (f.evolutions && f.evolutions.find(e => e.descendant && e.descendant.key === this.key) !== undefined)
+        if (f.evolutions && f.evolutions.find(e => e.descendant && e.descendant.key === this.key))
           return f;
     return undefined;
   }
 
   get firstAncestor() {
     let a = this;
-    for (; a.ancestor !== undefined; a = a.ancestor);
+    for (; a.ancestor; a = a.ancestor);
     return a;
+  }
+
+  get lineage() {
+    let result = [];
+    let r = this.firstAncestor;
+    function recurse(a) {
+      result.push(a);
+      if (a.evolutions)
+        for (let e of a.evolutions)
+          recurse(e.descendant);
+    }
+    recurse(this.firstAncestor);
+    return result;
   }
 
   sameTyping(other, strict) {
